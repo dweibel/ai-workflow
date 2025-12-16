@@ -70,6 +70,6 @@ How we'll know the feature is complete and working correctly.
 
 ## Related Directories
 
-- `/docs/requirements/` - Detailed requirements referenced by plans
-- `/docs/design/` - Design documents that inform planning
-- `/docs/tasks/` - Task breakdowns extracted from plans
+- `/.ai/docs/requirements/` - Detailed requirements referenced by plans
+- `/.ai/docs/design/` - Design documents that inform planning
+- `/.ai/docs/tasks/` - Task breakdowns extracted from plans

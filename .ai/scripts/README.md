@@ -11,6 +11,13 @@ This directory contains helper scripts for the Compound Engineering workflow.
 - `git-worktree.ps1` - PowerShell script for managing git worktrees
 - `git-worktree.sh` - Bash script for managing git worktrees (Unix/Linux/macOS)
 
+### Project Reset Tools
+
+- `project-reset.ps1` - PowerShell script for resetting project to clean state
+- `project-reset.sh` - Bash script for resetting project to clean state (Unix/Linux/macOS)
+
+These scripts implement template-based reset functionality using templates from `.ai/templates/` to clean up project-specific content while preserving generic engineering wisdom.
+
 ## Usage
 
 See individual script files for detailed usage instructions.

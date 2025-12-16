@@ -111,6 +111,6 @@ How this decision will be implemented or enforced.
 
 ## Related Directories
 
-- `/docs/design/` - Design documents implement ADR decisions
-- `/docs/plans/` - Plans should reference relevant ADRs
+- `/.ai/docs/design/` - Design documents implement ADR decisions
+- `/.ai/docs/plans/` - Plans should reference relevant ADRs
 - `.ai/memory/decisions.md` - High-level architectural patterns (ADRs are more specific)

@@ -1,19 +1,19 @@
 # Workflow: Phase II - Execution & TDD
 
 ## Objective
-Implement the feature defined in `/docs/plans/FEATURE_NAME.md` using strict Test-Driven Development in an isolated Git Worktree environment.
+Implement the feature defined in `/.ai/docs/plans/FEATURE_NAME.md` using strict Test-Driven Development in an isolated Git Worktree environment.
 
 ## Prerequisites
 Before starting, ensure you have:
-1. An **approved** plan document from `/docs/plans/YYYY-MM-DD-feature-name.md` (Phase I)
+1. An **approved** plan document from `/.ai/docs/plans/YYYY-MM-DD-feature-name.md` (Phase I)
 2. Loaded `.ai/roles/builder.md` to adopt the correct persona
 3. Loaded `.ai/protocols/git-worktree.md` for environment setup
 4. Loaded `.ai/protocols/testing.md` for TDD protocol
 5. Loaded `.ai/memory/lessons.md` to avoid past mistakes
 
 **Documentation Context**: This workflow generates artifacts in:
-- `/docs/plans/` - The approved implementation plan
-- `/docs/tasks/` - Optional task tracking (if needed)
+- `/.ai/docs/plans/` - The approved implementation plan
+- `/.ai/docs/tasks/` - Optional task tracking (if needed)
 - Code changes in the feature branch worktree
 
 ## Step 0: Environment Setup
@@ -23,17 +23,17 @@ Before starting, ensure you have:
 
 ```bash
 # Windows PowerShell (PREFERRED METHOD)
-.\scripts\git-worktree.ps1 -Action create -BranchName "feature/feature-description"
+.\.ai\scripts\git-worktree.ps1 -Action create -BranchName "feature/feature-description"
 
 # Unix/Linux/macOS (PREFERRED METHOD)  
-./scripts/git-worktree.sh create feature/feature-description
+./.ai/scripts/git-worktree.sh create feature/feature-description
 
 # Navigate to the worktree (script will show the path)
 cd ../worktrees/feature-feature-description
 
 # Verify you're in the correct environment (CRITICAL SAFETY CHECK)
-.\scripts\git-worktree.ps1 -Action status  # Windows
-./scripts/git-worktree.sh status          # Unix/Linux/macOS
+.\.ai\scripts\git-worktree.ps1 -Action status  # Windows
+./.ai/scripts/git-worktree.sh status          # Unix/Linux/macOS
 ```
 
 **Manual Method (ONLY if scripts unavailable)**:

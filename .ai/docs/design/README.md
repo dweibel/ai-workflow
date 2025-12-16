@@ -111,6 +111,6 @@ Unresolved design decisions.
 
 ## Related Directories
 
-- `/docs/requirements/` - Requirements that drive design decisions
-- `/docs/plans/` - Plans that reference and implement designs
-- `/docs/decisions/` - ADRs documenting major design choices
+- `/.ai/docs/requirements/` - Requirements that drive design decisions
+- `/.ai/docs/plans/` - Plans that reference and implement designs
+- `/.ai/docs/decisions/` - ADRs documenting major design choices

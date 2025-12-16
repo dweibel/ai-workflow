@@ -2,8 +2,6 @@
 
 This file documents architectural patterns, technology choices, and conventions established for this project. All code should follow these decisions unless explicitly overridden.
 
-**Note**: This repository contains both **active decisions** (for this documentation/tooling project) and **template decisions** (examples for application projects that use this system). Template sections are marked with "Status: Template" and should be customized for specific projects.
-
 ## How to Use This File
 
 - **Load during planning**: Consult this before designing new features
@@ -30,32 +28,12 @@ This file documents architectural patterns, technology choices, and conventions 
 
 ---
 
-## Project Stack
-
-### Technology Choices
-
-**Status**: Active  
-**Date**: 2025-12-16  
-**Decision**: This is a documentation and tooling repository for the Compound Engineering system
-
-**Current Stack**:
-- **Documentation**: Markdown files in `/.ai/docs/` hierarchy (moved from `/docs/` on 2025-12-16)
-- **Automation**: PowerShell (Windows) and Bash (Unix/Linux) scripts
-- **Version Control**: Git with worktree-based development workflow
-- **AI Integration**: Structured `.ai/` directory with workflows, roles, and protocols
-
-**Rationale**: Focus on documentation-driven development and automated workflow tooling rather than application code
-
----
-
-
-
 ## Code Organization
 
 ### Directory Structure
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: Follow domain-driven directory structure
 
 **Pattern**:
@@ -81,48 +59,44 @@ src/
 
 ### File Naming
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: 
-- Use kebab-case for documentation files: `git-worktree.md`
+- Use kebab-case for documentation files: `user-authentication.md`
 - Use date prefixes for chronological documents: `2025-12-16-feature-name.md`
 - Use descriptive names that indicate purpose and scope
 - Follow established directory hierarchy in `/.ai/docs/`
 
 **Examples**:
-- ✅ `/.ai/docs/plans/2025-12-16-git-worktree-integration.md`
+- ✅ `/.ai/docs/plans/2025-12-16-user-authentication.md`
 - ✅ `/.ai/docs/requirements/user-authentication.md`
-- ✅ `.ai/protocols/git-worktree.md`
+- ✅ `.ai/protocols/testing.md`
 - ❌ `plan1.md`
 - ❌ `stuff.md`
 
 ---
 
-### Script and Variable Naming
+### Variable and Function Naming
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**:
-- Use kebab-case for script filenames: `git-worktree.ps1`
-- Use PascalCase for PowerShell parameters: `-BranchName`, `-Action`
-- Use lowercase with underscores for bash variables: `branch_name`
+- Use camelCase for JavaScript/TypeScript variables and functions
+- Use PascalCase for classes and interfaces
+- Use SCREAMING_SNAKE_CASE for constants
 - Use descriptive names that reveal intent
 
 **Examples**:
-```powershell
-# ✅ Good PowerShell
-.\.ai\scripts\git-worktree.ps1 -Action create -BranchName "feature/user-auth"
+```typescript
+// ✅ Good
+const userAuthToken = generateToken();
+class UserRepository { }
+const MAX_RETRY_ATTEMPTS = 3;
 
-# ❌ Bad PowerShell
-.\.ai\scripts\gw.ps1 -a c -b "feat"
-```
-
-```bash
-# ✅ Good Bash
-./.ai/scripts/git-worktree.sh create feature/user-auth
-
-# ❌ Bad Bash
-./.ai/scripts/gw.sh c feat
+// ❌ Bad
+const t = gen();
+class ur { }
+const max = 3;
 ```
 
 ---
@@ -132,7 +106,7 @@ src/
 ### Error Response Format
 
 **Status**: Template  
-**Date**: 2025-12-16  
+**Date**: [DATE]  
 **Decision**: Use consistent error response format across all APIs
 
 **Pattern**:
@@ -164,7 +138,7 @@ res.status(400).json({
 ### Exception Handling
 
 **Status**: Template  
-**Date**: 2025-12-16  
+**Date**: [DATE]  
 **Decision**: Use custom error classes for domain-specific errors
 
 **Pattern**:
@@ -184,41 +158,12 @@ throw new ValidationError('Email is required', 'email');
 
 ---
 
-## Documentation Workflow
-
-### Git Worktree Usage
-
-**Status**: Active  
-**Date**: 2025-12-16  
-**Decision**: All feature development must use Git worktrees via helper scripts
-
-**Pattern**:
-```bash
-# Windows
-.\.ai\scripts\git-worktree.ps1 -Action create -BranchName "feature/new-feature"
-cd ../worktrees/feature-new-feature
-
-# Unix/Linux/macOS
-./.ai/scripts/git-worktree.sh create feature/new-feature
-cd ../worktrees/feature-new-feature
-```
-
-**Rationale**: 
-- Prevents accidental changes to main branch
-- Enables parallel development of multiple features
-- Provides consistent directory structure
-- Includes validation and safety checks
-
-**Enforcement**: Phase II (WORK) workflow requires worktree creation before implementation
-
----
-
 ## Database Patterns
 
 ### Query Organization
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: All database queries should be encapsulated in repository/DAO pattern
 
 **Pattern**:
@@ -243,8 +188,8 @@ app.get('/users/:id', async (req, res) => {
 
 ### Migration Strategy
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: All schema changes must go through migration files, never direct SQL
 
 **Pattern**: See `.ai/protocols/migrations.md` for detailed guidelines
@@ -261,8 +206,8 @@ app.get('/users/:id', async (req, res) => {
 
 ### Test Organization
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: Co-locate tests with source files using `.test.ts` suffix
 
 **Pattern**:
@@ -279,8 +224,8 @@ src/
 
 ### Test Coverage Requirements
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: Maintain minimum 80% code coverage for all business logic
 
 **What to Test**:
@@ -299,8 +244,8 @@ src/
 
 ### REST Conventions
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: Follow RESTful conventions for API design
 
 **Pattern**:
@@ -323,8 +268,8 @@ DELETE /api/users/:id      # Delete user
 
 ### Response Format
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: Wrap collection responses in a data envelope
 
 **Pattern**:
@@ -351,8 +296,8 @@ res.json({
 
 ### Authentication
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: Use JWT tokens for authentication with HTTP-only cookies
 
 **Pattern**:
@@ -372,8 +317,8 @@ res.cookie('authToken', jwt.sign({ userId: user.id }), {
 
 ### Input Validation
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: Validate all user input at the API boundary using a validation library
 
 **Pattern**:
@@ -403,8 +348,8 @@ app.post('/users', (req, res) => {
 
 ### Caching Strategy
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: [Document your caching strategy]
 
 **Example**:
@@ -417,8 +362,8 @@ app.post('/users', (req, res) => {
 
 ### Database Optimization
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: Always use indexes on foreign keys and frequently queried columns
 
 **Pattern**:
@@ -435,8 +380,8 @@ CREATE INDEX idx_orders_created_at ON orders(created_at);
 
 ### Linting & Formatting
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: Use ESLint + Prettier for consistent code style
 
 **Configuration**: See `.eslintrc.js` and `.prettierrc`
@@ -447,8 +392,8 @@ CREATE INDEX idx_orders_created_at ON orders(created_at);
 
 ### Code Comments
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: Write comments that explain "why", not "what"
 
 **Examples**:
@@ -473,8 +418,8 @@ const delay = Math.pow(2, attempt) * 1000;
 
 ### Environment Variables
 
-**Status**: Active  
-**Date**: 2025-12-16  
+**Status**: Template  
+**Date**: [DATE]  
 **Decision**: All configuration must come from environment variables, never hard-coded
 
 **Pattern**:
@@ -490,30 +435,6 @@ const API_KEY = 'abc123secretkey';
 ```
 
 **Enforcement**: Use `.env` files for local development, CI/CD secrets for production
-
----
-
-## Deprecated Patterns
-
-### Old Service Object Pattern (Deprecated)
-
-**Status**: Deprecated  
-**Date**: 2025-12-16  
-**Superseded By**: Direct function exports
-
-**Old Pattern** (Don't use):
-```typescript
-class UserEmailService {
-  async sendWelcomeEmail(user: User) { ... }
-}
-```
-
-**New Pattern**:
-```typescript
-export async function sendWelcomeEmail(user: User) { ... }
-```
-
-**Rationale**: Service classes with single methods add unnecessary complexity. Use simple functions instead.
 
 ---
 
@@ -537,7 +458,7 @@ This file should be reviewed quarterly to:
 - Add new decisions as the project evolves
 - Ensure examples are still accurate
 
-Last reviewed: 2025-12-16
+Last reviewed: [DATE]
 
 ---
 
@@ -546,5 +467,5 @@ Last reviewed: 2025-12-16
 ---
 
 **Version**: 1.0.0  
-**Last Updated**: 2025-12-16  
+**Last Updated**: [DATE]  
 **Based On**: AGENTS.md v1.0.0

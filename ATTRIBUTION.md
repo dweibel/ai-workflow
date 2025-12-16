@@ -39,7 +39,7 @@ This repository adapts the original plugin concepts into:
 
 - **Implementation**: Standalone markdown-driven system vs. plugin architecture
 - **Platform Support**: Cross-platform scripts vs. single environment
-- **Documentation**: Extensive documentation hierarchy vs. plugin-embedded docs
+- **Documentation**: Extensive documentation hierarchy in `.ai/docs/` vs. plugin-embedded docs
 - **Memory Persistence**: File-based memory system vs. plugin state management
 - **Automation**: Custom git worktree scripts vs. plugin-provided automation
 

@@ -45,7 +45,7 @@ These rules apply across ALL phases and MUST NEVER be violated:
 - **Always** create a dedicated Git Worktree for implementation tasks (see `.ai/protocols/git-worktree.md`)
 - **Never** work directly on the main branch for feature development
 - **Always** use atomic, descriptive commits following conventional commit format
-- **Always** use the provided helper scripts (`scripts/git-worktree.ps1` or `scripts/git-worktree.sh`) for worktree management
+- **Always** use the provided helper scripts (`.ai/scripts/git-worktree.ps1` or `.ai/scripts/git-worktree.sh`) for worktree management
 - **Always** clean up worktrees after feature completion to prevent repository bloat
 
 ### 2.3 Knowledge Management
@@ -64,16 +64,16 @@ These rules apply across ALL phases and MUST NEVER be violated:
 - **Always** run the full test suite before considering a task complete
 
 ### 2.6 Documentation Management
-- **Always** write project documentation to the `/docs/` directory hierarchy
+- **Always** write project documentation to the `/.ai/docs/` directory hierarchy
 - **Never** create documentation files in the project root or scattered locations
 - **Always** follow the established directory structure for document types:
-  - `/docs/plans/` - Implementation plans (named `YYYY-MM-DD-feature-name.md`)
-  - `/docs/requirements/` - Requirements and specifications
-  - `/docs/design/` - Design documents and architecture
-  - `/docs/tasks/` - Task lists and backlogs
-  - `/docs/reviews/` - Review reports and audit findings
-  - `/docs/decisions/` - Architectural Decision Records (ADRs)
-- **Always** consult the appropriate `/docs/*/README.md` for templates and conventions
+  - `/.ai/docs/plans/` - Implementation plans (named `YYYY-MM-DD-feature-name.md`)
+  - `/.ai/docs/requirements/` - Requirements and specifications
+  - `/.ai/docs/design/` - Design documents and architecture
+  - `/.ai/docs/tasks/` - Task lists and backlogs
+  - `/.ai/docs/reviews/` - Review reports and audit findings
+  - `/.ai/docs/decisions/` - Architectural Decision Records (ADRs)
+- **Always** consult the appropriate `/.ai/docs/*/README.md` for templates and conventions
 - **Always** create documentation during the appropriate phase (plans before work, reviews after work)
 - **Always** cross-reference related documents for traceability
 
@@ -84,7 +84,7 @@ These rules apply across ALL phases and MUST NEVER be violated:
 The Compound Engineering system includes automated skills that reduce manual overhead and prevent common mistakes.
 
 ### 3.1 Git Worktree Skills
-**Location:** `scripts/git-worktree.ps1` (Windows) and `scripts/git-worktree.sh` (Unix/Linux/macOS)
+**Location:** `.ai/scripts/git-worktree.ps1` (Windows) and `.ai/scripts/git-worktree.sh` (Unix/Linux/macOS)
 
 **Capabilities:**
 - **create**: Set up isolated development environments with proper branch management
@@ -150,8 +150,8 @@ You have access to the following tools for autonomous work:
 **Key Activities:**
 - Research existing patterns in the codebase
 - Analyze git history for context ("Chesterton's Fence")
-- Create a detailed implementation plan in `/docs/plans/YYYY-MM-DD-feature-name.md`
-- Document requirements in `/docs/requirements/` and design in `/docs/design/` as needed
+- Create a detailed implementation plan in `/.ai/docs/plans/YYYY-MM-DD-feature-name.md`
+- Document requirements in `/.ai/docs/requirements/` and design in `/.ai/docs/design/` as needed
 - Get user approval before proceeding to implementation
 
 **Output:** A comprehensive plan document that serves as a contract for the Work phase.
@@ -163,8 +163,8 @@ You have access to the following tools for autonomous work:
 
 **Key Activities:**
 - Create a git worktree for isolated development using helper scripts:
-  - Windows: `.\scripts\git-worktree.ps1 -Action create -BranchName "feature/name"`
-  - Unix/Linux/macOS: `./scripts/git-worktree.sh create feature/name`
+  - Windows: `.\.ai\scripts\git-worktree.ps1 -Action create -BranchName "feature/name"`
+  - Unix/Linux/macOS: `./.ai/scripts/git-worktree.sh create feature/name`
 - Navigate to the worktree directory before beginning implementation
 - Follow the Red-Green-Refactor loop for each task
 - Make atomic commits after each completed unit

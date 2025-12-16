@@ -27,14 +27,14 @@ Before proposing changes to existing code, you **MUST**:
 
 ### 4. Specification Drafting
 
-When creating a plan, produce a file in `/docs/plans/YYYY-MM-DD-feature-name.md`.
+When creating a plan, produce a file in `/.ai/docs/plans/YYYY-MM-DD-feature-name.md`.
 
-**Documentation Structure**: Plans are stored in `/docs/plans/` with supporting documents in:
-- `/docs/requirements/` - Requirements and specifications
-- `/docs/design/` - Design documents and architecture
-- `/docs/tasks/` - Task lists and backlogs
-- `/docs/reviews/` - Review reports (created in Phase III)
-- `/docs/decisions/` - Architectural Decision Records (ADRs)
+**Documentation Structure**: Plans are stored in `/.ai/docs/plans/` with supporting documents in:
+- `/.ai/docs/requirements/` - Requirements and specifications
+- `/.ai/docs/design/` - Design documents and architecture
+- `/.ai/docs/tasks/` - Task lists and backlogs
+- `/.ai/docs/reviews/` - Review reports (created in Phase III)
+- `/.ai/docs/decisions/` - Architectural Decision Records (ADRs)
 
 See each directory's README.md for templates and conventions.
 

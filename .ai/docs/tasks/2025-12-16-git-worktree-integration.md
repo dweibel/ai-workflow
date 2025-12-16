@@ -11,9 +11,9 @@ Integrate git-worktree management skills from the Compound Engineering Plugin in
 ## Deliverables
 
 ### 1. Helper Scripts Created
-- `scripts/git-worktree.ps1` - PowerShell script for Windows systems
-- `scripts/git-worktree.sh` - Bash script for Unix/Linux/macOS systems
-- `scripts/README.md` - Documentation for script usage
+- `.ai/scripts/git-worktree.ps1` - PowerShell script for Windows systems
+- `.ai/scripts/git-worktree.sh` - Bash script for Unix/Linux/macOS systems
+- `.ai/scripts/README.md` - Documentation for script usage
 
 ### 2. Protocol Documentation
 - `.ai/protocols/git-worktree.md` - Comprehensive protocol for worktree usage
@@ -66,31 +66,31 @@ Both PowerShell and Bash versions provide:
 ### Windows (PowerShell)
 ```powershell
 # Create feature worktree
-.\scripts\git-worktree.ps1 -Action create -BranchName "feature/user-auth"
+.\.ai\scripts\git-worktree.ps1 -Action create -BranchName "feature/user-auth"
 
 # Check status
-.\scripts\git-worktree.ps1 -Action status
+.\.ai\scripts\git-worktree.ps1 -Action status
 
 # List all worktrees
-.\scripts\git-worktree.ps1 -Action list
+.\.ai\scripts\git-worktree.ps1 -Action list
 
 # Remove worktree
-.\scripts\git-worktree.ps1 -Action remove -BranchName "feature/user-auth"
+.\.ai\scripts\git-worktree.ps1 -Action remove -BranchName "feature/user-auth"
 ```
 
 ### Unix/Linux/macOS (Bash)
 ```bash
 # Create feature worktree
-./scripts/git-worktree.sh create feature/user-auth
+./.ai/scripts/git-worktree.sh create feature/user-auth
 
 # Check status
-./scripts/git-worktree.sh status
+./.ai/scripts/git-worktree.sh status
 
 # List all worktrees
-./scripts/git-worktree.sh list
+./.ai/scripts/git-worktree.sh list
 
 # Remove worktree
-./scripts/git-worktree.sh remove feature/user-auth
+./.ai/scripts/git-worktree.sh remove feature/user-auth
 ```
 
 ## Testing
@@ -117,11 +117,11 @@ Both PowerShell and Bash versions provide:
 ## Files Modified/Created
 
 ### New Files
-- `scripts/README.md`
-- `scripts/git-worktree.ps1`
-- `scripts/git-worktree.sh`
+- `.ai/scripts/README.md`
+- `.ai/scripts/git-worktree.ps1`
+- `.ai/scripts/git-worktree.sh`
 - `.ai/protocols/git-worktree.md`
-- `docs/tasks/2025-12-16-git-worktree-integration.md`
+- `.ai/docs/tasks/2025-12-16-git-worktree-integration.md`
 
 ### Modified Files
 - `AGENTS.md` (enhanced with skills integration)

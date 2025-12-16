@@ -99,8 +99,8 @@ If you're working without an AI assistant, you can still follow the compound eng
 **Planning Phase:**
 1. Create a plan document:
    ```bash
-   mkdir -p docs/plans
-   touch docs/plans/$(date +%Y-%m-%d)-feature-name.md
+   mkdir -p .ai/docs/plans
+   touch .ai/docs/plans/$(date +%Y-%m-%d)-feature-name.md
    ```
 2. Follow the planning template in `.ai/workflows/planning.md`:
    - Research existing patterns
@@ -166,7 +166,7 @@ If you're working without an AI assistant, you can still follow the compound eng
 │   └── memory/               # Long-term knowledge
 │       ├── lessons.md        # Accumulated wisdom
 │       └── decisions.md      # Architectural patterns
-├── docs/                     # Project documentation
+├── docs/ → .ai/docs/         # Project documentation (moved to .ai/docs/)
 │   ├── workflows/            # Workflow automation guides
 │   │   ├── git-worktree-manual.md      # Direct git commands
 │   │   ├── script-templates.md         # Automation templates
@@ -192,7 +192,7 @@ If you're working without an AI assistant, you can still follow the compound eng
 **Activities**:
 - Research existing patterns in the codebase
 - Analyze git history (Chesterton's Fence)
-- Create comprehensive plan in `/docs/plans/YYYY-MM-DD-feature-name.md`
+- Create comprehensive plan in `/.ai/docs/plans/YYYY-MM-DD-feature-name.md`
 - Get explicit user approval
 
 **Output**: A detailed plan document serving as a contract for implementation.
@@ -324,9 +324,9 @@ git worktree remove .trees/my-feature
 ```
 
 **Documentation:**
-- `docs/workflows/git-worktree-manual.md` - Direct git commands and troubleshooting
-- `docs/workflows/script-templates.md` - Templates for creating custom automation
-- `docs/workflows/universal-commands.md` - Cross-platform patterns and tool-agnostic approaches
+- `.ai/docs/workflows/git-worktree-manual.md` - Direct git commands and troubleshooting
+- `.ai/docs/workflows/script-templates.md` - Templates for creating custom automation
+- `.ai/docs/workflows/universal-commands.md` - Cross-platform patterns and tool-agnostic approaches
 
 ---
 
@@ -357,7 +357,7 @@ git worktree remove .trees/my-feature
 > - Available dependencies: bcrypt, nodemailer
 >
 > **Creating Plan:**
-> Generated `/docs/plans/2025-12-16-password-reset.md` with:
+> Generated `/.ai/docs/plans/2025-12-16-password-reset.md` with:
 > - User story
 > - Technical approach
 > - Task breakdown (8 tasks)
@@ -671,7 +671,7 @@ By following this constitution, you transform the repository from a collection o
 ## Resources
 
 - **AGENTS.md** - Root constitution (operational mode definition)
-- **docs/workflows/** - Automation guides and command references
+- **.ai/docs/workflows/** - Automation guides and command references
   - `git-worktree-manual.md` - Direct git commands
   - `script-templates.md` - Automation templates for different environments
   - `universal-commands.md` - Cross-platform patterns

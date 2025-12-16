@@ -411,11 +411,11 @@ After all four personas have reported, compile a **unified review document**:
 
 ### 2.1 Findings Summary
 
-Create a review report at `/docs/reviews/YYYY-MM-DD-feature-name-review.md`.
+Create a review report at `/.ai/docs/reviews/YYYY-MM-DD-feature-name-review.md`.
 
 **Documentation Structure**: Review artifacts are stored in:
-- `/docs/reviews/` - Review reports and audit findings (dated)
-- `/docs/decisions/` - May be updated if patterns need codification
+- `/.ai/docs/reviews/` - Review reports and audit findings (dated)
+- `/.ai/docs/decisions/` - May be updated if patterns need codification
 - `.ai/memory/lessons.md` - Updated with review insights
 
 **Review Document** format:

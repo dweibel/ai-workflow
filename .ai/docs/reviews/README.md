@@ -91,8 +91,8 @@ What was done well in this code.
 - [ ] Action 2
 
 ## References
-- Related plan: `/docs/plans/YYYY-MM-DD-feature-name.md`
-- Related design: `/docs/design/component-design.md`
+- Related plan: `/.ai/docs/plans/YYYY-MM-DD-feature-name.md`
+- Related design: `/.ai/docs/design/component-design.md`
 ```
 
 ## Usage Guidelines
@@ -106,6 +106,6 @@ What was done well in this code.
 
 ## Related Directories
 
-- `/docs/plans/` - Plans that were implemented and are now being reviewed
-- `/docs/design/` - Designs to verify against
-- `/docs/decisions/` - Review may inform new architectural decisions
+- `/.ai/docs/plans/` - Plans that were implemented and are now being reviewed
+- `/.ai/docs/design/` - Designs to verify against
+- `/.ai/docs/decisions/` - Review may inform new architectural decisions

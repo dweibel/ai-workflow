@@ -4,32 +4,32 @@ This directory contains all project documentation organized in a structured hier
 
 ## Directory Structure
 
-### `/docs/plans/`
+### `/.ai/docs/plans/`
 Implementation plans for features and major changes. Plans should follow the naming convention `YYYY-MM-DD-feature-name.md` and serve as contracts for the WORK phase.
 
 **When to use:** During the PLAN phase, before starting any implementation work.
 
-### `/docs/requirements/`
+### `/.ai/docs/requirements/`
 Requirements specifications, user stories, feature specifications, and acceptance criteria.
 
 **When to use:** When gathering requirements, defining features, or documenting user needs.
 
-### `/docs/design/`
+### `/.ai/docs/design/`
 Design documents, architecture diagrams, system designs, and technical specifications.
 
 **When to use:** When designing system architecture, APIs, data models, or major technical decisions.
 
-### `/docs/tasks/`
+### `/.ai/docs/tasks/`
 Task lists, sprint backlogs, progress tracking, and work breakdown structures.
 
 **When to use:** For project management, tracking work items, and organizing development efforts.
 
-### `/docs/reviews/`
+### `/.ai/docs/reviews/`
 Code review reports, audit findings, security assessments, and quality checks.
 
 **When to use:** During the REVIEW phase after completing implementation work.
 
-### `/docs/decisions/`
+### `/.ai/docs/decisions/`
 Architectural Decision Records (ADRs) documenting significant technical decisions and their rationale.
 
 **When to use:** When making important architectural or technical choices that affect the project long-term.
@@ -55,8 +55,8 @@ Architectural Decision Records (ADRs) documenting significant technical decision
 
 This documentation structure supports the three workflow phases:
 
-- **PLAN Phase** → Create documents in `/docs/plans/`, `/docs/requirements/`, `/docs/design/`
-- **WORK Phase** → Reference plans and designs; create task tracking in `/docs/tasks/`
-- **REVIEW Phase** → Generate reports in `/docs/reviews/`; document decisions in `/docs/decisions/`
+- **PLAN Phase** → Create documents in `/.ai/docs/plans/`, `/.ai/docs/requirements/`, `/.ai/docs/design/`
+- **WORK Phase** → Reference plans and designs; create task tracking in `/.ai/docs/tasks/`
+- **REVIEW Phase** → Generate reports in `/.ai/docs/reviews/`; document decisions in `/.ai/docs/decisions/`
 
 See `AGENTS.md` section 2.6 for detailed rules on documentation management.

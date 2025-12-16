@@ -38,37 +38,37 @@ Git worktrees enable parallel development by creating multiple working directori
 ### Windows (PowerShell) - Primary Commands
 ```powershell
 # Create a new worktree (MOST COMMON)
-.\scripts\git-worktree.ps1 -Action create -BranchName "feature/user-auth"
+.\.ai\scripts\git-worktree.ps1 -Action create -BranchName "feature/user-auth"
 
 # Check current working environment (BEFORE CODING)
-.\scripts\git-worktree.ps1 -Action status
+.\.ai\scripts\git-worktree.ps1 -Action status
 
 # List all active worktrees
-.\scripts\git-worktree.ps1 -Action list
+.\.ai\scripts\git-worktree.ps1 -Action list
 
 # Remove a worktree after feature completion
-.\scripts\git-worktree.ps1 -Action remove -BranchName "feature/user-auth"
+.\.ai\scripts\git-worktree.ps1 -Action remove -BranchName "feature/user-auth"
 
 # Cleanup stale worktrees (MAINTENANCE)
-.\scripts\git-worktree.ps1 -Action cleanup
+.\.ai\scripts\git-worktree.ps1 -Action cleanup
 ```
 
 ### Unix/Linux/macOS (Bash) - Primary Commands
 ```bash
 # Create a new worktree (MOST COMMON)
-./scripts/git-worktree.sh create feature/user-auth
+./.ai/scripts/git-worktree.sh create feature/user-auth
 
 # Check current working environment (BEFORE CODING)
-./scripts/git-worktree.sh status
+./.ai/scripts/git-worktree.sh status
 
 # List all active worktrees
-./scripts/git-worktree.sh list
+./.ai/scripts/git-worktree.sh list
 
 # Remove a worktree after feature completion
-./scripts/git-worktree.sh remove feature/user-auth
+./.ai/scripts/git-worktree.sh remove feature/user-auth
 
 # Cleanup stale worktrees (MAINTENANCE)
-./scripts/git-worktree.sh cleanup
+./.ai/scripts/git-worktree.sh cleanup
 ```
 
 **Script Benefits**:
@@ -84,7 +84,7 @@ Git worktrees enable parallel development by creating multiple working directori
 project-root/
 ├── .git/                    # Main git directory
 ├── src/                     # Main working directory
-├── scripts/                 # Helper scripts
+├── .ai/scripts/             # Helper scripts
 └── ../worktrees/           # Worktrees directory (outside main repo)
     ├── feature-user-auth/   # Feature worktree
     ├── bugfix-login-issue/  # Bugfix worktree
@@ -126,16 +126,16 @@ git worktree prune
 **Script Equivalents (PREFERRED)**:
 ```bash
 # Windows PowerShell
-.\scripts\git-worktree.ps1 -Action create -BranchName "feature/new-feature"
-.\scripts\git-worktree.ps1 -Action list
-.\scripts\git-worktree.ps1 -Action remove -BranchName "feature/new-feature"
-.\scripts\git-worktree.ps1 -Action cleanup
+.\.ai\scripts\git-worktree.ps1 -Action create -BranchName "feature/new-feature"
+.\.ai\scripts\git-worktree.ps1 -Action list
+.\.ai\scripts\git-worktree.ps1 -Action remove -BranchName "feature/new-feature"
+.\.ai\scripts\git-worktree.ps1 -Action cleanup
 
 # Unix/Linux/macOS
-./scripts/git-worktree.sh create feature/new-feature
-./scripts/git-worktree.sh list
-./scripts/git-worktree.sh remove feature/new-feature
-./scripts/git-worktree.sh cleanup
+./.ai/scripts/git-worktree.sh create feature/new-feature
+./.ai/scripts/git-worktree.sh list
+./.ai/scripts/git-worktree.sh remove feature/new-feature
+./.ai/scripts/git-worktree.sh cleanup
 ```
 
 ### Navigation
@@ -193,7 +193,7 @@ git worktree remove --force path/to/worktree
 ### Permission Issues
 ```bash
 # On Unix systems, ensure scripts are executable
-chmod +x scripts/git-worktree.sh
+chmod +x .ai/scripts/git-worktree.sh
 
 # On Windows, ensure PowerShell execution policy allows scripts
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser

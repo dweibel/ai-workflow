@@ -72,6 +72,6 @@ What this feature explicitly does NOT include.
 
 ## Related Directories
 
-- `/docs/plans/` - Implementation plans based on these requirements
-- `/docs/design/` - Design documents that fulfill requirements
-- `/docs/reviews/` - Reviews that verify requirements are met
+- `/.ai/docs/plans/` - Implementation plans based on these requirements
+- `/.ai/docs/design/` - Design documents that fulfill requirements
+- `/.ai/docs/reviews/` - Reviews that verify requirements are met
