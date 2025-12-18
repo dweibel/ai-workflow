@@ -45,7 +45,7 @@ These rules apply across ALL phases and MUST NEVER be violated:
 - **Always** create a dedicated Git Worktree for implementation tasks (see `.ai/protocols/git-worktree.md`)
 - **Never** work directly on the main branch for feature development
 - **Always** use atomic, descriptive commits following conventional commit format
-- **Always** use the provided helper scripts (`.ai/scripts/git-worktree.ps1` or `.ai/scripts/git-worktree.sh`) for worktree management
+- **Always** use the provided helper script (`.ai/skills/git-worktree/git-worktree.sh`) for worktree management
 - **Always** clean up worktrees after feature completion to prevent repository bloat
 
 ### 2.3 Knowledge Management
@@ -84,7 +84,7 @@ These rules apply across ALL phases and MUST NEVER be violated:
 The Compound Engineering system includes automated skills that reduce manual overhead and prevent common mistakes.
 
 ### 3.1 Git Worktree Skills
-**Location:** `.ai/scripts/git-worktree.ps1` (Windows) and `.ai/scripts/git-worktree.sh` (Unix/Linux/macOS)
+**Location:** `.ai/skills/git-worktree/` (Cross-platform implementations)
 
 **Capabilities:**
 - **create**: Set up isolated development environments with proper branch management
@@ -99,14 +99,48 @@ The Compound Engineering system includes automated skills that reduce manual ove
 - Provides colored output for better UX
 - Handles edge cases (existing branches, cleanup confirmation, etc.)
 
-### 3.2 Skill Development Philosophy
+### 3.2 Project Reset Skills
+**Location:** `.ai/skills/project-reset/` (Cross-platform implementations)
+
+**Capabilities:**
+- **light**: Clear project docs only, keep all memory
+- **medium**: Reset memory to templates, clear project-specific docs
+- **full**: Reset everything to templates, clear all documentation
+- **custom**: Interactive mode to choose what to reset
+
+**Integration Points:**
+- Template-based reset preserves generic engineering wisdom
+- Maintains compound learning through template evolution
+- Integrates with git workflow for safe project transitions
+- Supports automated CI/CD reset scenarios
+
+### 3.3 Skill Development Philosophy
 Each skill follows the Compound Engineering principle:
 1. **Automate Repetitive Tasks**: Eliminate manual setup overhead
 2. **Prevent Common Errors**: Built-in validation and safety checks
 3. **Provide Clear Feedback**: Colored output and progress indicators
 4. **Enable Composition**: Skills work together as building blocks
 
-### 3.3 Future Skills Roadmap
+### 3.4 Skills Directory Structure
+
+The skills system follows a modular, template-driven approach:
+
+```
+.ai/skills/
+├── README.md                    # Master skills catalog
+├── git-worktree/               # Git worktree management
+├── project-reset/              # Project reset functionality  
+├── _templates/                 # Skill development templates
+└── [future-skills]/            # Extensible skill ecosystem
+```
+
+**Key Features:**
+- **Cross-Platform**: Bash implementations (WSL support for Windows)
+- **Self-Documenting**: Comprehensive README and examples for each skill
+- **Template-Driven**: Standardized development patterns via `_templates/`
+- **Discoverable**: Master catalog with capabilities matrix
+
+### 3.5 Future Skills Roadmap
 - **Test Runner Skills**: Automated test execution with intelligent filtering
 - **Documentation Skills**: Auto-generation of API docs and README updates
 - **Deployment Skills**: Standardized deployment workflows with rollback capabilities
@@ -163,13 +197,13 @@ You have access to the following tools for autonomous work:
 
 **Key Activities:**
 - Create a git worktree for isolated development using helper scripts:
-  - Windows: `.\.ai\scripts\git-worktree.ps1 -Action create -BranchName "feature/name"`
-  - Unix/Linux/macOS: `./.ai/scripts/git-worktree.sh create feature/name`
+  - All platforms: `./.ai/skills/git-worktree/git-worktree.sh create feature/name`
+  - Windows users: Use WSL (`wsl`) to execute bash scripts
 - Navigate to the worktree directory before beginning implementation
 - Follow the Red-Green-Refactor loop for each task
 - Make atomic commits after each completed unit
 - Run tests continuously to catch regressions
-- Use `git-worktree.ps1/sh status` to verify current working environment
+- Use `git-worktree.sh status` to verify current working environment
 
 **Output:** A working feature on a feature branch, ready for review.
 
@@ -292,7 +326,7 @@ When you begin a new session:
 1. **Load Core Memory**: Read `.ai/memory/lessons.md` and `.ai/memory/decisions.md`
 2. **Understand the Request**: Determine which Phase (Plan/Work/Review) is needed
 3. **Load Appropriate Context**: Read the relevant workflow and role files
-4. **Verify Environment**: Check current branch, working directory, and any existing worktrees using `git-worktree.ps1/sh status`
+4. **Verify Environment**: Check current branch, working directory, and any existing worktrees using `git-worktree.sh status`
 5. **Proceed with Confidence**: Execute the workflow with full context
 6. **Reference README.md**: For helper scripts, detailed examples, troubleshooting, and best practices, see README.md
 
