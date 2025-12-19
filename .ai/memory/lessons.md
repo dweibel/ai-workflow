@@ -71,7 +71,7 @@ This file contains the accumulated wisdom from past engineering sessions. Every 
 
 - When starting a task, always load the appropriate workflow and role files from `.ai/` to ensure proper context.
 - When completing a task, always perform a retrospective to extract lessons and update this file.
-- When planning a feature, always create a comprehensive plan document in `/.ai/docs/plans/` before writing any code.
+- When planning a feature, always create a comprehensive plan document in `.ai/docs/plans/` before writing any code.
 
 ---
 
@@ -98,7 +98,7 @@ This file should be periodically reviewed and consolidated to prevent it from be
 3. Summarize multiple specific lessons into higher-level principles
 4. Archive historical lessons that are no longer relevant
 
-Last reviewed: 2025-12-18
+Last reviewed: 2025-12-19
 
 ---
 
@@ -107,5 +107,5 @@ Last reviewed: 2025-12-18
 ---
 
 **Version**: 1.0.0  
-**Last Updated**: 2025-12-18  
+**Last Updated**: 2025-12-19  
 **Based On**: AGENTS.md v1.0.0

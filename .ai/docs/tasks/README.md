@@ -86,6 +86,6 @@ Completed tasks (move to archive/ periodically).
 
 ## Related Directories
 
-- `/.ai/docs/plans/` - Source of task breakdowns
-- `/.ai/docs/requirements/` - Requirements that generate tasks
-- `/.ai/docs/reviews/` - Reviews may generate additional tasks
+- `.ai/docs/plans/` - Source of task breakdowns
+- `.ai/docs/requirements/` - Requirements that generate tasks
+- `.ai/docs/reviews/` - Reviews may generate additional tasks

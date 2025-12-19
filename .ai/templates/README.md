@@ -1,6 +1,6 @@
 # Templates Directory
 
-This directory contains template files used by the project reset tools to restore clean baseline configurations.
+This directory contains true template files used by the project reset tools to restore clean baseline configurations.
 
 ## Available Templates
 
@@ -9,16 +9,17 @@ This directory contains template files used by the project reset tools to restor
 - **`lessons.template.md`** - Clean baseline for lessons learned with generic engineering wisdom
 - **`decisions.template.md`** - Clean baseline for architectural decisions with example patterns
 
+## Related Directories
+
+- **`.ai/prompts/`** - AI workflow prompts and structured instructions for systematic engineering processes
+
 ## Usage
 
 These templates are used by the project reset scripts:
 
-```powershell
-# Windows
-.\.ai\scripts\project-reset.ps1 -Level Medium
-
-# Unix/Linux/macOS
-./.ai/scripts/project-reset.sh medium
+```bash
+# All platforms (use WSL or Git Bash on Windows)
+./.ai/skills/project-reset/project-reset.sh medium
 ```
 
 ## Template Maintenance
@@ -51,5 +52,5 @@ To customize templates for your organization:
 ---
 
 **Version**: 1.0.0  
-**Last Updated**: 2025-12-16  
+**Last Updated**: 2025-12-19  
 **Part of**: Compound Engineering System

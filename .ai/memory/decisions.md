@@ -33,7 +33,7 @@ This file documents architectural patterns, technology choices, and conventions 
 ### Directory Structure
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: Follow domain-driven directory structure
 
 **Pattern**:
@@ -60,16 +60,16 @@ src/
 ### File Naming
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: 
 - Use kebab-case for documentation files: `user-authentication.md`
 - Use date prefixes for chronological documents: `2025-12-16-feature-name.md`
 - Use descriptive names that indicate purpose and scope
-- Follow established directory hierarchy in `/.ai/docs/`
+- Follow established directory hierarchy in `.ai/docs/`
 
 **Examples**:
-- ✅ `/.ai/docs/plans/2025-12-16-user-authentication.md`
-- ✅ `/.ai/docs/requirements/user-authentication.md`
+- ✅ `.ai/docs/plans/2025-12-16-user-authentication.md`
+- ✅ `.ai/docs/requirements/user-authentication.md`
 - ✅ `.ai/protocols/testing.md`
 - ❌ `plan1.md`
 - ❌ `stuff.md`
@@ -79,7 +79,7 @@ src/
 ### Variable and Function Naming
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**:
 - Use camelCase for JavaScript/TypeScript variables and functions
 - Use PascalCase for classes and interfaces
@@ -106,7 +106,7 @@ const max = 3;
 ### Error Response Format
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: Use consistent error response format across all APIs
 
 **Pattern**:
@@ -138,7 +138,7 @@ res.status(400).json({
 ### Exception Handling
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: Use custom error classes for domain-specific errors
 
 **Pattern**:
@@ -163,7 +163,7 @@ throw new ValidationError('Email is required', 'email');
 ### Query Organization
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: All database queries should be encapsulated in repository/DAO pattern
 
 **Pattern**:
@@ -189,7 +189,7 @@ app.get('/users/:id', async (req, res) => {
 ### Migration Strategy
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: All schema changes must go through migration files, never direct SQL
 
 **Pattern**: See `.ai/protocols/migrations.md` for detailed guidelines
@@ -207,7 +207,7 @@ app.get('/users/:id', async (req, res) => {
 ### Test Organization
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: Co-locate tests with source files using `.test.ts` suffix
 
 **Pattern**:
@@ -225,7 +225,7 @@ src/
 ### Test Coverage Requirements
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: Maintain minimum 80% code coverage for all business logic
 
 **What to Test**:
@@ -245,7 +245,7 @@ src/
 ### REST Conventions
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: Follow RESTful conventions for API design
 
 **Pattern**:
@@ -269,7 +269,7 @@ DELETE /api/users/:id      # Delete user
 ### Response Format
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: Wrap collection responses in a data envelope
 
 **Pattern**:
@@ -297,7 +297,7 @@ res.json({
 ### Authentication
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: Use JWT tokens for authentication with HTTP-only cookies
 
 **Pattern**:
@@ -318,7 +318,7 @@ res.cookie('authToken', jwt.sign({ userId: user.id }), {
 ### Input Validation
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: Validate all user input at the API boundary using a validation library
 
 **Pattern**:
@@ -349,7 +349,7 @@ app.post('/users', (req, res) => {
 ### Caching Strategy
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: [Document your caching strategy]
 
 **Example**:
@@ -363,7 +363,7 @@ app.post('/users', (req, res) => {
 ### Database Optimization
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: Always use indexes on foreign keys and frequently queried columns
 
 **Pattern**:
@@ -381,7 +381,7 @@ CREATE INDEX idx_orders_created_at ON orders(created_at);
 ### Linting & Formatting
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: Use ESLint + Prettier for consistent code style
 
 **Configuration**: See `.eslintrc.js` and `.prettierrc`
@@ -393,7 +393,7 @@ CREATE INDEX idx_orders_created_at ON orders(created_at);
 ### Code Comments
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: Write comments that explain "why", not "what"
 
 **Examples**:
@@ -419,7 +419,7 @@ const delay = Math.pow(2, attempt) * 1000;
 ### Environment Variables
 
 **Status**: Template  
-**Date**: 2025-12-18  
+**Date**: 2025-12-19  
 **Decision**: All configuration must come from environment variables, never hard-coded
 
 **Pattern**:
@@ -458,7 +458,7 @@ This file should be reviewed quarterly to:
 - Add new decisions as the project evolves
 - Ensure examples are still accurate
 
-Last reviewed: 2025-12-18
+Last reviewed: 2025-12-19
 
 ---
 
@@ -467,5 +467,5 @@ Last reviewed: 2025-12-18
 ---
 
 **Version**: 1.0.0  
-**Last Updated**: 2025-12-18  
+**Last Updated**: 2025-12-19  
 **Based On**: AGENTS.md v1.0.0

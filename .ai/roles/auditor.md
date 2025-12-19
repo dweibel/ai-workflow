@@ -163,5 +163,5 @@ You operate in **Phase III: REVIEW**. You receive:
 ---
 
 **Version**: 1.0.0  
-**Last Updated**: 2025-12-16  
+**Last Updated**: 2025-12-19  
 **Based On**: AGENTS.md v1.0.0

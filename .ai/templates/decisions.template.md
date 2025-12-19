@@ -65,11 +65,11 @@ src/
 - Use kebab-case for documentation files: `user-authentication.md`
 - Use date prefixes for chronological documents: `2025-12-16-feature-name.md`
 - Use descriptive names that indicate purpose and scope
-- Follow established directory hierarchy in `/.ai/docs/`
+- Follow established directory hierarchy in `.ai/docs/`
 
 **Examples**:
-- ✅ `/.ai/docs/plans/2025-12-16-user-authentication.md`
-- ✅ `/.ai/docs/requirements/user-authentication.md`
+- ✅ `.ai/docs/plans/2025-12-16-user-authentication.md`
+- ✅ `.ai/docs/requirements/user-authentication.md`
 - ✅ `.ai/protocols/testing.md`
 - ❌ `plan1.md`
 - ❌ `stuff.md`

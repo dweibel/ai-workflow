@@ -17,7 +17,7 @@ The template system provides a standardized structure for creating new skills th
 
 2. **Customize the files:**
    - Update `README.md` with skill description and capabilities
-   - Implement functionality in `skill.ps1` and `skill.sh`
+   - Implement functionality in `skill.sh` (bash for all platforms)
    - Add usage examples to `examples.md`
 
 3. **Update master catalog:**
@@ -64,7 +64,7 @@ Every skill must include:
 - Avoid generic names like `utility` or `helper`
 
 **File Names:**
-- Bash: `skill-name.sh`
+- Bash: `skill-name.sh` (all platforms)
 - Documentation: `README.md`, `examples.md`
 
 **Directory Structure:**
@@ -319,6 +319,6 @@ The template system evolves based on:
 ---
 
 **Version:** 1.0.0  
-**Last Updated:** 2025-12-18  
+**Last Updated:** 2025-12-19  
 **Template Count:** 1 (skill-template)  
 **Supported Platforms:** All (Bash via WSL on Windows)

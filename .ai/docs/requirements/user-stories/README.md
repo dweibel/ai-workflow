@@ -143,13 +143,13 @@ Good user stories are:
 ## Workflow Integration
 
 1. **Requirements Phase:** Create user stories to capture needs
-2. **Planning Phase:** Reference stories in implementation plans (`/.ai/docs/plans/`)
-3. **Design Phase:** Create designs that fulfill stories (`/.ai/docs/design/`)
+2. **Planning Phase:** Reference stories in implementation plans (`.ai/docs/plans/`)
+3. **Design Phase:** Create designs that fulfill stories (`.ai/docs/design/`)
 4. **Implementation Phase:** Build features based on acceptance criteria
-5. **Review Phase:** Verify acceptance criteria are met (`/.ai/docs/reviews/`)
+5. **Review Phase:** Verify acceptance criteria are met (`.ai/docs/reviews/`)
 
 ## Related Directories
 
-- `/.ai/docs/requirements/` - Parent directory with broader requirements
-- `/.ai/docs/plans/` - Implementation plans based on user stories
-- `/.ai/docs/design/` - Design documents for user story implementations
+- `.ai/docs/requirements/` - Parent directory with broader requirements
+- `.ai/docs/plans/` - Implementation plans based on user stories
+- `.ai/docs/design/` - Design documents for user story implementations

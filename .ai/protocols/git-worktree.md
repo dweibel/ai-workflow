@@ -35,40 +35,23 @@ Git worktrees enable parallel development by creating multiple working directori
 
 **ALWAYS use the provided helper scripts** - they implement best practices, validation, and error handling automatically.
 
-### Windows (PowerShell) - Primary Commands
-```powershell
-# Create a new worktree (MOST COMMON)
-.\.ai\scripts\git-worktree.ps1 -Action create -BranchName "feature/user-auth"
-
-# Check current working environment (BEFORE CODING)
-.\.ai\scripts\git-worktree.ps1 -Action status
-
-# List all active worktrees
-.\.ai\scripts\git-worktree.ps1 -Action list
-
-# Remove a worktree after feature completion
-.\.ai\scripts\git-worktree.ps1 -Action remove -BranchName "feature/user-auth"
-
-# Cleanup stale worktrees (MAINTENANCE)
-.\.ai\scripts\git-worktree.ps1 -Action cleanup
-```
-
-### Unix/Linux/macOS (Bash) - Primary Commands
+### Cross-Platform (Bash) - Primary Commands
+**Note**: On Windows, use WSL (Windows Subsystem for Linux) or Git Bash to run these commands.
 ```bash
 # Create a new worktree (MOST COMMON)
-./.ai/scripts/git-worktree.sh create feature/user-auth
+./.ai/skills/git-worktree/git-worktree.sh create feature/user-auth
 
 # Check current working environment (BEFORE CODING)
-./.ai/scripts/git-worktree.sh status
+./.ai/skills/git-worktree/git-worktree.sh status
 
 # List all active worktrees
-./.ai/scripts/git-worktree.sh list
+./.ai/skills/git-worktree/git-worktree.sh list
 
 # Remove a worktree after feature completion
-./.ai/scripts/git-worktree.sh remove feature/user-auth
+./.ai/skills/git-worktree/git-worktree.sh remove feature/user-auth
 
 # Cleanup stale worktrees (MAINTENANCE)
-./.ai/scripts/git-worktree.sh cleanup
+./.ai/skills/git-worktree/git-worktree.sh cleanup
 ```
 
 **Script Benefits**:
@@ -125,17 +108,11 @@ git worktree prune
 
 **Script Equivalents (PREFERRED)**:
 ```bash
-# Windows PowerShell
-.\.ai\scripts\git-worktree.ps1 -Action create -BranchName "feature/new-feature"
-.\.ai\scripts\git-worktree.ps1 -Action list
-.\.ai\scripts\git-worktree.ps1 -Action remove -BranchName "feature/new-feature"
-.\.ai\scripts\git-worktree.ps1 -Action cleanup
-
-# Unix/Linux/macOS
-./.ai/scripts/git-worktree.sh create feature/new-feature
-./.ai/scripts/git-worktree.sh list
-./.ai/scripts/git-worktree.sh remove feature/new-feature
-./.ai/scripts/git-worktree.sh cleanup
+# All platforms (use WSL or Git Bash on Windows)
+./.ai/skills/git-worktree/git-worktree.sh create feature/new-feature
+./.ai/skills/git-worktree/git-worktree.sh list
+./.ai/skills/git-worktree/git-worktree.sh remove feature/new-feature
+./.ai/skills/git-worktree/git-worktree.sh cleanup
 ```
 
 ### Navigation
@@ -235,4 +212,4 @@ This protocol supports the Compound Engineering philosophy by:
 
 ## Version History
 
-- **v1.0.0** (2025-12-16): Initial protocol with PowerShell and Bash scripts
+- **v1.0.0** (2025-12-19): Initial protocol with Bash scripts (cross-platform via WSL/Git Bash)

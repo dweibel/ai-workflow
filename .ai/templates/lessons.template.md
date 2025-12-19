@@ -71,7 +71,7 @@ This file contains the accumulated wisdom from past engineering sessions. Every 
 
 - When starting a task, always load the appropriate workflow and role files from `.ai/` to ensure proper context.
 - When completing a task, always perform a retrospective to extract lessons and update this file.
-- When planning a feature, always create a comprehensive plan document in `/.ai/docs/plans/` before writing any code.
+- When planning a feature, always create a comprehensive plan document in `.ai/docs/plans/` before writing any code.
 
 ---
 

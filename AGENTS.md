@@ -22,13 +22,21 @@ Before taking any action, determine your current **Phase** based on the user req
 | User Intent | Phase | Context to Load |
 |:------------|:------|:----------------|
 | "Analyze", "Scaffold", "Spec", "Plan", "Research" | **PLAN** | `.ai/workflows/planning.md` + `.ai/roles/architect.md` |
+| "Requirements", "User Story", "EARS", "Specification" | **SPEC-FORGE** | `.ai/workflows/ears-workflow.md` + `.ai/templates/requirements-template.md` |
 | "Implement", "Fix", "Refactor", "Build", "Code" | **WORK** | `.ai/workflows/execution.md` + `.ai/protocols/git-worktree.md` + `.ai/roles/builder.md` |
 | "Review", "Audit", "Check", "Assess" | **REVIEW** | `.ai/workflows/review.md` + `.ai/roles/auditor.md` |
 
 **How to Load Context:**
 - Read the appropriate workflow and role files based on the identified phase
 - Always load `.ai/memory/lessons.md` and `.ai/memory/decisions.md` at the start of every session to inherit past learnings
+- For SPEC-FORGE phase, also load validation templates (`.ai/templates/ears-validation.md`, `.ai/templates/incose-validation.md`)
 - If uncertain about which files to load, ask the user to confirm
+
+**Workflow Integration:**
+- **SPEC-FORGE** phase supports structured specification creation with EARS patterns and property-based testing
+- Integrates seamlessly with existing Compound Engineering memory and documentation systems
+- Maintains approval gates between requirements, design, and tasks phases
+- Automatically generates correctness properties for property-based testing
 
 ---
 
@@ -47,6 +55,7 @@ These rules apply across ALL phases and MUST NEVER be violated:
 - **Always** use atomic, descriptive commits following conventional commit format
 - **Always** use the provided helper script (`.ai/skills/git-worktree/git-worktree.sh`) for worktree management
 - **Always** clean up worktrees after feature completion to prevent repository bloat
+- **Note**: On Windows, use WSL (Windows Subsystem for Linux) or Git Bash to run bash scripts
 
 ### 2.3 Knowledge Management
 - **Always** consult `.ai/memory/lessons.md` before proposing a solution to avoid repeating past mistakes
@@ -64,18 +73,19 @@ These rules apply across ALL phases and MUST NEVER be violated:
 - **Always** run the full test suite before considering a task complete
 
 ### 2.6 Documentation Management
-- **Always** write project documentation to the `/.ai/docs/` directory hierarchy
+- **Always** write project documentation to the `.ai/docs/` directory hierarchy
 - **Never** create documentation files in the project root or scattered locations
 - **Always** follow the established directory structure for document types:
-  - `/.ai/docs/plans/` - Implementation plans (named `YYYY-MM-DD-feature-name.md`)
-  - `/.ai/docs/requirements/` - Requirements and specifications
-  - `/.ai/docs/design/` - Design documents and architecture
-  - `/.ai/docs/tasks/` - Task lists and backlogs
-  - `/.ai/docs/reviews/` - Review reports and audit findings
-  - `/.ai/docs/decisions/` - Architectural Decision Records (ADRs)
-- **Always** consult the appropriate `/.ai/docs/*/README.md` for templates and conventions
+  - `.ai/docs/plans/` - Implementation plans (named `YYYY-MM-DD-feature-name.md`)
+  - `.ai/docs/requirements/` - Requirements and specifications
+  - `.ai/docs/design/` - Design documents and architecture (with correctness properties)
+  - `.ai/docs/tasks/` - Task lists and backlogs (with property-based testing integration)
+  - `.ai/docs/reviews/` - Review reports and audit findings
+  - `.ai/docs/decisions/` - Architectural Decision Records (ADRs)
+- **Always** consult the appropriate `.ai/docs/*/README.md` for templates and conventions
 - **Always** create documentation during the appropriate phase (plans before work, reviews after work)
 - **Always** cross-reference related documents for traceability
+- **For specifications**: Use EARS patterns, include glossaries, generate correctness properties, integrate property-based testing
 
 ---
 
@@ -98,6 +108,7 @@ The Compound Engineering system includes automated skills that reduce manual ove
 - Validates branch naming conventions (feature/, bugfix/, refactor/, etc.)
 - Provides colored output for better UX
 - Handles edge cases (existing branches, cleanup confirmation, etc.)
+- **Cross-Platform**: Use WSL or Git Bash on Windows to run bash scripts
 
 ### 3.2 Project Reset Skills
 **Location:** `.ai/skills/project-reset/` (Cross-platform implementations)
@@ -135,7 +146,7 @@ The skills system follows a modular, template-driven approach:
 ```
 
 **Key Features:**
-- **Cross-Platform**: Bash implementations (WSL support for Windows)
+- **Cross-Platform**: Bash implementations (use WSL or Git Bash on Windows)
 - **Self-Documenting**: Comprehensive README and examples for each skill
 - **Template-Driven**: Standardized development patterns via `_templates/`
 - **Discoverable**: Master catalog with capabilities matrix
@@ -145,6 +156,7 @@ The skills system follows a modular, template-driven approach:
 - **Documentation Skills**: Auto-generation of API docs and README updates
 - **Deployment Skills**: Standardized deployment workflows with rollback capabilities
 - **Code Quality Skills**: Automated linting, formatting, and security scanning
+- **Specification Skills**: Automated EARS validation, correctness property generation, and property-based test creation
 
 ---
 
@@ -184,11 +196,34 @@ You have access to the following tools for autonomous work:
 **Key Activities:**
 - Research existing patterns in the codebase
 - Analyze git history for context ("Chesterton's Fence")
-- Create a detailed implementation plan in `/.ai/docs/plans/YYYY-MM-DD-feature-name.md`
-- Document requirements in `/.ai/docs/requirements/` and design in `/.ai/docs/design/` as needed
+- Create a detailed implementation plan in `.ai/docs/plans/YYYY-MM-DD-feature-name.md`
+- Document requirements in `.ai/docs/requirements/` and design in `.ai/docs/design/` as needed
 - Get user approval before proceeding to implementation
 
 **Output:** A comprehensive plan document that serves as a contract for the Work phase.
+
+### Phase I-A: SPEC-FORGE (Structured Specification)
+**Objective:** Create formal specifications using EARS-compliant format with property-based testing integration.
+
+**Key Activities:**
+- **Requirements Phase**: Create EARS-compliant requirements with glossary and user stories
+- **Design Phase**: Generate correctness properties from testability analysis
+- **Tasks Phase**: Create implementation tasks with integrated property-based testing
+- Maintain approval gates between each sub-phase
+- Update compound engineering memory with new patterns learned
+
+**Sub-Phase Flow:**
+1. **Requirements Creation**: Use `.ai/templates/requirements-template.md` with EARS validation
+2. **Design Generation**: Analyze testability, generate correctness properties, specify testing framework
+3. **Task Planning**: Create numbered task lists with property-based test integration
+
+**Context Loading:**
+- Load `.ai/workflows/ears-workflow.md` for phase detection and transitions
+- Use `.ai/templates/ears-validation.md` for EARS pattern compliance
+- Apply `.ai/templates/incose-validation.md` for quality validation
+- Reference `.ai/prompts/testability-analysis.md` for correctness properties
+
+**Output:** Complete specification trilogy (requirements.md, design.md, tasks.md) ready for implementation.
 
 ---
 
@@ -197,8 +232,8 @@ You have access to the following tools for autonomous work:
 
 **Key Activities:**
 - Create a git worktree for isolated development using helper scripts:
-  - All platforms: `./.ai/skills/git-worktree/git-worktree.sh create feature/name`
-  - Windows users: Use WSL (`wsl`) to execute bash scripts
+  - `./.ai/skills/git-worktree/git-worktree.sh create feature/name`
+  - Windows users: Use WSL or Git Bash to execute bash scripts
 - Navigate to the worktree directory before beginning implementation
 - Follow the Red-Green-Refactor loop for each task
 - Make atomic commits after each completed unit
@@ -324,11 +359,12 @@ To prevent memory files from consuming excessive context window space:
 When you begin a new session:
 
 1. **Load Core Memory**: Read `.ai/memory/lessons.md` and `.ai/memory/decisions.md`
-2. **Understand the Request**: Determine which Phase (Plan/Work/Review) is needed
+2. **Understand the Request**: Determine which Phase (Plan/Work/Review/Spec-Forge) is needed
 3. **Load Appropriate Context**: Read the relevant workflow and role files
-4. **Verify Environment**: Check current branch, working directory, and any existing worktrees using `git-worktree.sh status`
-5. **Proceed with Confidence**: Execute the workflow with full context
-6. **Reference README.md**: For helper scripts, detailed examples, troubleshooting, and best practices, see README.md
+4. **For Specifications**: Load validation templates and prework tools for structured specification creation
+5. **Verify Environment**: Check current branch, working directory, and any existing worktrees using `git-worktree.sh status`
+6. **Proceed with Confidence**: Execute the workflow with full context
+7. **Reference README.md**: For helper scripts, detailed examples, troubleshooting, and best practices, see README.md
 
 ---
 
@@ -348,6 +384,6 @@ By following this constitution, you transform the repository from a collection o
 **License:** MIT License (see LICENSE file)  
 **This Implementation:** Standalone AGENTS.md system with cross-platform git worktree automation  
 
-**Version:** 1.1.0  
-**Last Updated:** 2025-12-16  
-**Skills Integration:** Git Worktree Management (PowerShell + Bash)
+**Version:** 1.0.0  
+**Last Updated:** 2025-12-19  
+**Skills Integration:** Git Worktree Management (Bash)

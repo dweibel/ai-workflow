@@ -192,7 +192,7 @@ If you're working without an AI assistant, you can still follow the compound eng
 **Activities**:
 - Research existing patterns in the codebase
 - Analyze git history (Chesterton's Fence)
-- Create comprehensive plan in `/.ai/docs/plans/YYYY-MM-DD-feature-name.md`
+- Create comprehensive plan in `.ai/docs/plans/YYYY-MM-DD-feature-name.md`
 - Get explicit user approval
 
 **Output**: A detailed plan document serving as a contract for implementation.
@@ -357,7 +357,7 @@ git worktree remove .trees/my-feature
 > - Available dependencies: bcrypt, nodemailer
 >
 > **Creating Plan:**
-> Generated `/.ai/docs/plans/2025-12-16-password-reset.md` with:
+> Generated `.ai/docs/plans/2025-12-16-password-reset.md` with:
 > - User story
 > - Technical approach
 > - Task breakdown (8 tasks)

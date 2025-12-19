@@ -100,7 +100,7 @@ Skills learn from past sessions through:
 
 2. Customize the template files:
    - Update `README.md` with skill description and capabilities
-   - Implement functionality in `skill.ps1` and `skill.sh`
+   - Implement functionality in `skill.sh` (bash for all platforms)
    - Add usage examples to `examples.md`
 
 3. Update this master README with the new skill
@@ -197,5 +197,5 @@ When adding new skills or improving existing ones:
 **License:** MIT License (see LICENSE file)  
 
 **Version:** 1.0.0  
-**Last Updated:** 2025-12-18  
+**Last Updated:** 2025-12-19  
 **Skills Count:** 2 active, 6 planned

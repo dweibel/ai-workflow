@@ -732,5 +732,5 @@ node --inspect-brk node_modules/.bin/jest --runInBand auth.test.ts
 ---
 
 **Version**: 1.0.0  
-**Last Updated**: 2025-12-16  
+**Last Updated**: 2025-12-19  
 **Based On**: AGENTS.md v1.0.0

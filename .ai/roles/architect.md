@@ -27,14 +27,14 @@ Before proposing changes to existing code, you **MUST**:
 
 ### 4. Specification Drafting
 
-When creating a plan, produce a file in `/.ai/docs/plans/YYYY-MM-DD-feature-name.md`.
+When creating a plan, produce a file in `.ai/docs/plans/YYYY-MM-DD-feature-name.md`.
 
-**Documentation Structure**: Plans are stored in `/.ai/docs/plans/` with supporting documents in:
-- `/.ai/docs/requirements/` - Requirements and specifications
-- `/.ai/docs/design/` - Design documents and architecture
-- `/.ai/docs/tasks/` - Task lists and backlogs
-- `/.ai/docs/reviews/` - Review reports (created in Phase III)
-- `/.ai/docs/decisions/` - Architectural Decision Records (ADRs)
+**Documentation Structure**: Plans are stored in `.ai/docs/plans/` with supporting documents in:
+- `.ai/docs/requirements/` - Requirements and specifications
+- `.ai/docs/design/` - Design documents and architecture
+- `.ai/docs/tasks/` - Task lists and backlogs
+- `.ai/docs/reviews/` - Review reports (created in Phase III)
+- `.ai/docs/decisions/` - Architectural Decision Records (ADRs)
 
 See each directory's README.md for templates and conventions.
 
@@ -104,5 +104,5 @@ A plan is complete when:
 ---
 
 **Version**: 1.0.0  
-**Last Updated**: 2025-12-16  
+**Last Updated**: 2025-12-19  
 **Based On**: AGENTS.md v1.0.0

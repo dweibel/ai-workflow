@@ -1,7 +1,7 @@
 # Workflow: Phase I - Strategic Planning
 
 ## Objective
-Generate a comprehensive `/.ai/docs/plans/YYYY-MM-DD-feature-name.md` implementation guide. **DO NOT** write code yet.
+Generate a comprehensive `.ai/docs/plans/YYYY-MM-DD-feature-name.md` implementation guide. **DO NOT** write code yet.
 
 ## Prerequisites
 Before starting, ensure you have:
@@ -80,16 +80,16 @@ cat go.mod
 
 ## Step 2: Specification Drafting
 
-Create a new file: `/.ai/docs/plans/YYYY-MM-DD-feature-name.md`
+Create a new file: `.ai/docs/plans/YYYY-MM-DD-feature-name.md`
 
 ### Documentation Structure
-Plans are stored in `/.ai/docs/plans/` with the full hierarchy:
-- `/.ai/docs/plans/` - Implementation plans (dated: YYYY-MM-DD-feature-name.md)
-- `/.ai/docs/requirements/` - Requirements and specifications (no date prefix)
-- `/.ai/docs/design/` - Design documents and architecture (no date prefix)
-- `/.ai/docs/tasks/` - Task lists and backlogs
-- `/.ai/docs/reviews/` - Review reports (dated: YYYY-MM-DD-feature-name-review.md)
-- `/.ai/docs/decisions/` - Architectural Decision Records (ADRs)
+Plans are stored in `.ai/docs/plans/` with the full hierarchy:
+- `.ai/docs/plans/` - Implementation plans (dated: YYYY-MM-DD-feature-name.md)
+- `.ai/docs/requirements/` - Requirements and specifications (no date prefix)
+- `.ai/docs/design/` - Design documents and architecture (no date prefix)
+- `.ai/docs/tasks/` - Task lists and backlogs
+- `.ai/docs/reviews/` - Review reports (dated: YYYY-MM-DD-feature-name-review.md)
+- `.ai/docs/decisions/` - Architectural Decision Records (ADRs)
 
 **File Naming Conventions**:
 - Plans and Reviews: Include date prefix for chronological tracking
@@ -222,7 +222,7 @@ Format your presentation as:
 ## Next Steps
 Awaiting your approval to proceed to implementation phase.
 
-📄 **Full Plan**: `/.ai/docs/plans/YYYY-MM-DD-feature-name.md`
+📄 **Full Plan**: `.ai/docs/plans/YYYY-MM-DD-feature-name.md`
 ```
 
 ### 3.3 Wait for Approval
@@ -239,7 +239,7 @@ If the user requests changes:
 ## Success Criteria
 
 This phase is complete when:
-1. ✅ A comprehensive plan document exists in `/.ai/docs/plans/`
+1. ✅ A comprehensive plan document exists in `.ai/docs/plans/`
 2. ✅ All research steps have been completed
 3. ✅ Existing patterns have been identified and documented
 4. ✅ The user has explicitly approved the plan
@@ -281,5 +281,5 @@ Activating Builder persona for TDD implementation...
 ---
 
 **Version**: 1.0.0  
-**Last Updated**: 2025-12-16  
+**Last Updated**: 2025-12-19  
 **Based On**: AGENTS.md v1.0.0

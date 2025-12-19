@@ -1,19 +1,19 @@
 # Workflow: Phase II - Execution & TDD
 
 ## Objective
-Implement the feature defined in `/.ai/docs/plans/FEATURE_NAME.md` using strict Test-Driven Development in an isolated Git Worktree environment.
+Implement the feature defined in `.ai/docs/plans/FEATURE_NAME.md` using strict Test-Driven Development in an isolated Git Worktree environment.
 
 ## Prerequisites
 Before starting, ensure you have:
-1. An **approved** plan document from `/.ai/docs/plans/YYYY-MM-DD-feature-name.md` (Phase I)
+1. An **approved** plan document from `.ai/docs/plans/YYYY-MM-DD-feature-name.md` (Phase I)
 2. Loaded `.ai/roles/builder.md` to adopt the correct persona
 3. Loaded `.ai/protocols/git-worktree.md` for environment setup
 4. Loaded `.ai/protocols/testing.md` for TDD protocol
 5. Loaded `.ai/memory/lessons.md` to avoid past mistakes
 
 **Documentation Context**: This workflow generates artifacts in:
-- `/.ai/docs/plans/` - The approved implementation plan
-- `/.ai/docs/tasks/` - Optional task tracking (if needed)
+- `.ai/docs/plans/` - The approved implementation plan
+- `.ai/docs/tasks/` - Optional task tracking (if needed)
 - Code changes in the feature branch worktree
 
 ## Step 0: Environment Setup
@@ -22,18 +22,14 @@ Before starting, ensure you have:
 **ALWAYS use helper scripts** - they implement best practices and prevent common errors.
 
 ```bash
-# Windows PowerShell (PREFERRED METHOD)
-.\.ai\scripts\git-worktree.ps1 -Action create -BranchName "feature/feature-description"
-
-# Unix/Linux/macOS (PREFERRED METHOD)  
-./.ai/scripts/git-worktree.sh create feature/feature-description
+# Cross-platform (use WSL or Git Bash on Windows)
+./.ai/skills/git-worktree/git-worktree.sh create feature/feature-description
 
 # Navigate to the worktree (script will show the path)
 cd ../worktrees/feature-feature-description
 
 # Verify you're in the correct environment (CRITICAL SAFETY CHECK)
-.\.ai\scripts\git-worktree.ps1 -Action status  # Windows
-./.ai/scripts/git-worktree.sh status          # Unix/Linux/macOS
+./.ai/skills/git-worktree/git-worktree.sh status
 ```
 
 **Manual Method (ONLY if scripts unavailable)**:
@@ -488,5 +484,5 @@ cd ../..
 ---
 
 **Version**: 1.0.0  
-**Last Updated**: 2025-12-16  
+**Last Updated**: 2025-12-19  
 **Based On**: AGENTS.md v1.0.0

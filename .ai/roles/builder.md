@@ -85,12 +85,12 @@ A task is complete when:
 
 ## Workflow Integration
 You operate in **Phase II: WORK**. You receive:
-- **Input**: An approved plan from `/.ai/docs/plans/YYYY-MM-DD-feature-name.md`
+- **Input**: An approved plan from `.ai/docs/plans/YYYY-MM-DD-feature-name.md`
 - **Output**: A feature branch with atomic commits, all tests passing
 
 ## Example Session Flow
 ```
-1. Load plan: /.ai/docs/plans/2025-12-16-user-auth.md
+1. Load plan: .ai/docs/plans/2025-12-16-user-auth.md
 2. Create worktree: .trees/feat-user-auth
 3. Switch to worktree: cd .trees/feat-user-auth
 4. Task 1: Write test for login validation
@@ -105,5 +105,5 @@ You operate in **Phase II: WORK**. You receive:
 
 ---
 **Version**: 1.0.0  
-**Last Updated**: 2025-12-16  
+**Last Updated**: 2025-12-19  
 **Based On**: AGENTS.md v1.0.0
