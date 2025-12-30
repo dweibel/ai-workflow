@@ -1,0 +1,53 @@
+{
+  "name": "ears-workflow-skill",
+  "version": "1.0.0",
+  "description": "EARS-workflow skill package for structured development methodology",
+  "main": ".ai/SKILL.md",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "package": "node scripts/package-distribution.js",
+    "verify": "node verify-installation.js",
+    "install": "node scripts/install.js",
+    "clean": "rm -rf dist/",
+    "build": "npm run clean && npm run package"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "fast-check": "^3.15.0",
+    "js-yaml": "^4.1.0"
+  },
+  "jest": {
+    "testMatch": [
+      "**/.ai/tests/**/*.test.js",
+      "**/.ai/skills/*/tests/**/*.test.js"
+    ],
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "<rootDir>/.ai/skills/shared/test-setup.js"
+    ],
+    "collectCoverageFrom": [
+      ".ai/skills/*/lib/**/*.js",
+      ".ai/skills/shared/**/*.js",
+      "!**/*.test.js",
+      "!**/node_modules/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
+  },
+  "keywords": [
+    "agent-skills",
+    "ears",
+    "workflow",
+    "structured-development",
+    "property-based-testing"
+  ],
+  "author": "EARS-Workflow System",
+  "license": "MIT"
+}

@@ -1,0 +1,44 @@
+{
+  "name": "ears-workflow-skill",
+  "version": "1.0.0",
+  "description": "EARS-workflow skill package for structured development methodology",
+  "type": "agent-skill-package",
+  "main": ".ai/SKILL.md",
+  "created": "2025-12-29T15:34:31.905Z",
+  "author": "EARS-Workflow System",
+  "license": "MIT",
+  "attribution": "Based on Compound Engineering Plugin by EveryInc",
+  "requirements": {
+    "git": ">=2.20.0",
+    "nodejs": ">=16.0.0 (optional)",
+    "ide": "Agent Skills compatible (VS Code, Cursor, JetBrains, etc.)"
+  },
+  "features": [
+    "EARS-compliant requirements creation",
+    "Property-based testing integration",
+    "Git worktree management",
+    "Multi-perspective code reviews",
+    "Compound engineering memory",
+    "Progressive disclosure architecture",
+    "Cross-platform compatibility",
+    "Multi-IDE integration"
+  ],
+  "skills": [
+    "spec-forge",
+    "planning",
+    "work",
+    "review",
+    "git-worktree",
+    "project-reset"
+  ],
+  "installation": {
+    "method1": "Copy .ai/ directory to project root",
+    "method2": "Add as git submodule",
+    "verification": "Test with \"use EARS workflow\""
+  },
+  "support": {
+    "documentation": ".ai/docs/guides/",
+    "troubleshooting": ".ai/docs/guides/installation.md",
+    "examples": ".ai/docs/guides/usage.md"
+  }
+}

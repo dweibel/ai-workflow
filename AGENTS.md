@@ -29,8 +29,9 @@ Before taking any action, determine your current **Phase** based on the user req
 **How to Load Context:**
 - Read the appropriate workflow and role files based on the identified phase
 - Always load `.ai/memory/lessons.md` and `.ai/memory/decisions.md` at the start of every session to inherit past learnings
-- For SPEC-FORGE phase, also load validation templates (`.ai/templates/ears-validation.md`, `.ai/templates/incose-validation.md`)
+- For SPEC-FORGE phase, also load validation templates from `ears-specification` skill
 - If uncertain about which files to load, ask the user to confirm
+- See [File Structure Reference](.ai/docs/reference/file-structure.md) for complete path information
 
 **Workflow Integration:**
 - **SPEC-FORGE** phase supports structured specification creation with EARS patterns and property-based testing
@@ -110,7 +111,24 @@ The Compound Engineering system includes automated skills that reduce manual ove
 - Handles edge cases (existing branches, cleanup confirmation, etc.)
 - **Cross-Platform**: Use WSL or Git Bash on Windows to run bash scripts
 
-### 3.2 Project Reset Skills
+### 3.2 Engineering Workflow Skills
+**Location:** `.ai/skills/engineering-workflow/` (Cross-platform implementations)
+
+**Capabilities:**
+- **context-optimization**: Smart context management with token budgeting
+- **semantic-analysis**: Intelligent skill activation with confidence scoring
+- **adaptive-loading**: Dynamic content loading based on tier limits
+- **relevance-scoring**: Multi-dimensional content relevance assessment
+- **session-management**: Workflow state and user preference tracking
+
+**Integration Points:**
+- Context optimization for efficient resource utilization
+- Semantic analysis for intelligent workflow routing
+- Session context management across skill activations
+- Memory file optimization for relevant content loading
+- **Cross-Platform**: Node.js implementations with comprehensive testing
+
+### 3.3 Project Reset Skills
 **Location:** `.ai/skills/project-reset/` (Cross-platform implementations)
 
 **Capabilities:**
@@ -125,14 +143,14 @@ The Compound Engineering system includes automated skills that reduce manual ove
 - Integrates with git workflow for safe project transitions
 - Supports automated CI/CD reset scenarios
 
-### 3.3 Skill Development Philosophy
+### 3.4 Skill Development Philosophy
 Each skill follows the Compound Engineering principle:
 1. **Automate Repetitive Tasks**: Eliminate manual setup overhead
 2. **Prevent Common Errors**: Built-in validation and safety checks
 3. **Provide Clear Feedback**: Colored output and progress indicators
 4. **Enable Composition**: Skills work together as building blocks
 
-### 3.4 Skills Directory Structure
+### 3.5 Skills Directory Structure
 
 The skills system follows a modular, template-driven approach:
 
@@ -140,6 +158,7 @@ The skills system follows a modular, template-driven approach:
 .ai/skills/
 ├── README.md                    # Master skills catalog
 ├── git-worktree/               # Git worktree management
+├── engineering-workflow/       # Context optimization and semantic analysis
 ├── project-reset/              # Project reset functionality  
 ├── _templates/                 # Skill development templates
 └── [future-skills]/            # Extensible skill ecosystem
@@ -151,7 +170,7 @@ The skills system follows a modular, template-driven approach:
 - **Template-Driven**: Standardized development patterns via `_templates/`
 - **Discoverable**: Master catalog with capabilities matrix
 
-### 3.5 Future Skills Roadmap
+### 3.6 Future Skills Roadmap
 - **Test Runner Skills**: Automated test execution with intelligent filtering
 - **Documentation Skills**: Auto-generation of API docs and README updates
 - **Deployment Skills**: Standardized deployment workflows with rollback capabilities
@@ -382,8 +401,8 @@ By following this constitution, you transform the repository from a collection o
 
 **Original Work:** [Compound Engineering Plugin](https://github.com/EveryInc/compound-engineering-plugin) by EveryInc  
 **License:** MIT License (see LICENSE file)  
-**This Implementation:** Standalone AGENTS.md system with cross-platform git worktree automation  
+**This Implementation:** EARS-workflow skill package with Agent Skills Standard compliance  
 
 **Version:** 1.0.0  
-**Last Updated:** 2025-12-19  
-**Skills Integration:** Git Worktree Management (Bash)
+**Last Updated:** 2025-12-29  
+**Skills Integration:** Cross-platform compatibility with progressive disclosure

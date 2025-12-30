@@ -1,736 +1,388 @@
-# Protocol: Test-Driven Development (TDD)
+# Testing Protocol
+
+> **Comprehensive Testing Strategy and Quality Assurance**
 
 ## Overview
 
-This protocol enforces strict Test-Driven Development practices to ensure code quality, prevent regressions, and create living documentation.
+The Testing Protocol defines standardized procedures for implementing comprehensive testing strategies throughout the EARS-workflow development lifecycle. This protocol ensures code quality, reliability, and maintainability through systematic testing practices.
 
-## Core Principle
+## Testing Philosophy
 
-**The Red-Green-Refactor Loop is non-negotiable.**
+### Test-Driven Development (TDD)
+- **Red-Green-Refactor**: Write failing tests, implement minimal code, refactor for quality
+- **Test First**: Always write tests before implementing functionality
+- **Comprehensive Coverage**: Ensure all code paths and edge cases are tested
+- **Fast Feedback**: Maintain fast test execution for rapid development cycles
 
-You MUST NOT write implementation code before writing a failing test.
+### Testing Pyramid
+- **Unit Tests (70%)**: Fast, isolated tests for individual components
+- **Integration Tests (20%)**: Test component interactions and interfaces
+- **End-to-End Tests (10%)**: Validate complete user workflows and scenarios
 
----
+### Quality Gates
+- All tests must pass before code integration
+- Minimum 90% code coverage for new functionality
+- Performance tests must meet established benchmarks
+- Security tests must validate against known vulnerabilities
 
-## The Sacred Loop
+## Test Types and Strategies
 
-### 🔴 RED: Write a Failing Test
+### 1. Unit Testing
 
-#### Step 1: Identify the Behavior
-Read the current task from the plan and identify the **specific** behavior to test.
-
-**Example**: "User login should fail with invalid credentials"
-
-#### Step 2: Choose Test Type
-
-- **Unit Test**: Testing a single function/method in isolation
-- **Integration Test**: Testing multiple components working together
-- **E2E Test**: Testing the entire user flow
-
-#### Step 3: Write the Test
-
-**Rules**:
-- Test ONE behavior per test case
-- Use descriptive test names that explain the behavior
-- Arrange-Act-Assert pattern
-- No implementation code yet!
-
-**Example** (JavaScript/TypeScript):
-```typescript
-describe('User Authentication', () => {
-  it('should return error when password is incorrect', async () => {
-    // Arrange
-    const email = 'user@example.com';
-    const wrongPassword = 'incorrect123';
-    
-    // Act
-    const result = await authenticate(email, wrongPassword);
-    
-    // Assert
-    expect(result.success).toBe(false);
-    expect(result.error).toBe('Invalid credentials');
-  });
-});
-```
-
-**Example** (Python):
-```python
-def test_authentication_fails_with_wrong_password():
-    # Arrange
-    email = "user@example.com"
-    wrong_password = "incorrect123"
-    
-    # Act
-    result = authenticate(email, wrong_password)
-    
-    # Assert
-    assert result.success is False
-    assert result.error == "Invalid credentials"
-```
-
-#### Step 4: Run the Test (Expect Failure)
-
-```bash
-# JavaScript/TypeScript
-npm test -- auth.test.ts
-
-# Python
-pytest tests/test_auth.py::test_authentication_fails_with_wrong_password
-
-# Go
-go test -run TestAuthenticationFailsWithWrongPassword
-
-# Rust
-cargo test authentication_fails_with_wrong_password
-```
-
-**Expected Output**:
-```
-❌ FAIL: should return error when password is incorrect
-   ReferenceError: authenticate is not defined
-```
-
-**Critical**: The test must fail for the RIGHT reason:
-- ✅ Function doesn't exist yet
-- ✅ Function exists but returns wrong value
-- ❌ Syntax error in test code (fix the test first)
-- ❌ Test setup failure (fix the setup first)
-
-**Checkpoint**: You have a legitimately failing test. Do NOT proceed to Green phase until this is true.
-
----
-
-### 🟢 GREEN: Make It Pass (Minimally)
-
-#### Step 1: Implement the Minimum
-
-Write the **simplest** code that makes the test pass.
-
-**Key Principles**:
-- Don't over-engineer
-- Don't handle edge cases not covered by the test
-- Don't optimize prematurely
-- Don't write "while I'm here" code
-
-**Example**:
-```typescript
-export async function authenticate(email: string, password: string) {
-  // Minimal implementation - just make the test pass
-  return {
-    success: false,
-    error: 'Invalid credentials'
-  };
-}
-```
-
-**Yes, this is "fake it till you make it"**. That's intentional. More tests will force you to write real logic.
-
-#### Step 2: Run the Test (Expect Success)
-
-```bash
-npm test -- auth.test.ts
-```
-
-**Expected Output**:
-```
-✅ PASS: should return error when password is incorrect
-```
-
-**Checkpoint**: The specific test you wrote is now passing.
-
----
-
-### 🔵 REFACTOR: Clean It Up
-
-Now that the test passes, improve the code without changing behavior.
-
-#### Step 1: Identify Improvements
-
-Look for:
-- Duplicated code
-- Unclear variable names
-- Long functions that should be split
-- Hard-coded values that should be constants
-- Code that doesn't follow style guide
-
-#### Step 2: Refactor
-
-**Example**:
-```typescript
-const INVALID_CREDENTIALS_ERROR = 'Invalid credentials';
-
-export async function authenticate(email: string, password: string) {
-  // Refactored: extracted constant, added type safety
-  const isValid = await validateCredentials(email, password);
-  
-  if (!isValid) {
-    return {
-      success: false,
-      error: INVALID_CREDENTIALS_ERROR
-    };
-  }
-  
-  return {
-    success: true,
-    user: await getUserByEmail(email)
-  };
-}
-```
-
-#### Step 3: Run ALL Tests
-
-**Critical**: After refactoring, run the FULL test suite to catch regressions.
-
-```bash
-npm test  # Run ALL tests, not just the one you wrote
-```
-
-**Expected Output**:
-```
-✅ PASS: 47 tests passed (0 failed)
-```
-
-**If any test fails**: You broke something. Undo your refactoring and try again.
-
-**Checkpoint**: All tests pass, code is cleaner, behavior unchanged.
-
----
-
-## Test Naming Conventions
-
-### Good Test Names
-
-Test names should read like specifications:
-
-✅ `should return error when password is incorrect`  
-✅ `should create user with valid email`  
-✅ `should throw exception when database is unavailable`  
-✅ `should cache results for 5 minutes`
-
-### Bad Test Names
-
-❌ `testAuth()` - Too vague  
-❌ `test1()` - Meaningless  
-❌ `it works` - Not specific  
-❌ `userTest()` - What about users?
-
----
-
-## Test Structure: Arrange-Act-Assert (AAA)
-
-Every test should follow this pattern:
-
-```typescript
-it('should do something specific', () => {
-  // Arrange: Set up test data and dependencies
-  const input = 'test data';
-  const expectedOutput = 'expected result';
-  const mockDependency = jest.fn();
-  
-  // Act: Execute the behavior being tested
-  const result = functionUnderTest(input, mockDependency);
-  
-  // Assert: Verify the outcome
-  expect(result).toBe(expectedOutput);
-  expect(mockDependency).toHaveBeenCalledTimes(1);
-});
-```
-
-**Variation**: Given-When-Then (BDD style)
-
-```typescript
-it('should do something specific', () => {
-  // Given: Initial state
-  const user = createUser({ role: 'admin' });
-  
-  // When: Action occurs
-  const canDelete = user.hasPermission('delete');
-  
-  // Then: Expected outcome
-  expect(canDelete).toBe(true);
-});
-```
-
----
-
-## Test Coverage Guidelines
-
-### What to Test
-
-✅ **Happy Path**: Normal, expected usage  
-✅ **Edge Cases**: Boundary conditions (empty strings, max values, etc.)  
-✅ **Error Cases**: Invalid inputs, missing data  
-✅ **Business Logic**: Complex calculations, state transitions  
-✅ **Integration Points**: API calls, database queries  
-
-### What NOT to Test
-
-❌ **Framework Code**: Don't test React itself, test YOUR components  
-❌ **Third-Party Libraries**: Trust that lodash works  
-❌ **Trivial Code**: Getters/setters with no logic  
-❌ **Generated Code**: Database migrations, generated types  
-
----
-
-## Test Types & When to Use Them
-
-### Unit Tests
-
-**Purpose**: Test individual functions/methods in isolation
+**Purpose**: Test individual functions, classes, and components in isolation
 
 **Characteristics**:
-- Fast (milliseconds)
-- No external dependencies
-- Use mocks/stubs for dependencies
+- Fast execution (milliseconds per test)
+- No external dependencies (databases, networks, file systems)
+- Deterministic and repeatable results
+- Clear, focused test cases
 
-**Example**:
-```typescript
-describe('calculateTotal', () => {
-  it('should sum prices and apply tax', () => {
-    const items = [
-      { price: 10 },
-      { price: 20 }
-    ];
-    const taxRate = 0.1;
-    
-    const total = calculateTotal(items, taxRate);
-    
-    expect(total).toBe(33); // (10 + 20) * 1.1
-  });
-});
-```
+**Implementation Guidelines**:
+```javascript
+// Example unit test structure
+describe('UserValidator', () => {
+  describe('validateEmail', () => {
+    it('should return true for valid email addresses', () => {
+      const validator = new UserValidator();
+      expect(validator.validateEmail('user@example.com')).toBe(true);
+    });
 
-**When to Use**: 90% of your tests should be unit tests
+    it('should return false for invalid email addresses', () => {
+      const validator = new UserValidator();
+      expect(validator.validateEmail('invalid-email')).toBe(false);
+    });
 
----
-
-### Integration Tests
-
-**Purpose**: Test multiple components working together
-
-**Characteristics**:
-- Slower (seconds)
-- May use test database or API
-- Test real interactions
-
-**Example**:
-```typescript
-describe('User Registration Flow', () => {
-  it('should create user and send welcome email', async () => {
-    const userData = { email: 'new@example.com', password: 'secure123' };
-    
-    const user = await registerUser(userData);
-    
-    expect(user.id).toBeDefined();
-    expect(await getEmailQueue()).toContainEqual({
-      to: 'new@example.com',
-      subject: 'Welcome!'
+    it('should handle edge cases like empty strings', () => {
+      const validator = new UserValidator();
+      expect(validator.validateEmail('')).toBe(false);
+      expect(validator.validateEmail(null)).toBe(false);
     });
   });
 });
 ```
 
-**When to Use**: Test critical user flows and complex integrations
+### 2. Integration Testing
 
----
-
-### End-to-End (E2E) Tests
-
-**Purpose**: Test entire user journey through the UI
+**Purpose**: Test interactions between components and external systems
 
 **Characteristics**:
-- Very slow (seconds to minutes)
-- Uses real browser (Playwright, Cypress, Selenium)
-- Brittle, expensive to maintain
+- Moderate execution time (seconds per test)
+- May involve databases, APIs, or file systems
+- Test realistic data flows and interactions
+- Validate interface contracts and protocols
 
-**Example** (Playwright):
-```typescript
-test('user can login and view dashboard', async ({ page }) => {
-  await page.goto('http://localhost:3000');
-  await page.fill('[name="email"]', 'user@example.com');
-  await page.fill('[name="password"]', 'password123');
-  await page.click('button[type="submit"]');
-  
-  await expect(page.locator('h1')).toContainText('Dashboard');
+**Implementation Guidelines**:
+```javascript
+// Example integration test
+describe('UserService Integration', () => {
+  beforeEach(async () => {
+    await setupTestDatabase();
+  });
+
+  afterEach(async () => {
+    await cleanupTestDatabase();
+  });
+
+  it('should create user and send welcome email', async () => {
+    const userService = new UserService();
+    const emailService = new EmailService();
+    
+    const user = await userService.createUser({
+      email: 'test@example.com',
+      name: 'Test User'
+    });
+
+    expect(user.id).toBeDefined();
+    expect(emailService.sentEmails).toContain(
+      expect.objectContaining({
+        to: 'test@example.com',
+        subject: 'Welcome!'
+      })
+    );
+  });
 });
 ```
 
-**When to Use**: Only for critical user paths (login, checkout, etc.)
+### 3. End-to-End Testing
 
----
+**Purpose**: Validate complete user workflows and system behavior
 
-## Mocking & Test Doubles
+**Characteristics**:
+- Slower execution (minutes per test)
+- Test complete user journeys
+- Use production-like environment
+- Validate business requirements and user stories
 
-### When to Mock
-
-Mock external dependencies to:
-- Isolate the unit under test
-- Avoid slow operations (API calls, database queries)
-- Test error conditions (network failures, etc.)
-
-### Types of Test Doubles
-
-#### Stub
-Returns predefined data:
-```typescript
-const getUserStub = jest.fn().mockReturnValue({
-  id: 1,
-  name: 'Test User'
+**Implementation Guidelines**:
+```javascript
+// Example E2E test
+describe('User Registration Flow', () => {
+  it('should allow new user to register and access dashboard', async () => {
+    // Navigate to registration page
+    await page.goto('/register');
+    
+    // Fill registration form
+    await page.fill('[data-testid="email"]', 'newuser@example.com');
+    await page.fill('[data-testid="password"]', 'SecurePassword123');
+    await page.click('[data-testid="register-button"]');
+    
+    // Verify redirect to dashboard
+    await expect(page).toHaveURL('/dashboard');
+    await expect(page.locator('[data-testid="welcome-message"]')).toBeVisible();
+  });
 });
 ```
 
-#### Mock
-Records calls and verifies behavior:
-```typescript
-const emailMock = jest.fn();
-await sendWelcomeEmail(user, emailMock);
-expect(emailMock).toHaveBeenCalledWith('user@example.com', 'Welcome!');
+### 4. Property-Based Testing
+
+**Purpose**: Test correctness properties with generated inputs
+
+**Characteristics**:
+- Generates many test cases automatically
+- Tests properties that should always hold true
+- Finds edge cases that manual tests might miss
+- Validates algorithmic correctness
+
+**Implementation Guidelines**:
+```javascript
+// Example property-based test
+import fc from 'fast-check';
+
+describe('UserValidator Properties', () => {
+  it('should never validate malformed emails as valid', () => {
+    fc.assert(fc.property(
+      fc.string().filter(s => !s.includes('@')),
+      (invalidEmail) => {
+        const validator = new UserValidator();
+        expect(validator.validateEmail(invalidEmail)).toBe(false);
+      }
+    ));
+  });
+
+  it('should always validate properly formatted emails', () => {
+    fc.assert(fc.property(
+      fc.emailAddress(),
+      (validEmail) => {
+        const validator = new UserValidator();
+        expect(validator.validateEmail(validEmail)).toBe(true);
+      }
+    ));
+  });
+});
 ```
 
-#### Spy
-Wraps real implementation to observe calls:
-```typescript
-const logSpy = jest.spyOn(console, 'log');
-processData();
-expect(logSpy).toHaveBeenCalledWith('Processing complete');
+## Test Organization and Structure
+
+### Directory Structure
+```
+project-root/
+├── src/
+│   ├── components/
+│   │   ├── UserValidator.js
+│   │   └── UserValidator.test.js      # Unit tests alongside source
+│   └── services/
+│       ├── UserService.js
+│       └── UserService.test.js
+├── tests/
+│   ├── integration/                   # Integration tests
+│   │   ├── user-service.test.js
+│   │   └── email-service.test.js
+│   ├── e2e/                          # End-to-end tests
+│   │   ├── user-registration.test.js
+│   │   └── user-login.test.js
+│   └── fixtures/                     # Test data and utilities
+│       ├── test-data.js
+│       └── test-helpers.js
 ```
 
----
+### Naming Conventions
+- **Test Files**: `[component-name].test.js` or `[component-name].spec.js`
+- **Test Suites**: Use `describe()` blocks for logical grouping
+- **Test Cases**: Use `it()` or `test()` with descriptive names
+- **Test Data**: Use `fixtures/` directory for reusable test data
+
+### Test Documentation
+```javascript
+// Good test documentation
+describe('UserValidator', () => {
+  describe('validateEmail', () => {
+    it('should return true for RFC 5322 compliant email addresses', () => {
+      // Test implementation
+    });
+
+    it('should return false for emails missing @ symbol', () => {
+      // Test implementation
+    });
+
+    it('should handle null and undefined inputs gracefully', () => {
+      // Test implementation
+    });
+  });
+});
+```
 
 ## Test Data Management
 
-### Use Factories for Complex Objects
+### Test Fixtures
+- **Static Data**: Use JSON files or constants for predictable test data
+- **Dynamic Data**: Generate test data programmatically for variety
+- **Realistic Data**: Use production-like data while protecting privacy
+- **Edge Cases**: Include boundary conditions and error scenarios
 
-```typescript
-function createUser(overrides = {}) {
-  return {
-    id: 1,
-    name: 'Test User',
-    email: 'test@example.com',
-    role: 'user',
-    ...overrides
-  };
-}
-
-// Usage
-const admin = createUser({ role: 'admin' });
-const john = createUser({ name: 'John', email: 'john@example.com' });
-```
-
-### Use Builders for Fluent API
-
-```typescript
-class UserBuilder {
-  private user = { role: 'user' };
+### Database Testing
+```javascript
+// Example database test setup
+beforeEach(async () => {
+  // Start with clean database state
+  await db.migrate.rollback();
+  await db.migrate.latest();
   
-  withRole(role: string) {
-    this.user.role = role;
-    return this;
-  }
-  
-  withEmail(email: string) {
-    this.user.email = email;
-    return this;
-  }
-  
-  build() {
-    return this.user;
-  }
-}
+  // Seed with minimal required data
+  await db.seed.run();
+});
 
-// Usage
-const admin = new UserBuilder().withRole('admin').withEmail('admin@example.com').build();
-```
-
----
-
-## Common Testing Anti-Patterns
-
-### ❌ Testing Implementation Details
-
-**Bad**:
-```typescript
-it('should call helper function', () => {
-  const spy = jest.spyOn(service, 'helperFunction');
-  service.mainFunction();
-  expect(spy).toHaveBeenCalled(); // Testing HOW, not WHAT
+afterEach(async () => {
+  // Clean up test data
+  await db.raw('TRUNCATE TABLE users CASCADE');
 });
 ```
 
-**Good**:
-```typescript
-it('should return formatted result', () => {
-  const result = service.mainFunction();
-  expect(result).toBe('Expected Output'); // Testing WHAT, not HOW
-});
-```
-
-### ❌ One Giant Test
-
-**Bad**:
-```typescript
-it('should handle entire user lifecycle', () => {
-  // Tests registration, login, profile update, deletion
-  // 200 lines of test code
-});
-```
-
-**Good**:
-```typescript
-describe('User Lifecycle', () => {
-  it('should register user');
-  it('should login user');
-  it('should update profile');
-  it('should delete user');
-});
-```
-
-### ❌ Flaky Tests
-
-**Bad**:
-```typescript
-it('should complete within 100ms', async () => {
-  const start = Date.now();
-  await asyncOperation();
-  expect(Date.now() - start).toBeLessThan(100); // Flaky: depends on system load
-});
-```
-
-**Good**:
-```typescript
-it('should complete the operation', async () => {
-  const result = await asyncOperation();
-  expect(result).toBeDefined(); // Deterministic
-});
-```
-
-### ❌ Tests That Depend on Each Other
-
-**Bad**:
-```typescript
-describe('User Service', () => {
-  let userId;
-  
-  it('should create user', () => {
-    userId = createUser(); // Modifies shared state
-  });
-  
-  it('should fetch user', () => {
-    const user = getUser(userId); // Depends on previous test
-  });
-});
-```
-
-**Good**:
-```typescript
-describe('User Service', () => {
-  it('should create user', () => {
-    const userId = createUser();
-    expect(userId).toBeDefined();
-  });
-  
-  it('should fetch user', () => {
-    const userId = createUser(); // Each test is independent
-    const user = getUser(userId);
-    expect(user).toBeDefined();
-  });
-});
-```
-
----
-
-## Test Organization
-
-### File Structure
-
-Match test files to source files:
-
-```
-src/
-├── auth/
-│   ├── authenticate.ts
-│   └── authenticate.test.ts  # Co-located tests
-├── users/
-│   ├── user-service.ts
-│   └── user-service.test.ts
-```
-
-Or use separate test directory:
-
-```
-src/
-├── auth/
-│   └── authenticate.ts
-tests/
-├── auth/
-│   └── authenticate.test.ts
-```
-
-### Test Suite Organization
-
-```typescript
+### Mock and Stub Management
+```javascript
+// Example mocking strategy
 describe('UserService', () => {
-  describe('createUser', () => {
-    it('should create user with valid data');
-    it('should throw error with invalid email');
-    it('should hash password before storing');
+  let emailServiceMock;
+
+  beforeEach(() => {
+    emailServiceMock = {
+      sendWelcomeEmail: jest.fn().mockResolvedValue(true),
+      sendPasswordReset: jest.fn().mockResolvedValue(true)
+    };
   });
-  
-  describe('deleteUser', () => {
-    it('should delete user and related data');
-    it('should throw error if user not found');
+
+  it('should send welcome email after user creation', async () => {
+    const userService = new UserService(emailServiceMock);
+    await userService.createUser({ email: 'test@example.com' });
+    
+    expect(emailServiceMock.sendWelcomeEmail).toHaveBeenCalledWith('test@example.com');
   });
 });
 ```
 
----
+## Performance Testing
 
-## Running Tests
+### Load Testing
+- **Baseline Performance**: Establish performance benchmarks for key operations
+- **Stress Testing**: Test system behavior under high load conditions
+- **Scalability Testing**: Validate system performance as load increases
+- **Resource Monitoring**: Track CPU, memory, and I/O usage during tests
 
-### Run All Tests
-```bash
-npm test
-pytest
-go test ./...
-cargo test
-```
-
-### Run Specific Test File
-```bash
-npm test -- auth.test.ts
-pytest tests/test_auth.py
-go test ./auth
-cargo test --test auth
-```
-
-### Run Specific Test Case
-```bash
-npm test -- -t "should return error"
-pytest tests/test_auth.py::test_authentication_fails
-go test -run TestAuthenticationFails
-cargo test authentication_fails
-```
-
-### Watch Mode (Re-run on Change)
-```bash
-npm test -- --watch
-pytest --watch
-# Go and Rust: Use external tools like entr or cargo-watch
-```
-
-### Coverage Report
-```bash
-npm test -- --coverage
-pytest --cov=src
-go test -cover ./...
-cargo tarpaulin
-```
-
----
-
-## Debugging Failing Tests
-
-### Step 1: Read the Error Message
-
-```
-❌ FAIL: should return error when password is incorrect
-   Expected: { success: false, error: 'Invalid credentials' }
-   Received: { success: true, user: { ... } }
-```
-
-**Questions**:
-- What was expected?
-- What was actually received?
-- Why is there a mismatch?
-
-### Step 2: Add Diagnostic Logging
-
-```typescript
-it('should return error when password is incorrect', async () => {
-  const result = await authenticate('user@example.com', 'wrong');
-  
-  console.log('Result:', result); // Temporary debugging
-  
-  expect(result.success).toBe(false);
+### Performance Test Implementation
+```javascript
+// Example performance test
+describe('UserService Performance', () => {
+  it('should create 1000 users within 5 seconds', async () => {
+    const startTime = Date.now();
+    const userService = new UserService();
+    
+    const promises = Array.from({ length: 1000 }, (_, i) => 
+      userService.createUser({
+        email: `user${i}@example.com`,
+        name: `User ${i}`
+      })
+    );
+    
+    await Promise.all(promises);
+    
+    const duration = Date.now() - startTime;
+    expect(duration).toBeLessThan(5000); // 5 seconds
+  });
 });
 ```
 
-### Step 3: Check Assumptions
+## Security Testing
 
-```typescript
-it('should return error when password is incorrect', async () => {
-  const email = 'user@example.com';
-  const password = 'wrong';
-  
-  // Verify test data is correct
-  expect(email).toBeTruthy();
-  expect(password).toBeTruthy();
-  
-  const result = await authenticate(email, password);
-  
-  expect(result.success).toBe(false);
+### Vulnerability Testing
+- **Input Validation**: Test for injection attacks and malformed inputs
+- **Authentication**: Verify secure authentication and session management
+- **Authorization**: Test access controls and permission enforcement
+- **Data Protection**: Validate encryption and sensitive data handling
+
+### Security Test Examples
+```javascript
+describe('Security Tests', () => {
+  it('should prevent SQL injection in user queries', async () => {
+    const maliciousInput = "'; DROP TABLE users; --";
+    const userService = new UserService();
+    
+    await expect(
+      userService.findUserByEmail(maliciousInput)
+    ).rejects.toThrow('Invalid email format');
+  });
+
+  it('should require authentication for protected endpoints', async () => {
+    const response = await request(app)
+      .get('/api/users/profile')
+      .expect(401);
+    
+    expect(response.body.error).toBe('Authentication required');
+  });
 });
 ```
 
-### Step 4: Isolate the Problem
+## Continuous Integration
 
-If test fails:
-1. Does the function exist?
-2. Are the parameters correct?
-3. Are mocks set up correctly?
-4. Is the assertion correct?
+### Automated Test Execution
+- **Pre-commit Hooks**: Run unit tests before allowing commits
+- **CI Pipeline**: Execute full test suite on every push
+- **Parallel Execution**: Run tests in parallel for faster feedback
+- **Test Reporting**: Generate comprehensive test reports and coverage metrics
 
-### Step 5: Use Debugger
-
-```typescript
-it('should return error when password is incorrect', async () => {
-  debugger; // Set breakpoint here
-  const result = await authenticate('user@example.com', 'wrong');
-  expect(result.success).toBe(false);
-});
+### Quality Gates
+```yaml
+# Example CI configuration
+test:
+  script:
+    - npm run test:unit
+    - npm run test:integration
+    - npm run test:e2e
+  coverage: '/Coverage: \d+\.\d+%/'
+  artifacts:
+    reports:
+      junit: test-results.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
 ```
 
-Run with debugger:
-```bash
-node --inspect-brk node_modules/.bin/jest --runInBand auth.test.ts
-```
+### Failure Handling
+- **Fast Failure**: Stop test execution on first critical failure
+- **Retry Logic**: Retry flaky tests with exponential backoff
+- **Failure Analysis**: Categorize failures and provide actionable feedback
+- **Recovery Procedures**: Define steps for recovering from test failures
 
----
+## Best Practices
 
-## Integration with AGENTS.md Workflow
+### Test Writing Guidelines
+1. **Clear Intent**: Test names should clearly express what is being tested
+2. **Single Responsibility**: Each test should verify one specific behavior
+3. **Independent Tests**: Tests should not depend on each other's state
+4. **Deterministic Results**: Tests should produce consistent results across runs
 
-### Phase I: PLAN
-- Define verification plan: What tests will prove the feature works?
-- List test scenarios in the plan document
+### Maintenance Practices
+1. **Regular Review**: Periodically review and update test suites
+2. **Refactor Tests**: Keep test code clean and maintainable
+3. **Remove Obsolete Tests**: Delete tests for removed functionality
+4. **Update Test Data**: Keep test fixtures current with system changes
 
-### Phase II: WORK
-- **ALWAYS** follow Red-Green-Refactor
-- Write test first, then implementation
-- Commit after each successful cycle
-
-### Phase III: REVIEW
-- Verify test coverage is adequate
-- Check that tests are meaningful (not just for coverage)
-- Ensure tests follow best practices
-
----
-
-## Checklist for Every Test
-
-- [ ] Test name clearly describes the behavior
-- [ ] Test follows Arrange-Act-Assert pattern
-- [ ] Test is independent (doesn't rely on other tests)
-- [ ] Test is deterministic (same input = same output)
-- [ ] Test uses appropriate mocks/stubs
-- [ ] Test verifies ONE specific behavior
-- [ ] Test will fail if the behavior breaks
-
----
-
-**Remember**: Tests are not a burden. They are your safety net, your documentation, and your design feedback. Embrace the Red-Green-Refactor loop.
+### Team Practices
+1. **Test Coverage Goals**: Maintain minimum coverage thresholds
+2. **Code Review**: Include test review in code review process
+3. **Knowledge Sharing**: Share testing best practices across team
+4. **Continuous Learning**: Stay updated with testing tools and techniques
 
 ---
 
 **Version**: 1.0.0  
-**Last Updated**: 2025-12-19  
-**Based On**: AGENTS.md v1.0.0
+**Last Updated**: 2025-12-29  
+**Protocol**: Comprehensive Testing Strategy

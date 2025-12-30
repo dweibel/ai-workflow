@@ -1,0 +1,49 @@
+{
+  "version": "1.0.0",
+  "created": "2025-12-29T12:42:56.323Z",
+  "operation": "light",
+  "source": {
+    "path": "C:\\Users\\dirkw\\Workspace\\dev\\workflow-refactor\\ai-workflow",
+    "gitCommit": "a94068850715a2902d4830bc036d6d0460955275",
+    "gitBranch": "skills_refactor",
+    "user": "dirkw",
+    "platform": "win32",
+    "nodeVersion": "v24.11.1"
+  },
+  "contents": {
+    "directories": [
+      ".ai/docs/plans",
+      ".ai/docs/tasks",
+      ".ai/docs/reviews",
+      ".ai/docs/requirements",
+      ".ai/docs/design"
+    ],
+    "files": {
+      "memory": 2,
+      "docs": 0,
+      "total": 2
+    },
+    "totalSize": 17665
+  },
+  "restoration": {
+    "compatible": [
+      "project-reset-manager",
+      "ears-workflow-skill",
+      "compound-engineering"
+    ],
+    "requirements": [
+      "Node.js runtime (v14 or higher)",
+      "Git repository",
+      "File system write permissions",
+      ".ai directory structure"
+    ]
+  },
+  "metadata": {
+    "generator": "project-reset-manager",
+    "generatorVersion": "1.0.0",
+    "archiveName": "2025-12-29T12-42-56-321Z-test-archive",
+    "originalName": "test-archive",
+    "resetLevel": "light",
+    "testData": "sample"
+  }
+}

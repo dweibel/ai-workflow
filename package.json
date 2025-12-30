@@ -1,0 +1,68 @@
+{
+  "name": "ears-workflow-skill",
+  "version": "1.0.0",
+  "description": "EARS-workflow skill package for structured development methodology",
+  "main": ".ai/SKILL.md",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:semantic": "node .ai/skills/engineering-workflow/scripts/test-semantic-analysis.js",
+    "test:semantic-suite": "jest .ai/skills/engineering-workflow/tests/semantic-analysis.test.js",
+    "test:context-optimization": "node .ai/skills/engineering-workflow/scripts/test-context-optimization.js",
+    "test:context-optimization-suite": "jest .ai/skills/engineering-workflow/tests/context-optimization.test.js",
+    "validate:context-optimization": "node .ai/skills/engineering-workflow/validate-context-optimization.js",
+    "test:cross-references": "jest .ai/tests/cross-reference-validation.test.js",
+    "package": "node scripts/package-distribution.js",
+    "verify": "node .ai/tests/package-completeness-validation.test.js",
+    "validate": "node .ai/tests/final-package-validation.test.js",
+    "validate:versions": "node scripts/validate-versions.js",
+    "validate:cross-references": "node scripts/validate-cross-references.js",
+    "validate:skills": "node scripts/skills/validate-skills.js",
+    "validate:all": "npm run validate:versions && npm run validate:cross-references && npm run validate:context-optimization && npm run validate",
+    "install": "node scripts/install.js",
+    "clean": "rm -rf dist/",
+    "build": "npm run clean && npm run package",
+    "prepack": "npm run validate:all",
+    "lint": "echo 'Linting not configured - add ESLint configuration'",
+    "format": "echo 'Formatting not configured - add Prettier configuration'",
+    "dev": "echo 'Development server not configured - add development server setup'"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "fast-check": "^3.15.0",
+    "js-yaml": "^4.1.0"
+  },
+  "jest": {
+    "testMatch": [
+      "**/.ai/tests/**/*.test.js",
+      "**/.ai/skills/*/tests/**/*.test.js"
+    ],
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "<rootDir>/.ai/skills/shared/test-setup.js"
+    ],
+    "collectCoverageFrom": [
+      ".ai/skills/*/lib/**/*.js",
+      ".ai/skills/shared/**/*.js",
+      "!**/*.test.js",
+      "!**/node_modules/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
+  },
+  "keywords": [
+    "agent-skills",
+    "ears",
+    "workflow",
+    "structured-development",
+    "property-based-testing"
+  ],
+  "author": "EARS-Workflow System",
+  "license": "MIT"
+}

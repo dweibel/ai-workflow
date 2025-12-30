@@ -4,18 +4,18 @@ This directory contains all project documentation organized in a structured hier
 
 ## Directory Structure
 
-### `.ai/docs/plans/`
+### `.ai/docs/implementation/`
 Implementation plans for features and major changes. Plans should follow the naming convention `YYYY-MM-DD-feature-name.md` and serve as contracts for the WORK phase.
 
 **When to use:** During the PLAN phase, before starting any implementation work.
 
-### `.ai/docs/requirements/`
-Requirements specifications, user stories, feature specifications, and acceptance criteria.
+### `.ai/docs/specifications/`
+Requirements specifications, user stories, feature specifications, and acceptance criteria using EARS methodology.
 
-**When to use:** When gathering requirements, defining features, or documenting user needs.
+**When to use:** During the SPEC-FORGE phase when creating formal requirements and specifications.
 
-### `.ai/docs/design/`
-Design documents, architecture diagrams, system designs, and technical specifications.
+### `.ai/docs/architecture/`
+Design documents, architecture diagrams, system designs, and technical specifications with correctness properties.
 
 **When to use:** When designing system architecture, APIs, data models, or major technical decisions.
 
@@ -37,8 +37,8 @@ Architectural Decision Records (ADRs) documenting significant technical decision
 ## Document Naming Conventions
 
 - **Plans:** `YYYY-MM-DD-feature-name.md` (e.g., `2025-12-16-user-authentication.md`)
-- **Requirements:** `feature-name-requirements.md` or `feature-name-spec.md`
-- **Design:** `component-name-design.md` or `system-architecture.md`
+- **Specifications:** `feature-name-requirements.md` or `feature-name-spec.md`
+- **Architecture:** `component-name-design.md` or `system-architecture.md`
 - **Tasks:** `sprint-N.md`, `backlog.md`, or `YYYY-MM-DD-tasks.md`
 - **Reviews:** `YYYY-MM-DD-review-scope.md` (e.g., `2025-12-16-review-auth-module.md`)
 - **Decisions:** `ADR-NNN-decision-title.md` (e.g., `ADR-001-use-postgresql.md`)
@@ -51,11 +51,12 @@ Architectural Decision Records (ADRs) documenting significant technical decision
 4. **Use templates:** Follow established templates for consistency (see each subdirectory's README).
 5. **Archive old documents:** Move outdated documents to an `archive/` subdirectory rather than deleting them.
 
-## Integration with Compound Engineering
+## Integration with EARS Workflow
 
 This documentation structure supports the three workflow phases:
 
-- **PLAN Phase** → Create documents in `.ai/docs/plans/`, `.ai/docs/requirements/`, `.ai/docs/design/`
+- **SPEC-FORGE Phase** → Create documents in `.ai/docs/specifications/`
+- **PLAN Phase** → Create documents in `.ai/docs/implementation/`, `.ai/docs/architecture/`
 - **WORK Phase** → Reference plans and designs; create task tracking in `.ai/docs/tasks/`
 - **REVIEW Phase** → Generate reports in `.ai/docs/reviews/`; document decisions in `.ai/docs/decisions/`
 
