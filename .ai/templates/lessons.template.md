@@ -16,6 +16,9 @@ This file contains the accumulated wisdom from past engineering sessions. Every 
 - When creating a git worktree, always verify your location with `pwd` before making changes to prevent modifying the main branch accidentally.
 - When committing changes, always use conventional commit format (`feat:`, `fix:`, `refactor:`, etc.) for clear git history.
 - When working on multiple features, always use separate worktrees to avoid context switching issues and merge conflicts.
+- When writing multi-line git commit messages in PowerShell, always use single quotes instead of double quotes to prevent PowerShell line continuation prompts (`>>`).
+  - **Context**: PowerShell treats double quotes specially and interprets line breaks as command continuation
+  - **Example**: `git commit -m 'feat: add feature\n\nBREAKING CHANGES:\n- removed old API'` instead of `git commit -m "feat: add feature..."`
 
 ---
 
