@@ -111,8 +111,8 @@ The Compound Engineering system includes automated skills that reduce manual ove
 - Handles edge cases (existing branches, cleanup confirmation, etc.)
 - **Cross-Platform**: Use WSL or Git Bash on Windows to run bash scripts
 
-### 3.2 Engineering Workflow Skills
-**Location:** `.ai/skills/engineering-workflow/` (Cross-platform implementations)
+### 3.2 Compound Engineering Skills
+**Location:** `.ai/skills/compound-engineering/` (Cross-platform implementations)
 
 **Capabilities:**
 - **context-optimization**: Smart context management with token budgeting
@@ -158,7 +158,7 @@ The skills system follows a modular, template-driven approach:
 .ai/skills/
 ├── README.md                    # Master skills catalog
 ├── git-worktree/               # Git worktree management
-├── engineering-workflow/       # Context optimization and semantic analysis
+├── compound-engineering/       # Context optimization and semantic analysis
 ├── project-reset/              # Project reset functionality  
 ├── _templates/                 # Skill development templates
 └── [future-skills]/            # Extensible skill ecosystem

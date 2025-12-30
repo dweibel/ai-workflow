@@ -201,7 +201,7 @@ class SemanticAnalysisDemo {
             'ears-specification': 'created requirements',
             'git-workflow': 'started implementation',
             'testing-framework': 'conducted review',
-            'engineering-workflow': 'analyzed workflow'
+            'compound-engineering': 'analyzed workflow'
         };
         
         const activity = activityMap[recommendation.skill];

@@ -369,7 +369,7 @@ NOTE: Important note that should be preserved.`;
 
         test('should identify content sources correctly', () => {
             const sources = adaptiveLoader.identifyContentSources(
-                'engineering-workflow',
+                'compound-engineering',
                 'implement feature',
                 { currentPhase: 'WORK', recentFiles: ['test.md'] }
             );
@@ -393,7 +393,7 @@ NOTE: Important note that should be preserved.`;
     describe('ContextOptimizationEngine Integration', () => {
         test('should optimize context with all components working together', () => {
             const result = engine.optimizeContext(
-                'engineering-workflow',
+                'compound-engineering',
                 'implement authentication security',
                 {
                     currentPhase: 'WORK',
@@ -418,7 +418,7 @@ NOTE: Important note that should be preserved.`;
             engine.contextManager.currentUsage = 7500; // 93.75% utilization
             
             const result = engine.optimizeContext(
-                'engineering-workflow',
+                'compound-engineering',
                 'test intent',
                 {}
             );

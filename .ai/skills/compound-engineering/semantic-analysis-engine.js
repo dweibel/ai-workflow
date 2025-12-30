@@ -99,7 +99,7 @@ class SemanticAnalysisEngine {
         return {
             // Tier 1: Exact Matches (95-100%)
             exact: {
-                'engineering-workflow': { skill: 'engineering-workflow', confidence: 100 },
+                'compound-engineering': { skill: 'compound-engineering', confidence: 100 },
                 'spec-forge': { skill: 'ears-specification', confidence: 98 },
                 'ears-specification': { skill: 'ears-specification', confidence: 100 },
                 'git-workflow': { skill: 'git-workflow', confidence: 100 },
@@ -108,8 +108,8 @@ class SemanticAnalysisEngine {
 
             // Tier 2: Primary Intent (85-94%)
             primary: {
-                'structured development': { skill: 'engineering-workflow', confidence: 92 },
-                'formal methodology': { skill: 'engineering-workflow', confidence: 90 },
+                'structured development': { skill: 'compound-engineering', confidence: 92 },
+                'formal methodology': { skill: 'compound-engineering', confidence: 90 },
                 'create requirements': { skill: 'ears-specification', confidence: 92 },
                 'implement feature': { skill: 'git-workflow', confidence: 90 },
                 'review code': { skill: 'testing-framework', confidence: 92 },
@@ -161,7 +161,7 @@ class SemanticAnalysisEngine {
             },
 
             temporal: {
-                'session-start': { skill: 'engineering-workflow', confidence: 75 },
+                'session-start': { skill: 'compound-engineering', confidence: 75 },
                 'after-long-implementation': { skill: 'testing-framework', confidence: 80 },
                 'beginning-of-sprint': { skill: 'ears-specification', confidence: 85 },
                 'end-of-sprint': { skill: 'testing-framework', confidence: 90 }

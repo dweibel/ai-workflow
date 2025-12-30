@@ -308,7 +308,7 @@ class ContextOptimizationValidator {
         // Test content source identification
         this.test('Content source identification', () => {
             const sources = adaptiveLoader.identifyContentSources(
-                'engineering-workflow',
+                'compound-engineering',
                 'implement feature',
                 { currentPhase: 'WORK', recentFiles: ['test.md'] }
             );
@@ -338,7 +338,7 @@ class ContextOptimizationValidator {
         // Test context optimization
         this.test('Context optimization', () => {
             const result = this.engine.optimizeContext(
-                'engineering-workflow',
+                'compound-engineering',
                 'implement authentication security',
                 {
                     currentPhase: 'WORK',

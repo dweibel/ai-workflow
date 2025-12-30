@@ -1,5 +1,5 @@
 ---
-name: engineering-workflow
+name: compound-engineering
 description: Master orchestration skill for engineering workflows. Automatically routes user requests to appropriate specialized skills (git-workflow, ears-specification, testing-framework) while enforcing universal invariants and managing cross-skill coordination. Use this skill for any engineering task to ensure compound learning and systematic improvement.
 version: 1.0.0
 ---
@@ -119,7 +119,7 @@ The orchestrator includes a sophisticated semantic analysis engine that can be u
 
 ### Programmatic Usage
 ```javascript
-const SemanticAnalysisEngine = require('.ai/skills/engineering-workflow/semantic-analysis-engine');
+const SemanticAnalysisEngine = require('.ai/skills/compound-engineering/semantic-analysis-engine');
 
 const engine = new SemanticAnalysisEngine();
 const result = engine.analyzeInput("create requirements for user authentication", {
@@ -134,10 +134,10 @@ console.log(result.recommendations[0]);
 ### Interactive Testing
 ```bash
 # Test the semantic analysis engine interactively
-node .ai/skills/engineering-workflow/scripts/test-semantic-analysis.js
+node .ai/skills/compound-engineering/scripts/test-semantic-analysis.js
 
 # Run comprehensive test suite
-npm test -- .ai/skills/engineering-workflow/tests/semantic-analysis.test.js
+npm test -- .ai/skills/compound-engineering/tests/semantic-analysis.test.js
 ```
 
 ### Learning and Adaptation

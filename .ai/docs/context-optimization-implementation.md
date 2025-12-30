@@ -14,7 +14,7 @@ The context optimization engine implements smart context management to optimize 
 ## Implementation Files
 
 ### 1. Core Context Optimization Engine
-**File**: `.ai/skills/engineering-workflow/context-optimization-engine.js`
+**File**: `.ai/skills/compound-engineering/context-optimization-engine.js`
 
 **Features**:
 - Token estimation with content type multipliers
@@ -33,7 +33,7 @@ The context optimization engine implements smart context management to optimize 
 - `AdaptiveLoader`: Dynamic content loading
 
 ### 2. Comprehensive Test Suite
-**File**: `.ai/skills/engineering-workflow/tests/context-optimization.test.js`
+**File**: `.ai/skills/compound-engineering/tests/context-optimization.test.js`
 
 **Coverage**:
 - Token estimation accuracy across content types
@@ -52,7 +52,7 @@ The context optimization engine implements smart context management to optimize 
 - Error handling tests for robustness
 
 ### 3. Interactive Testing Tool
-**File**: `.ai/skills/engineering-workflow/scripts/test-context-optimization.js`
+**File**: `.ai/skills/compound-engineering/scripts/test-context-optimization.js`
 
 **Capabilities**:
 - Interactive context optimization testing
@@ -65,7 +65,7 @@ The context optimization engine implements smart context management to optimize 
 - Real-time feedback and analysis
 
 ### 4. Validation Script
-**File**: `.ai/skills/engineering-workflow/validate-context-optimization.js`
+**File**: `.ai/skills/compound-engineering/validate-context-optimization.js`
 
 **Validation Areas**:
 - Token estimation accuracy
@@ -119,11 +119,11 @@ Maintains workflow state and user preferences:
 
 ### Basic Context Optimization
 ```javascript
-const { ContextOptimizationEngine } = require('.ai/skills/engineering-workflow/context-optimization-engine');
+const { ContextOptimizationEngine } = require('.ai/skills/compound-engineering/context-optimization-engine');
 
 const engine = new ContextOptimizationEngine();
 const result = engine.optimizeContext(
-    'engineering-workflow',
+    'compound-engineering',
     'implement authentication security',
     {
         currentPhase: 'WORK',
@@ -137,7 +137,7 @@ console.log(result.recommendations);
 
 ### Token Estimation
 ```javascript
-const { TokenEstimator } = require('.ai/skills/engineering-workflow/context-optimization-engine');
+const { TokenEstimator } = require('.ai/skills/compound-engineering/context-optimization-engine');
 
 const estimator = new TokenEstimator();
 const tokens = estimator.estimateTokens('function test() { return "hello"; }', 'code');
@@ -146,7 +146,7 @@ console.log(`Estimated tokens: ${tokens}`);
 
 ### Relevance Scoring
 ```javascript
-const { RelevanceScorer } = require('.ai/skills/engineering-workflow/context-optimization-engine');
+const { RelevanceScorer } = require('.ai/skills/compound-engineering/context-optimization-engine');
 
 const scorer = new RelevanceScorer();
 const score = scorer.scoreContent(

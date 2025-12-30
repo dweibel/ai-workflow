@@ -45,7 +45,7 @@ class ContextOptimizationDemo {
         this.demoScenarios = [
             {
                 name: 'High Token Usage Scenario',
-                skillName: 'engineering-workflow',
+                skillName: 'compound-engineering',
                 userIntent: 'implement comprehensive authentication system with security audit and performance optimization',
                 sessionContext: {
                     currentPhase: 'WORK',
@@ -55,7 +55,7 @@ class ContextOptimizationDemo {
             },
             {
                 name: 'Error-Driven Context',
-                skillName: 'engineering-workflow',
+                skillName: 'compound-engineering',
                 userIntent: 'critical security vulnerability in authentication system needs immediate fix',
                 sessionContext: {
                     currentPhase: 'WORK',
@@ -66,7 +66,7 @@ class ContextOptimizationDemo {
             },
             {
                 name: 'Discovery Mode',
-                skillName: 'engineering-workflow',
+                skillName: 'compound-engineering',
                 userIntent: 'explore available documentation and workflows',
                 sessionContext: {
                     currentPhase: null,
@@ -152,7 +152,7 @@ class ContextOptimizationDemo {
         console.log(`\n${colors.bright}${colors.blue}Interactive Context Optimization${colors.reset}`);
         console.log('Test the context optimization engine with custom inputs.\n');
         
-        const skillName = await this.prompt('Enter skill name (or press Enter for "engineering-workflow"): ') || 'engineering-workflow';
+        const skillName = await this.prompt('Enter skill name (or press Enter for "compound-engineering"): ') || 'compound-engineering';
         const userIntent = await this.prompt('Enter user intent: ');
         
         if (!userIntent.trim()) {
