@@ -44,7 +44,7 @@ The Agent Skills standard is defined not by a complex binary protocol or API, bu
 A compliant Agent Skill must be encapsulated within a dedicated directory. This encapsulation is critical for portability; a skill folder can be dragged and dropped between projects or synced via Git without external dependencies. The standard hierarchy is as follows:
 
 project-root/  
-├──.claude/skills/ (or.github/skills/)  
+├──.github/skills/ (or .windsurf/skills/)  
 │ ├── infrastructure-provisioning/ \<-- The Skill Container  
 │ │ ├── SKILL.md \<-- The Nucleus (Required)  
 │ │ ├── scripts/ \<-- Executable Logic (Optional)  
@@ -117,8 +117,8 @@ Enabling this setting instructs the Copilot orchestrator to scan the workspace f
 
 VS Code adheres to the open standard's path conventions but adds its own prioritization logic:
 
-1. **.github/skills/**: This path is prioritized and treated as the repository-standard location. Skills placed here are available to all collaborators using the repository.3  
-2. **.claude/skills/**: VS Code maintains backward compatibility with this path, ensuring that teams transitioning from or co-existing with Claude Code tools do not need to duplicate their skill definitions.13
+1. **.github/skills/**: This path is prioritized and treated as the repository-standard location. Skills placed here are available to all collaborators using the repository.
+2. **.windsurf/skills/**: Windsurf IDE native support path, providing seamless integration with Windsurf's agent capabilities and workflow management.
 
 ### **4.2 The User Experience Flow**
 
@@ -193,7 +193,7 @@ openskills is a Node.js-based utility that acts as a universal runtime for the s
 
 rulesync offers a similar capability but focuses on cross-IDE compatibility.
 
-* **Mechanism:** It allows a team to maintain a central .github/skills/ repository. rulesync then exports these skills into IDE-specific configuration formats—settings.json for VS Code, .cursorrules for Cursor, and prompt templates for JetBrains.19
+* **Mechanism:** It allows a team to maintain a central .github/skills/ or .windsurf/skills/ repository. rulesync then exports these skills into IDE-specific configuration formats—settings.json for VS Code, .cursorrules for Cursor, and prompt templates for JetBrains.
 
 ### **6.2 The MCP Proxy Solution**
 

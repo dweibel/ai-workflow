@@ -36,13 +36,13 @@ The ears-workflow system includes a sophisticated semantic analysis engine that 
 ```
 "use ears-workflow" → compound-engineering (98% confidence)
 "spec-forge" → ears-specification (98% confidence)
-"git-workflow" → git-workflow (100% confidence)
+"git-worktree" → git-worktree (100% confidence)
 ```
 
 #### **Tier 2: Primary Intent (85-94% confidence)**
 ```
 "create requirements" → ears-specification (92% confidence)
-"implement feature" → git-workflow (90% confidence)
+"implement feature" → git-worktree (90% confidence)
 "security audit" → testing-framework (94% confidence)
 ```
 
@@ -50,12 +50,12 @@ The ears-workflow system includes a sophisticated semantic analysis engine that 
 ```
 "user story" → ears-specification (82% confidence)
 "test coverage" → testing-framework (78% confidence)
-"build feature" → git-workflow (82% confidence)
+"build feature" → git-worktree (82% confidence)
 ```
 
 #### **Tier 4: Contextual Inference (50-69% confidence)**
 ```
-"authentication not working" → git-workflow (65% confidence + error context)
+"authentication not working" → git-worktree (65% confidence + error context)
 "requirements unclear" → ears-specification (68% confidence + clarification mode)
 "is this secure" → testing-framework (70% confidence + security context)
 ```
@@ -66,7 +66,7 @@ The ears-workflow system includes a sophisticated semantic analysis engine that 
 ```
 Previous: "Created requirements document"
 Current: "Let's start building this"
-→ git-workflow (92% confidence) + "Sequential workflow progression" boost
+→ git-worktree (92% confidence) + "Sequential workflow progression" boost
 
 Previous: "Finished implementation" 
 Current: "Is this code secure?"
@@ -76,7 +76,7 @@ Current: "Is this code secure?"
 #### **Error-Driven Context**
 ```
 "Tests are failing" → testing-framework (85% confidence + debugging context)
-"Git conflicts everywhere" → git-workflow (90% confidence + conflict resolution)
+"Git conflicts everywhere" → git-worktree (90% confidence + conflict resolution)
 "Security vulnerability found" → testing-framework (98% confidence + high priority)
 ```
 
@@ -114,7 +114,7 @@ npm run test:semantic
 ```
 Input: "Create requirements and set up development environment"
 → Primary: ears-specification (90%)
-→ Secondary: git-workflow (85%)
+→ Secondary: git-worktree (85%)
 → Suggested sequence: SPEC-FORGE → WORK
 ```
 
@@ -127,12 +127,12 @@ set-context progress specForge=completed
 
 # Test with context
 🤖 Enter your request: let's start coding
-→ git-workflow (94% confidence + "Sequential workflow progression" boost)
+→ git-worktree (94% confidence + "Sequential workflow progression" boost)
 ```
 
 #### **Learning from Corrections**
 ```
-Original: "implement feature" → git-workflow (85%)
+Original: "implement feature" → git-worktree (85%)
 User chooses: ears-specification (user wants requirements first)
 → System learns: For "implement" patterns, boost requirements-first workflow
 ```

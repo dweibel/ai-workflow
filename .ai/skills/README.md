@@ -26,7 +26,7 @@ Each skill follows the Agent Skills standard and compound engineering principles
 | Skill | Description | Activation Triggers | Phase |
 |-------|-------------|-------------------|-------|
 | **[ears-specification](./ears-specification/)** | EARS-compliant requirements and specification creation with property-based testing | "requirements", "specification", "EARS", "user story" | SPEC-FORGE |
-| **[git-workflow](./git-workflow/)** | Git worktree management and TDD implementation workflow | "implement", "fix", "code", "git worktree", "TDD" | WORK |
+| **[git-worktree](./git-worktree/)** | Git worktree management and TDD implementation workflow | "implement", "fix", "code", "git worktree", "TDD" | WORK |
 | **[testing-framework](./testing-framework/)** | Multi-perspective code review and quality assurance | "review", "audit", "test", "quality check" | REVIEW |
 
 ### Utility Skills
@@ -76,6 +76,7 @@ Skills are automatically synchronized to multiple locations for IDE compatibilit
 
 - **`.ai/skills/`** - Primary location (this directory)
 - **`.github/skills/`** - VS Code/GitHub Copilot compatibility
+- **`.windsurf/skills/`** - Windsurf IDE compatibility
 
 Use `scripts/skills/sync-skills.js` to synchronize skills across platforms.
 
@@ -102,7 +103,7 @@ The `compound-engineering` skill acts as the master orchestrator:
 Skills integrate into the four-phase workflow:
 - **SPEC-FORGE**: `ears-specification` skill
 - **PLAN**: `compound-engineering` orchestration
-- **WORK**: `git-workflow` skill
+- **WORK**: `git-worktree` skill
 - **REVIEW**: `testing-framework` skill
 
 ## Usage Examples
@@ -118,7 +119,7 @@ User: "I need to create requirements for user authentication"
 
 ```
 User: "Implement the login feature using TDD"
-→ Activates: git-workflow skill
+→ Activates: git-worktree skill
 → Creates: Isolated worktree for development
 ```
 

@@ -45,6 +45,11 @@ rm -rf .ai-source/
 2. Restart VS Code for skill discovery
 3. Test: `"use EARS workflow"`
 
+### Windsurf IDE
+1. Copy `.ai/` directory to project root
+2. Skills automatically discovered in `.windsurf/skills/`
+3. Test: `"use structured development"`
+
 ### Cursor IDE
 1. Copy `.ai/` directory to project root
 2. Configure Agent-Decided rules (optional)

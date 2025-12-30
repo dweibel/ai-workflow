@@ -30,7 +30,7 @@ class PackageValidator {
             // Individual skill definitions
             'skills/compound-engineering/SKILL.md',
             'skills/ears-specification/SKILL.md', 
-            'skills/git-workflow/SKILL.md',
+            'skills/git-worktree/SKILL.md',
             'skills/testing-framework/SKILL.md',
             
             // Core memory and configuration
@@ -42,8 +42,8 @@ class PackageValidator {
             'skills/ears-specification/templates/ears-validation.md',
             'skills/ears-specification/templates/incose-validation.md',
             
-            // Git workflow scripts
-            'skills/git-workflow/scripts/git-worktree.sh',
+            // Git worktree scripts
+            'skills/git-worktree/git-worktree.sh',
             
             // Testing framework scripts
             'skills/testing-framework/scripts/run-validation-suite.js'
@@ -65,7 +65,7 @@ class PackageValidator {
             'SKILL.md',
             'skills/compound-engineering/SKILL.md',
             'skills/ears-specification/SKILL.md',
-            'skills/git-workflow/SKILL.md', 
+            'skills/git-worktree/SKILL.md', 
             'skills/testing-framework/SKILL.md'
         ];
 
@@ -121,7 +121,7 @@ class PackageValidator {
      */
     validateNoDependencies() {
         const scriptFiles = [
-            { file: 'skills/git-workflow/scripts/git-worktree.sh', type: 'bash' },
+            { file: 'skills/git-worktree/git-worktree.sh', type: 'bash' },
             { file: 'skills/testing-framework/scripts/run-validation-suite.js', type: 'node' }
         ];
 
@@ -177,7 +177,7 @@ class PackageValidator {
      */
     validateScriptExecution() {
         const executableScripts = [
-            { file: 'skills/git-workflow/scripts/git-worktree.sh', type: 'bash' },
+            { file: 'skills/git-worktree/git-worktree.sh', type: 'bash' },
             { file: 'skills/testing-framework/scripts/run-validation-suite.js', type: 'node' }
         ];
 
@@ -222,8 +222,7 @@ class PackageValidator {
             'skills/compound-engineering',
             'skills/ears-specification',
             'skills/ears-specification/templates',
-            'skills/git-workflow',
-            'skills/git-workflow/scripts',
+            'skills/git-worktree',
             'skills/testing-framework',
             'skills/testing-framework/scripts',
             'memory',

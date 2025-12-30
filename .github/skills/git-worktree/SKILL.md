@@ -1,70 +1,82 @@
 ---
 name: git-worktree
-description: Manage Git worktrees for isolated development environments with automated branch management and safety checks. Use this skill when creating feature branches, managing parallel development, or setting up isolated coding environments.
+description: Git worktree management and TDD implementation workflow. Provides isolated development environments with proper branch management, atomic commits, and test-driven development practices. Use this skill for implementation, fixes, refactoring, and any code development work.
 version: 1.0.0
-author: EARS-Workflow System
-phase: utility
+author: Compound Engineering System
+phase: work
 ---
 
-# GIT-WORKTREE: Isolated Development Environment Management
+# Git Worktree Skill
 
 ## Overview
 
-The GIT-WORKTREE skill provides comprehensive Git worktree management for isolated development environments. This utility skill enables parallel development without the complexity of multiple clones or constant branch switching, with automated safety checks and cross-platform compatibility.
+The Git Worktree skill manages isolated development environments using git worktrees and enforces test-driven development practices. It provides safe, atomic development workflows that prevent main branch contamination and ensure code quality through continuous testing.
 
 ## Activation
 
 This skill activates when users mention:
-- "git worktree", "worktree", "create worktree"
+- "git worktree", "worktree", "create worktree", "git workflow"
 - "feature branch", "isolated environment", "parallel development"
 - "branch management", "development environment", "workspace isolation"
 - "create branch", "switch branch", "isolated coding"
+- "implement", "fix", "refactor", "build", "code"
 
 ## Phase Position
 
-GIT-WORKTREE is a utility skill that supports all phases of the EARS-workflow methodology:
+GIT-WORKTREE is primarily a WORK phase skill that supports the complete development lifecycle:
 - **SPEC-FORGE**: Not typically used (planning happens in main repo)
 - **PLANNING**: May create worktree for experimental planning work
 - **WORK**: Primary usage for isolated TDD implementation
 - **REVIEW**: May use worktree for fix implementation during review
 
-## Objective
-
-Provide safe, automated Git worktree management with proper branch naming, directory structure, and cleanup procedures to enable isolated development environments.
-
 ## Core Capabilities
 
-### Worktree Management Operations
+### Worktree Management
+- **Create**: Set up isolated development environments with proper branch management
+- **List**: Display all active worktrees with branch and commit information
+- **Remove**: Clean up worktrees and optionally delete associated branches
+- **Cleanup**: Prune stale worktree references automatically
+- **Status**: Show current working environment and worktree context
 
-#### Create Worktree
-- Set up isolated development environments with proper branch management
-- Validate branch naming conventions (feature/, bugfix/, refactor/, etc.)
-- Detect and prevent path conflicts
-- Automatic directory structure in `../worktrees/`
+### Development Workflow
+- **TDD Enforcement**: Red-Green-Refactor cycle management
+- **Atomic Commits**: Conventional commit format with proper scoping
+- **Branch Hygiene**: Proper branch naming and lifecycle management
+- **Test Integration**: Continuous test execution and validation
 
-#### List Worktrees
-- Display all active worktrees with branch and commit information
-- Colored output for better readability
-- Show working directory paths and branch status
-- Identify current working environment
+## Worktree Architecture
 
-#### Remove Worktree
-- Clean up worktrees with confirmation prompts
-- Optional branch deletion with safety checks
-- Prevent accidental removal of active worktrees
-- Cleanup of associated git references
+### Directory Structure
+Worktrees are created in `../worktrees/` relative to the main repository:
+```
+project/
+├── main-repo/           # Main repository
+└── worktrees/
+    ├── feature-auth/    # Feature worktree
+    ├── bugfix-login/    # Bugfix worktree
+    └── refactor-api/    # Refactor worktree
+```
 
-#### Status Check
-- Show current working environment and worktree context
-- Detect if currently in a worktree or main repository
-- Display branch information and commit status
-- Provide location awareness for development workflow
+### Branch Naming Conventions
+- **Features**: `feature/descriptive-name`
+- **Bugfixes**: `bugfix/issue-description`
+- **Refactoring**: `refactor/component-name`
+- **Experiments**: `experiment/hypothesis-name`
+- **Documentation**: `docs/section-name`
+- **Tests**: `test/test-type`
 
-#### Cleanup Operations
-- Prune stale worktree references automatically
-- Remove orphaned git references
-- Maintain repository hygiene
-- Prevent worktree reference bloat
+## Test-Driven Development
+
+### Red-Green-Refactor Cycle
+1. **Red**: Write a failing test that defines desired behavior
+2. **Green**: Write minimal code to make the test pass
+3. **Refactor**: Improve code quality while maintaining test passage
+
+### Test Execution Strategy
+- Run tests after each code change
+- Maintain fast test feedback loops
+- Use test categories (unit, integration, e2e) appropriately
+- Never commit without passing tests
 
 ## Platform Support
 
@@ -80,27 +92,47 @@ All operations use the centralized script:
 ./.ai/skills/git-worktree/git-worktree.sh [command] [options]
 ```
 
-## Usage Examples
+## Usage Workflows
 
-### Basic Operations
+### Starting New Development
 ```bash
-# Create a new feature worktree
-./.ai/skills/git-worktree/git-worktree.sh create feature/user-authentication
+# Create isolated worktree
+./.ai/skills/git-worktree/git-worktree.sh create feature/user-auth
 
-# Create worktree from specific base branch
-./.ai/skills/git-worktree/git-worktree.sh create hotfix/critical-bug main
+# Navigate to worktree
+cd ../worktrees/feature-user-auth
 
-# List all active worktrees
+# Begin TDD cycle
+# 1. Write failing test
+# 2. Implement minimal solution
+# 3. Refactor and improve
+# 4. Commit atomically
+```
+
+### Managing Multiple Features
+```bash
+# List active worktrees
 ./.ai/skills/git-worktree/git-worktree.sh list
 
-# Check current working environment
-./.ai/skills/git-worktree/git-worktree.sh status
+# Switch between worktrees
+cd ../worktrees/feature-auth    # Work on authentication
+cd ../worktrees/bugfix-login    # Fix login issue
+cd ../worktrees/refactor-api    # Refactor API layer
+```
 
-# Remove completed worktree
-./.ai/skills/git-worktree/git-worktree.sh remove feature/user-authentication
+### Completing Development
+```bash
+# Run full test suite
+npm test
 
-# Cleanup stale references
-./.ai/skills/git-worktree/git-worktree.sh cleanup
+# Commit final changes
+git commit -m "feat(auth): implement user authentication with JWT"
+
+# Return to main repo
+cd ../../main-repo
+
+# Clean up worktree
+./.ai/skills/git-worktree/git-worktree.sh remove feature/user-auth
 ```
 
 ### Integration with WORK Phase
@@ -119,26 +151,28 @@ cd ../../main-repo
 ./.ai/skills/git-worktree/git-worktree.sh remove feature/new-feature
 ```
 
-## Directory Structure
+## Integration Points
 
-### Worktree Organization
-```
-project-root/
-├── .git/                    # Main git directory
-├── src/                     # Main working directory
-├── .ai/skills/git-worktree/ # Worktree management scripts
-└── ../worktrees/           # Worktrees directory (outside main repo)
-    ├── feature-user-auth/   # Feature worktree
-    ├── bugfix-login-issue/  # Bugfix worktree
-    └── refactor-api/        # Refactor worktree
-```
+### With Compound Engineering
+- Enforces universal invariants (git hygiene, testing, documentation)
+- Integrates with memory system for learning from past development patterns
+- Coordinates with other skills for complete workflow coverage
 
-### Branch Naming Conventions
-- `feature/user-authentication` - New feature development
-- `bugfix/login-validation` - Bug fixes
-- `refactor/api-endpoints` - Code refactoring
-- `docs/installation-guide` - Documentation updates
-- `test/integration-suite` - Test improvements
+### With Specification Skills
+- Implements features defined in EARS specifications
+- Maintains traceability from requirements to implementation
+- Validates implementation against correctness properties
+
+### With Review Skills
+- Provides clean, atomic commits for review
+- Maintains test coverage for review validation
+- Ensures code quality standards are met
+
+### EARS Workflow Integration
+- **Phase II (WORK)**: Primary usage for isolated TDD implementation
+- **Phase III (REVIEW)**: Fix implementation in isolated environment
+- **Memory Integration**: Lessons learned about worktree management
+- **Documentation**: Worktree usage patterns and best practices
 
 ## Safety Features
 
@@ -149,81 +183,61 @@ project-root/
 - **Active worktree protection** prevents accidental removal
 - **Stale reference cleanup** maintains repository health
 
-### Error Handling
-- **Clear error messages** with specific remediation steps
-- **Graceful failure handling** with rollback procedures
-- **Dependency validation** ensures git and bash availability
-- **Permission checks** for directory creation and removal
+### Pre-Creation Checks
+- Validate branch naming conventions
+- Check for existing branches or worktrees
+- Verify repository state and cleanliness
+- Confirm sufficient disk space
 
-## Integration Points
+### During Development
+- Prevent commits without tests
+- Validate commit message format
+- Check for merge conflicts
+- Monitor test coverage
 
-### EARS Workflow Integration
-- **Phase II (WORK)**: Primary usage for isolated TDD implementation
-- **Phase III (REVIEW)**: Fix implementation in isolated environment
-- **Memory Integration**: Lessons learned about worktree management
-- **Documentation**: Worktree usage patterns and best practices
+### Post-Development
+- Verify all tests pass
+- Check for uncommitted changes
+- Validate branch is ready for merge
+- Clean up temporary files
 
-### Tool Integration
-- **Git Integration**: Native git worktree commands with safety wrappers
-- **IDE Support**: Compatible with most IDEs that recognize git worktrees
-- **Script Integration**: Can be called from other automation scripts
-- **CI/CD Compatibility**: Works with automated build and test systems
-
-## Best Practices
-
-### Lifecycle Management
-- **Create worktree** only when ready to implement
-- **Work exclusively** in worktree directory during development
-- **Remove worktree** promptly after feature completion
-- **Regular cleanup** to maintain repository hygiene
-
-### Naming and Organization
-- **Use descriptive names** with appropriate type prefixes
-- **Keep names concise** but meaningful
-- **Follow team conventions** for branch naming
-- **Avoid deep nesting** in worktree directory structure
-
-### Development Workflow
-- **Verify environment** with status command before coding
-- **Commit frequently** with atomic changes
-- **Push regularly** to preserve work
-- **Test thoroughly** before worktree removal
-
-## Troubleshooting
+## Error Handling
 
 ### Common Issues and Solutions
 
-#### Worktree Creation Fails
-```bash
-# Check if branch already exists
-git branch --list branch-name
+**Permission Errors**:
+- Ensure scripts have execute permissions
+- Use WSL on Windows for consistent bash execution
+- Check file system permissions
 
-# Verify base branch is up to date
-git fetch origin && git checkout main && git pull origin main
+**Branch Conflicts**:
+- Provide clear conflict resolution guidance
+- Suggest alternative branch names
+- Offer cleanup options for stale branches
 
-# Check directory permissions
-ls -la ../worktrees/
-```
+**Worktree Issues**:
+- Detect and resolve stale worktree references
+- Handle disk space and path length limitations
+- Provide recovery options for corrupted worktrees
 
-#### Stale Worktree References
-```bash
-# Clean up stale references
-./.ai/skills/git-worktree/git-worktree.sh cleanup
-
-# Force remove if directory was manually deleted
-git worktree remove --force path/to/worktree
-```
-
-#### Permission Issues
-```bash
-# On Unix systems, ensure script is executable
-chmod +x .ai/skills/git-worktree/git-worktree.sh
-
-# On Windows, use WSL or Git Bash
-# Ensure PowerShell execution policy allows scripts if needed
-```
+### Recovery Procedures
+- Automatic cleanup of failed worktree creation
+- Manual recovery steps for complex issues
+- Backup and restore procedures for critical situations
 
 ## Memory Integration
+
+### Learning from Development
+- Track common development patterns and anti-patterns
+- Learn from test failures and debugging sessions
+- Codify successful worktree management strategies
+- Build repository-specific development wisdom
+
+### Pattern Recognition
+- Identify frequently used branch naming patterns
+- Learn optimal worktree organization strategies
+- Recognize and prevent common git workflow mistakes
+- Adapt to team-specific development practices
 
 ### Lessons Learned
 - Document worktree management patterns in `../../memory/lessons.md`
@@ -235,13 +249,61 @@ chmod +x .ai/skills/git-worktree/git-worktree.sh
 - Document team conventions for branch management
 - Record integration patterns with development workflow
 
+## Best Practices
+
+### Worktree Management
+- Create worktrees for all non-trivial changes
+- Use descriptive branch names that reflect the work
+- Keep worktrees focused on single features or fixes
+- Clean up worktrees promptly after merge
+
+### Development Discipline
+- Always start with a failing test
+- Make atomic commits with clear messages
+- Run tests before every commit
+- Refactor continuously to maintain code quality
+
+### Collaboration
+- Coordinate worktree usage with team members
+- Use consistent branch naming across the team
+- Share worktree management scripts and practices
+- Document team-specific workflow adaptations
+
+### Lifecycle Management
+- **Create worktree** only when ready to implement
+- **Work exclusively** in worktree directory during development
+- **Remove worktree** promptly after feature completion
+- **Regular cleanup** to maintain repository hygiene
+
+## Platform Considerations
+
+### Windows Users
+- Use WSL (Windows Subsystem for Linux) for bash script execution
+- Alternative: Use Git Bash for script compatibility
+- Ensure proper line ending handling (Git autocrlf)
+- Consider path length limitations on Windows
+
+### Unix/Linux/macOS
+- Native bash script execution
+- Standard POSIX compliance
+- Optimal performance and compatibility
+- Full feature set availability
+
+### Cross-Platform Scripts
+- All scripts use bash for consistency
+- Forward slash paths for compatibility
+- POSIX-compliant command usage
+- Graceful degradation for platform-specific features
+
 ## Context Loading
 
 Reference supporting files in current directory:
 - `README.md` - Comprehensive usage documentation
 - `examples.md` - Detailed usage examples and scenarios
 - `git-worktree.sh` - Main script with all functionality
-- `references/` - Additional documentation (if needed)
+- `lib/` - JavaScript implementation and utilities
+- `tests/` - Comprehensive test suite
+- `references/` - Additional documentation
 
 ## Anti-Patterns to Avoid
 
@@ -251,5 +313,7 @@ Reference supporting files in current directory:
 - ❌ **Deep Directory Nesting**: Keep worktree structure flat
 - ❌ **Inconsistent Naming**: Follow established branch naming conventions
 - ❌ **Shared Worktrees**: Each developer should have their own worktrees
+- ❌ **Skipping Tests**: Never commit without running the test suite
+- ❌ **Large Commits**: Make atomic commits with single responsibility
 
-The GIT-WORKTREE skill ensures safe, efficient management of isolated development environments while maintaining repository hygiene and supporting the EARS-workflow methodology's emphasis on clean, isolated development practices.
+The Git Worktree skill ensures safe, efficient management of isolated development environments while enforcing test-driven development practices and maintaining repository hygiene in support of the compound engineering methodology.

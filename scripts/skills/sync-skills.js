@@ -5,19 +5,21 @@
  * This script synchronizes skills from the main .ai/skills directory to 
  * cross-platform locations for IDE compatibility:
  * - .github/skills/ (VS Code/GitHub Copilot)
+ * - .windsurf/skills/ (Windsurf IDE)
  * 
  * Usage:
  *   node sync-skills.js [options]
  *   
  * Options:
  *   --dry-run        Show what would be synced without making changes
- *   --target <name>  Sync to specific target (github|all) (default: all)
+ *   --target <name>  Sync to specific target (github|windsurf|all) (default: all)
  *   --clean          Remove existing files before sync
  *   --verbose        Show detailed output
  * 
  * Examples:
  *   node sync-skills.js --dry-run
  *   node sync-skills.js --target github
+ *   node sync-skills.js --target windsurf
  *   node sync-skills.js --clean --verbose
  */
 
@@ -67,7 +69,8 @@ class SkillsSyncer {
         
         this.sourceDir = '.ai/skills';
         this.targets = {
-            github: '.github/skills'
+            github: '.github/skills',
+            windsurf: '.windsurf/skills'
         };
         
         this.stats = {

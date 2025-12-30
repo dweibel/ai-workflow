@@ -139,7 +139,7 @@ The skill generates:
 ## Integration with Other Skills
 
 ### Handoff to Implementation
-- Provides complete specification trilogy to `git-workflow` skill
+- Provides complete specification trilogy to `git-worktree` skill
 - Ensures requirements traceability through implementation
 - Maintains specification-implementation alignment
 

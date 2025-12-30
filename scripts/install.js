@@ -373,7 +373,7 @@ function basicVerification(targetDir) {
         '.ai/SKILL.md',
         '.ai/skills/compound-engineering/SKILL.md',
         '.ai/skills/ears-specification/SKILL.md',
-        '.ai/skills/git-workflow/SKILL.md',
+        '.ai/skills/git-worktree/SKILL.md',
         '.ai/skills/testing-framework/SKILL.md',
         '.ai/memory/lessons.md',
         '.ai/memory/decisions.md'
@@ -421,10 +421,36 @@ function showCompletion(targetDir, options) {
     console.log('');
     console.log('🔧 IDE-specific setup:');
     console.log('• VS Code: Restart VS Code for skill discovery');
+    console.log('• Windsurf: Skills automatically discovered in .windsurf/skills/');
     console.log('• Cursor: Configure Agent-Decided rules (optional)');
     console.log('• JetBrains: Use \'openskills transpile .ai/SKILL.md --target jetbrains\'');
     console.log('');
     success('Installation complete!');
+}
+
+/**
+ * Sync skills to IDE-specific locations
+ */
+function syncSkillsToIDEs(targetDir, options) {
+    log('Syncing skills to IDE-specific locations...');
+    
+    try {
+        const syncScript = path.join(targetDir, 'scripts', 'skills', 'sync-skills.js');
+        if (fs.existsSync(syncScript)) {
+            // Run sync script to create .github/skills and .windsurf/skills
+            const syncCommand = `node "${syncScript}" --clean`;
+            execSync(syncCommand, { 
+                cwd: targetDir, 
+                stdio: options.verbose ? 'inherit' : 'pipe' 
+            });
+            success('Skills synced to .github/skills/ and .windsurf/skills/');
+        } else {
+            warning('Sync script not found, skipping IDE-specific skill sync');
+        }
+    } catch (err) {
+        warning(`Failed to sync skills to IDE locations: ${err.message}`);
+        warning('You can manually run: node scripts/skills/sync-skills.js');
+    }
 }
 
 /**
@@ -462,6 +488,9 @@ function main() {
         
         // Installation
         installPackage(packageDir, options.targetDir, options);
+        
+        // Sync skills to IDE-specific locations
+        syncSkillsToIDEs(options.targetDir, options);
         
         // Verification
         if (options.verify) {

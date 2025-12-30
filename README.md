@@ -24,14 +24,14 @@ cp -r /path/to/ears-workflow-skill/.ai/ /path/to/your/project/
 - **🧠 Compound Engineering**: Self-improving system with memory and lessons learned
 - **🎯 Progressive Disclosure**: Efficient context management with semantic routing
 - **🔧 Cross-Platform Support**: Windows (WSL/Git Bash), macOS, and Linux
-- **🎨 Multi-IDE Integration**: VS Code, Cursor, JetBrains, and CLI tools
+- **🎨 Multi-IDE Integration**: VS Code, Windsurf, Cursor, JetBrains, and CLI tools
 
 ## 📦 What's Included
 
 ### Core Workflow Skills
 - **`compound-engineering`**: Master orchestration and routing with universal invariants
 - **`ears-specification`**: Create formal specifications with EARS patterns and correctness properties
-- **`git-workflow`**: Execute TDD implementation in isolated git worktree environments
+- **`git-worktree`**: Execute TDD implementation in isolated git worktree environments
 - **`testing-framework`**: Conduct multi-perspective audits with severity classification
 
 ### Utility Skills
@@ -76,7 +76,7 @@ cp -r /path/to/ears-workflow-skill/.ai/ /path/to/your/project/
 ### System Requirements
 - **Git**: Version 2.20+ (for worktree support)
 - **Node.js**: Version 16+ (optional, for testing)
-- **IDE**: VS Code, Cursor, JetBrains, or Agent Skills-compatible environment
+- **IDE**: VS Code, Windsurf, Cursor, JetBrains, or Agent Skills-compatible environment
 
 ### Platform-Specific Requirements
 
@@ -107,6 +107,11 @@ ls -la .ai/SKILL.md
 1. Copy `.ai/` directory to project root
 2. Restart VS Code for skill discovery
 3. Test: `"use EARS workflow"`
+
+#### Windsurf IDE
+1. Copy `.ai/` directory to project root
+2. Skills automatically discovered in `.windsurf/skills/`
+3. Test: `"use structured development"`
 
 #### Cursor IDE
 1. Copy `.ai/` directory to project root
@@ -220,13 +225,13 @@ Self-improving system that learns from every interaction:
 Intelligent trigger detection with multi-dimensional confidence scoring:
 ```
 "Let's create formal requirements" → ears-specification (92% confidence)
-"Set up development environment" → git-workflow (90% confidence)  
+"Set up development environment" → git-worktree (90% confidence)  
 "Review this code for security" → testing-framework (98% confidence + security persona)
 "Tests failing after implementation" → testing-framework (95% confidence + error context)
 ```
 
 **Advanced Features:**
-- **Context-Aware Progression**: "Created requirements" + "Let's build" → git-workflow (boosted confidence)
+- **Context-Aware Progression**: "Created requirements" + "Let's build" → git-worktree (boosted confidence)
 - **Error-Driven Activation**: "Security vulnerability" → testing-framework (high priority + security persona)
 - **Multi-Intent Handling**: "Create requirements and implement" → Sequence: SPEC-FORGE → WORK
 - **Learning Loop**: Adapts from user corrections and preferences over time

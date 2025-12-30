@@ -88,7 +88,7 @@ function validateSkillVersions(expectedVersion) {
         '.ai/SKILL.md',
         '.ai/skills/compound-engineering/SKILL.md',
         '.ai/skills/ears-specification/SKILL.md',
-        '.ai/skills/git-workflow/SKILL.md',
+        '.ai/skills/git-worktree/SKILL.md',
         '.ai/skills/testing-framework/SKILL.md'
     ];
 

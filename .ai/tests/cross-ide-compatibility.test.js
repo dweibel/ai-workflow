@@ -26,7 +26,7 @@ class IDEEnvironment {
     getSkillPaths() {
         switch (this.type) {
             case 'vscode-copilot':
-                return ['.github/skills/', '.ai/'];
+                return ['.github/skills/', '.windsurf/skills/', '.ai/'];
             case 'cursor':
                 return ['.cursor/', '.ai/', 'cursor-rules/'];
             case 'openskills':
@@ -571,7 +571,7 @@ describe('IDE-Specific Integration Tests', () => {
         const vscode = new IDEEnvironment('vscode-copilot');
         
         // Test standard VS Code skill paths
-        const skillPaths = ['.github/skills/', '.ai/'];
+        const skillPaths = ['.github/skills/', '.windsurf/skills/', '.ai/'];
         
         for (const skillPath of skillPaths) {
             if (fs.existsSync(skillPath)) {
