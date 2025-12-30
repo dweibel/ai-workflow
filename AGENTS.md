@@ -24,6 +24,9 @@ Before taking any action, determine your current **Phase** based on the user req
 | "Requirements", "User Story", "EARS", "Specification" | **SPEC-FORGE** | `.ai/workflows/ears-workflow.md` + `.ai/templates/requirements-template.md` |
 | "Analyze", "Scaffold", "Plan", "Research", "Design" | **PLAN** | `.ai/workflows/planning.md` + `.ai/roles/architect.md` |
 | "Implement", "Fix", "Build", "Code", "Test", "Refactor" | **WORK** | `.ai/workflows/execution.md` + `.ai/protocols/git-worktree.md` + `.ai/roles/builder.md` |
+| "Create Tests", "Write Tests", "TDD Setup", "Test Suite" | **WORK (Sub-Phase A)** | `.ai/workflows/execution.md` (Sub-Phase III-A) + `.ai/protocols/git-worktree.md` |
+| "Make Tests Pass", "Implement Code", "Green Phase" | **WORK (Sub-Phase B)** | `.ai/workflows/execution.md` (Sub-Phase III-B) + `.ai/memory/lessons.md` |
+| "Refactor", "Improve Code", "Code Quality", "Design Patterns" | **WORK (Sub-Phase C)** | `.ai/workflows/execution.md` (Sub-Phase III-C) + `.ai/memory/decisions.md` |
 | "Review", "Audit", "Check", "Assess" | **REVIEW** | `.ai/workflows/review.md` + `.ai/roles/auditor.md` |
 
 **How to Load Context:**
@@ -35,8 +38,14 @@ Before taking any action, determine your current **Phase** based on the user req
 
 **Workflow Integration:**
 - **SPEC-FORGE** phase supports structured specification creation with EARS patterns and property-based testing
+- **PLAN** phase provides comprehensive implementation planning with architectural decisions
+- **WORK** phase implements structured TDD with three sub-phases:
+  - **Sub-Phase A**: Create Tests (Red phase) with comprehensive test suite creation
+  - **Sub-Phase B**: Implement Code (Green phase) with lessons learned capture
+  - **Sub-Phase C**: Refactor (user-guided options) with pattern documentation
+- **REVIEW** phase conducts multi-perspective audits with quality pattern codification
 - Integrates seamlessly with existing Compound Engineering memory and documentation systems
-- Maintains approval gates between requirements, design, and tasks phases
+- Maintains approval gates between phases and sub-phases
 - Automatically generates correctness properties for property-based testing
 
 ---
