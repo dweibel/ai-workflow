@@ -76,7 +76,6 @@ Skills are automatically synchronized to multiple locations for IDE compatibilit
 
 - **`.ai/skills/`** - Primary location (this directory)
 - **`.github/skills/`** - VS Code/GitHub Copilot compatibility
-- **`.claude/skills/`** - Claude Code compatibility
 
 Use `scripts/skills/sync-skills.js` to synchronize skills across platforms.
 

@@ -5,14 +5,13 @@
  * This script synchronizes skills from the main .ai/skills directory to 
  * cross-platform locations for IDE compatibility:
  * - .github/skills/ (VS Code/GitHub Copilot)
- * - .claude/skills/ (Claude Code compatibility)
  * 
  * Usage:
  *   node sync-skills.js [options]
  *   
  * Options:
  *   --dry-run        Show what would be synced without making changes
- *   --target <name>  Sync to specific target (github|claude|all) (default: all)
+ *   --target <name>  Sync to specific target (github|all) (default: all)
  *   --clean          Remove existing files before sync
  *   --verbose        Show detailed output
  * 
@@ -68,8 +67,7 @@ class SkillsSyncer {
         
         this.sourceDir = '.ai/skills';
         this.targets = {
-            github: '.github/skills',
-            claude: '.claude/skills'
+            github: '.github/skills'
         };
         
         this.stats = {
