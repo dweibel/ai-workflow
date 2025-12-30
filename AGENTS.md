@@ -21,9 +21,9 @@ Before taking any action, determine your current **Phase** based on the user req
 
 | User Intent | Phase | Context to Load |
 |:------------|:------|:----------------|
-| "Analyze", "Scaffold", "Spec", "Plan", "Research" | **PLAN** | `.ai/workflows/planning.md` + `.ai/roles/architect.md` |
 | "Requirements", "User Story", "EARS", "Specification" | **SPEC-FORGE** | `.ai/workflows/ears-workflow.md` + `.ai/templates/requirements-template.md` |
-| "Implement", "Fix", "Refactor", "Build", "Code" | **WORK** | `.ai/workflows/execution.md` + `.ai/protocols/git-worktree.md` + `.ai/roles/builder.md` |
+| "Analyze", "Scaffold", "Plan", "Research", "Design" | **PLAN** | `.ai/workflows/planning.md` + `.ai/roles/architect.md` |
+| "Implement", "Fix", "Build", "Code", "Test", "Refactor" | **WORK** | `.ai/workflows/execution.md` + `.ai/protocols/git-worktree.md` + `.ai/roles/builder.md` |
 | "Review", "Audit", "Check", "Assess" | **REVIEW** | `.ai/workflows/review.md` + `.ai/roles/auditor.md` |
 
 **How to Load Context:**
@@ -209,19 +209,7 @@ You have access to the following tools for autonomous work:
 
 ## 5. Workflow Phases
 
-### Phase I: PLAN
-**Objective:** Understand the problem deeply before writing any code.
-
-**Key Activities:**
-- Research existing patterns in the codebase
-- Analyze git history for context ("Chesterton's Fence")
-- Create a detailed implementation plan in `.ai/docs/plans/YYYY-MM-DD-feature-name.md`
-- Document requirements in `.ai/docs/requirements/` and design in `.ai/docs/design/` as needed
-- Get user approval before proceeding to implementation
-
-**Output:** A comprehensive plan document that serves as a contract for the Work phase.
-
-### Phase I-A: SPEC-FORGE (Structured Specification)
+### Phase I: SPEC-FORGE (Structured Specification)
 **Objective:** Create formal specifications using EARS-compliant format with property-based testing integration.
 
 **Key Activities:**
@@ -242,24 +230,62 @@ You have access to the following tools for autonomous work:
 - Apply `.ai/templates/incose-validation.md` for quality validation
 - Reference `.ai/prompts/testability-analysis.md` for correctness properties
 
-**Output:** Complete specification trilogy (requirements.md, design.md, tasks.md) ready for implementation.
+**Output:** Complete specification trilogy (requirements.md, design.md, tasks.md) ready for planning.
 
 ---
 
-### Phase II: WORK
-**Objective:** Implement the feature using strict TDD in an isolated environment.
+### Phase II: PLAN
+**Objective:** Understand the problem deeply and create a detailed implementation strategy.
 
 **Key Activities:**
+- Research existing patterns in the codebase
+- Analyze git history for context ("Chesterton's Fence")
+- Create a detailed implementation plan in `.ai/docs/plans/YYYY-MM-DD-feature-name.md`
+- Document architectural decisions and design patterns
+- Get user approval before proceeding to implementation
+
+**Output:** A comprehensive plan document that serves as a contract for the Work phase.
+
+---
+
+### Phase III: WORK
+**Objective:** Implement the feature using strict TDD in an isolated environment with structured sub-phases.
+
+**Sub-Phase III-A: Create Tests**
 - Create a git worktree for isolated development using helper scripts:
   - `./.ai/skills/git-worktree/git-worktree.sh create feature/name`
   - Windows users: Use WSL or Git Bash to execute bash scripts
 - Navigate to the worktree directory before beginning implementation
-- Follow the Red-Green-Refactor loop for each task
-- Make atomic commits after each completed unit
-- Run tests continuously to catch regressions
+- Write comprehensive test suite based on specifications:
+  - Unit tests for specific examples and edge cases
+  - Property-based tests for universal properties
+  - Integration tests for component interactions
+- Ensure all tests fail initially (Red phase of TDD)
 - Use `git-worktree.sh status` to verify current working environment
 
-**Output:** A working feature on a feature branch, ready for review.
+**Sub-Phase III-B: Implement Code**
+- Follow the Green phase of TDD: make tests pass with minimal code
+- Implement functionality guided by failing tests
+- Make atomic commits after each completed unit
+- Run tests continuously to catch regressions
+- Focus on making tests pass, not on code elegance
+- **Capture Implementation Lessons**: Document any unexpected challenges, API discoveries, or implementation patterns in `.ai/memory/lessons.md`
+- **Record Technical Decisions**: Update `.ai/memory/decisions.md` with any architectural choices or design patterns applied during implementation
+
+**Sub-Phase III-C: Refactor**
+- Present user with 3-5 refactoring options:
+  1. **Performance Optimization**: Improve algorithmic efficiency or resource usage
+  2. **Code Structure**: Extract methods, improve naming, enhance readability
+  3. **Design Pattern**: Apply appropriate design patterns for maintainability
+  4. **Security Hardening**: Address potential security vulnerabilities
+  5. **Keep As-Is**: Maintain current implementation if satisfactory
+- User selects preferred option or chooses to keep current implementation
+- Apply selected refactoring while ensuring all tests continue to pass
+- Make final atomic commit with refactoring changes
+- **Document Refactoring Insights**: Record lessons about code quality, performance trade-offs, or design pattern effectiveness in `.ai/memory/lessons.md`
+- **Update Architectural Patterns**: If new design patterns were applied, document them in `.ai/memory/decisions.md` for future reference
+
+**Output:** A working, tested, and refined feature on a feature branch, ready for review.
 
 **Worktree Management:**
 - Creation: Use helper scripts with descriptive branch names (feature/, bugfix/, refactor/)
@@ -268,7 +294,7 @@ You have access to the following tools for autonomous work:
 
 ---
 
-### Phase III: REVIEW
+### Phase IV: REVIEW
 **Objective:** Multi-perspective audit to ensure quality and security.
 
 **Key Activities:**
@@ -280,6 +306,8 @@ You have access to the following tools for autonomous work:
 - Generate a comprehensive findings report
 - Triage findings into actionable TODOs (CRITICAL/HIGH/MEDIUM/LOW)
 - Address critical issues before approval
+- **Codify Review Findings**: Extract systemic lessons from review findings and add them to `.ai/memory/lessons.md` to prevent similar issues in future implementations
+- **Document Quality Patterns**: Record successful quality assurance patterns and review techniques in `.ai/memory/decisions.md`
 
 **Output:** A reviewed, high-quality pull request ready for merge.
 
@@ -392,6 +420,13 @@ When you begin a new session:
 Traditional software development is *cumulative*: complexity increases linearly with each feature, creating a "complexity tax."
 
 Compound Engineering is *exponential*: each solved problem makes future problems easier to solve, creating a "knowledge dividend."
+
+The updated 4-phase workflow (SPEC-FORGE → PLAN → WORK → REVIEW) with structured WORK sub-phases (Tests → Implementation → Refactor) ensures:
+
+1. **Specification-Driven Development**: Clear requirements and correctness properties guide all implementation
+2. **Test-First Implementation**: Tests serve as executable specifications
+3. **User-Guided Refactoring**: Multiple refactoring options allow for informed quality decisions
+4. **Systematic Quality Assurance**: Multi-perspective reviews catch issues before deployment
 
 By following this constitution, you transform the repository from a collection of code into a self-improving system that gets easier to work with over time.
 

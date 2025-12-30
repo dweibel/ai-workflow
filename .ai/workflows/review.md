@@ -108,6 +108,8 @@ REVIEW is the fourth and final phase in the EARS-workflow methodology:
 - Identify blocking issues that must be resolved
 - Document approval conditions and requirements
 - Communicate findings and recommendations
+- **Codify Review Findings**: Extract systemic lessons from review findings and add them to `.ai/memory/lessons.md` to prevent similar issues in future implementations
+- **Document Quality Patterns**: Record successful quality assurance patterns and review techniques in `.ai/memory/decisions.md`
 
 ## Severity Classification
 
@@ -147,8 +149,8 @@ REVIEW is the fourth and final phase in the EARS-workflow methodology:
 - Quality gate decision and approval conditions
 
 ### Updated Memory Files
-- Add new lessons learned to `.ai/memory/lessons.md`
-- Document architectural decisions in `.ai/memory/decisions.md`
+- **Codify Review Findings**: Extract systemic lessons from review findings and add them to `.ai/memory/lessons.md` to prevent similar issues in future implementations
+- **Document Quality Patterns**: Record successful quality assurance patterns and review techniques in `.ai/memory/decisions.md`
 - Update patterns and best practices based on findings
 
 ## Universal Invariants

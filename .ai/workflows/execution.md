@@ -1,43 +1,122 @@
-# Execution Workflow
+# WORK Phase: Test-Driven Implementation in Isolated Environments
 
-> **Phase 3: Test-Driven Implementation in Isolated Environments**
+> **Phase 3: Structured TDD Implementation with Three Sub-Phases**
 
 ## Overview
 
-The WORK phase implements features using strict Test-Driven Development (TDD) in isolated git worktree environments. This phase transforms implementation plans into working code through disciplined development practices that ensure quality and maintainability.
+The WORK phase implements features using strict Test-Driven Development (TDD) in isolated git worktree environments. This phase is structured into three sequential sub-phases that ensure systematic development with continuous learning and quality improvement.
 
 ## Phase Position
 
 WORK is the third phase in the EARS-workflow methodology:
-- **Previous**: PLANNING (implementation plan, architecture, research completed)
-- **Current**: WORK (TDD implementation in git worktrees)
+- **Previous**: PLAN (implementation plan, architecture, research completed)
+- **Current**: WORK (structured TDD implementation in git worktrees)
 - **Next**: REVIEW (multi-perspective audit and quality assurance)
 
-## Key Activities
+## Three Sub-Phases Structure
 
-### 1. Environment Setup
+### Sub-Phase III-A: Create Tests
+**Objective**: Set up isolated environment and write comprehensive test suite
+
+**Key Activities**:
 - Create isolated git worktree for feature development
-- Set up development environment and dependencies
-- Verify test framework and tooling configuration
-- Establish continuous integration pipeline
+- Navigate to worktree directory before beginning implementation
+- Write comprehensive test suite based on specifications:
+  - Unit tests for specific examples and edge cases
+  - Property-based tests for universal properties
+  - Integration tests for component interactions
+- Ensure all tests fail initially (Red phase of TDD)
+- Use `git-worktree.sh status` to verify current working environment
 
-### 2. Test-Driven Development
-- Follow Red-Green-Refactor cycle for each task
-- Write failing tests before implementation (Red)
-- Implement minimal code to pass tests (Green)
-- Refactor for quality while maintaining tests (Refactor)
+**Environment Setup**:
+```bash
+# Windows: Use WSL or Git Bash
+./.ai/skills/git-worktree/git-worktree.sh create feature/feature-name
+cd ../worktrees/feature-feature-name
+```
 
-### 3. Atomic Development
-- Make small, focused commits after each TDD cycle
-- Use conventional commit format for clear history
-- Maintain clean, linear development history
-- Document significant decisions in commit messages
+**Test Categories**:
+- **Unit Tests**: Test individual functions and methods
+- **Property-Based Tests**: Test universal properties across input ranges
+- **Integration Tests**: Test component interactions and interfaces
+- **Edge Case Tests**: Test boundary conditions and error scenarios
 
-### 4. Continuous Validation
-- Run full test suite before each commit
-- Monitor code coverage and quality metrics
-- Validate against acceptance criteria regularly
-- Address failing tests immediately
+### Sub-Phase III-B: Implement Code
+**Objective**: Make tests pass with minimal, focused implementation
+
+**Key Activities**:
+- Follow the Green phase of TDD: make tests pass with minimal code
+- Implement functionality guided by failing tests
+- Make atomic commits after each completed unit
+- Run tests continuously to catch regressions
+- Focus on making tests pass, not on code elegance
+- **Capture Implementation Lessons**: Document any unexpected challenges, API discoveries, or implementation patterns in `.ai/memory/lessons.md`
+- **Record Technical Decisions**: Update `.ai/memory/decisions.md` with any architectural choices or design patterns applied during implementation
+
+**Development Principles**:
+- **Minimal Implementation**: Write just enough code to make tests pass
+- **Test-Driven**: Let failing tests guide implementation decisions
+- **Atomic Commits**: Commit after each successful test-fix cycle
+- **Continuous Validation**: Run full test suite before each commit
+
+**Lessons Learned Integration**:
+- Document unexpected API behaviors or limitations
+- Record implementation patterns that work well
+- Capture technical decisions made during development
+- Note any deviations from original plan and rationale
+
+### Sub-Phase III-C: Refactor
+**Objective**: Improve code quality through user-guided refactoring options
+
+**Key Activities**:
+- Present user with 3-5 refactoring options:
+  1. **Performance Optimization**: Improve algorithmic efficiency or resource usage
+  2. **Code Structure**: Extract methods, improve naming, enhance readability
+  3. **Design Pattern**: Apply appropriate design patterns for maintainability
+  4. **Security Hardening**: Address potential security vulnerabilities
+  5. **Keep As-Is**: Maintain current implementation if satisfactory
+- User selects preferred option or chooses to keep current implementation
+- Apply selected refactoring while ensuring all tests continue to pass
+- Make final atomic commit with refactoring changes
+- **Document Refactoring Insights**: Record lessons about code quality, performance trade-offs, or design pattern effectiveness in `.ai/memory/lessons.md`
+- **Update Architectural Patterns**: If new design patterns were applied, document them in `.ai/memory/decisions.md` for future reference
+
+**Refactoring Options Framework**:
+1. **Performance Optimization**
+   - Algorithmic improvements (O(n²) → O(n log n))
+   - Database query optimization
+   - Caching strategy implementation
+   - Memory usage optimization
+
+2. **Code Structure**
+   - Extract methods for better readability
+   - Improve variable and function naming
+   - Organize code into logical modules
+   - Reduce code duplication
+
+3. **Design Pattern Application**
+   - Apply appropriate design patterns (Strategy, Factory, Observer)
+   - Implement SOLID principles
+   - Improve separation of concerns
+   - Enhance code extensibility
+
+4. **Security Hardening**
+   - Input validation improvements
+   - Authentication/authorization enhancements
+   - Secure data handling
+   - Vulnerability mitigation
+
+5. **Keep As-Is**
+   - Current implementation meets requirements
+   - Risk of introducing bugs outweighs benefits
+   - Time constraints favor stability
+   - Code is already well-structured
+
+**Pattern Documentation**:
+- Record successful refactoring patterns for future use
+- Document trade-offs between different approaches
+- Capture insights about code quality improvements
+- Note any architectural patterns that emerge
 
 ## Git Worktree Management
 
@@ -123,16 +202,22 @@ All implementation work must follow these rules:
 
 ## Transition Criteria
 
-### From PLANNING
+### From PLAN
 - Implementation plan is approved and comprehensive
 - Architectural decisions are documented and understood
 - Git worktree strategy is defined and ready
 - Development environment is set up and validated
 
+### Sub-Phase Transitions
+**III-A → III-B**: All tests written and failing (Red phase complete)
+**III-B → III-C**: All tests passing, implementation complete (Green phase complete)
+**III-C → REVIEW**: Refactoring complete, lessons documented (Refactor phase complete)
+
 ### To REVIEW
-- All planned features are implemented and tested
+- All three sub-phases completed successfully
 - Test suite passes completely with adequate coverage
 - Code follows established quality standards
+- Implementation lessons and architectural patterns documented
 - Feature branch is ready for merge consideration
 
 ## Best Practices

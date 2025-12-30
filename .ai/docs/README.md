@@ -53,11 +53,14 @@ Architectural Decision Records (ADRs) documenting significant technical decision
 
 ## Integration with EARS Workflow
 
-This documentation structure supports the three workflow phases:
+This documentation structure supports the four workflow phases:
 
 - **SPEC-FORGE Phase** → Create documents in `.ai/docs/specifications/`
 - **PLAN Phase** → Create documents in `.ai/docs/implementation/`, `.ai/docs/architecture/`
 - **WORK Phase** → Reference plans and designs; create task tracking in `.ai/docs/tasks/`
+  - **Sub-Phase A (Create Tests)**: Document test strategies and coverage plans
+  - **Sub-Phase B (Implement Code)**: Track implementation lessons and technical decisions
+  - **Sub-Phase C (Refactor)**: Document refactoring insights and architectural patterns
 - **REVIEW Phase** → Generate reports in `.ai/docs/reviews/`; document decisions in `.ai/docs/decisions/`
 
 See `AGENTS.md` section 2.6 for detailed rules on documentation management.

@@ -101,10 +101,13 @@ The `compound-engineering` skill acts as the master orchestrator:
 
 ### Workflow Integration
 Skills integrate into the four-phase workflow:
-- **SPEC-FORGE**: `ears-specification` skill
-- **PLAN**: `compound-engineering` orchestration
-- **WORK**: `git-worktree` skill
-- **REVIEW**: `testing-framework` skill
+- **SPEC-FORGE**: `ears-specification` skill creates formal requirements and correctness properties
+- **PLAN**: `compound-engineering` orchestration with research and architectural planning
+- **WORK**: `git-worktree` skill with structured TDD sub-phases:
+  - **Sub-Phase A**: Create Tests (Red phase of TDD)
+  - **Sub-Phase B**: Implement Code (Green phase with lessons learned)
+  - **Sub-Phase C**: Refactor (User-guided options with pattern documentation)
+- **REVIEW**: `testing-framework` skill with multi-perspective audits and quality pattern codification
 
 ## Usage Examples
 

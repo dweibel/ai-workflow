@@ -20,8 +20,11 @@ This guide provides detailed examples, workflow patterns, and integration instru
 
 ### Workflow Phases
 1. **SPEC-FORGE** → Create formal specifications with EARS requirements
-2. **PLANNING** → Develop implementation plans and architectural decisions  
-3. **WORK** → Execute using TDD in isolated git worktrees
+2. **PLAN** → Develop implementation plans and architectural decisions  
+3. **WORK** → Execute using TDD in isolated git worktrees with structured sub-phases:
+   - **Sub-Phase A**: Create Tests (Red phase of TDD)
+   - **Sub-Phase B**: Implement Code (Green phase with lessons learned)
+   - **Sub-Phase C**: Refactor (User-guided options with pattern documentation)
 4. **REVIEW** → Conduct multi-perspective audits for quality assurance
 
 *For complete workflow documentation, see [File Structure Reference](.ai/docs/reference/file-structure.md)*
@@ -194,21 +197,40 @@ User: "use EARS workflow to create a user authentication system"
 → Produces tasks.md with implementation plan
 
 2. Implementation Planning
-→ PLANNING phase activates automatically
+→ PLAN phase activates automatically
 → Researches existing authentication patterns
 → Creates comprehensive implementation plan
 → Documents architectural decisions
 
-3. TDD Implementation
-→ WORK phase activates
+3. TDD Implementation (3 Sub-Phases)
+→ WORK phase activates with structured approach:
+
+Sub-Phase A: Create Tests
 → Creates git worktree: feature/user-authentication
-→ Implements using Red-Green-Refactor cycle
-→ Makes atomic commits with conventional format
+→ Writes comprehensive test suite (unit, property-based, integration)
+→ Ensures all tests fail initially (Red phase of TDD)
+
+Sub-Phase B: Implement Code  
+→ Follows Green phase of TDD: make tests pass with minimal code
+→ Makes atomic commits after each completed unit
+→ Captures implementation lessons and technical decisions
+
+Sub-Phase C: Refactor
+→ Presents user with 3-5 refactoring options:
+  1. Performance Optimization
+  2. Code Structure improvements
+  3. Design Pattern application
+  4. Security Hardening
+  5. Keep As-Is
+→ User selects preferred approach
+→ Applies refactoring while maintaining test coverage
+→ Documents refactoring insights and architectural patterns
 
 4. Quality Review
 → REVIEW phase activates
 → Multi-persona audit (Security, Performance, Style, Data)
 → Generates findings report with severity classification
+→ Codifies review findings and quality patterns
 → Provides merge recommendation
 ```
 

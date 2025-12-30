@@ -147,7 +147,7 @@ Create formal specifications with EARS-compliant requirements:
 → tasks.md with implementation plan and testing strategy
 ```
 
-### 2. PLANNING Phase
+### 2. PLAN Phase
 Develop comprehensive implementation strategy:
 ```
 "use planning to research authentication patterns"
@@ -158,13 +158,32 @@ Develop comprehensive implementation strategy:
 ```
 
 ### 3. WORK Phase
-Execute using Test-Driven Development:
+Execute using Test-Driven Development with three structured sub-phases:
+
+**Sub-Phase A: Create Tests**
 ```
-"use work to implement authentication system"
 → Creates isolated git worktree: feature/user-authentication
-→ Follows Red-Green-Refactor cycle for each task
-→ Makes atomic commits with conventional format
-→ Runs continuous test validation
+→ Writes comprehensive test suite (unit, property-based, integration)
+→ Ensures all tests fail initially (Red phase of TDD)
+```
+
+**Sub-Phase B: Implement Code**
+```
+→ Follows Green phase of TDD: make tests pass with minimal code
+→ Makes atomic commits after each completed unit
+→ Captures implementation lessons and technical decisions
+```
+
+**Sub-Phase C: Refactor**
+```
+→ Presents 3-5 refactoring options to user:
+  1. Performance Optimization
+  2. Code Structure improvements  
+  3. Design Pattern application
+  4. Security Hardening
+  5. Keep As-Is
+→ Applies selected refactoring while maintaining test coverage
+→ Documents refactoring insights and architectural patterns
 ```
 
 ### 4. REVIEW Phase
@@ -175,7 +194,7 @@ Conduct multi-perspective quality audit:
 → Performance Oracle: Algorithmic complexity, database efficiency
 → Framework Purist: Code style, conventions, simplicity
 → Data Integrity Guardian: Schema consistency, migration safety
-→ Synthesizes findings with severity classification
+→ Codifies review findings and quality patterns for future use
 ```
 
 ## 🧪 Property-Based Testing Integration
