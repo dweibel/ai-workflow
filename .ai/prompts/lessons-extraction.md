@@ -303,7 +303,7 @@ Questions to ask:
 - How did the phases work together?
 - Were approval gates effective?
 - Was traceability maintained?
-- Did compound engineering principles apply?
+- Did EARS workflow principles apply?
 - What systemic improvements were made?
 
 Extract high-level lessons and update memory.

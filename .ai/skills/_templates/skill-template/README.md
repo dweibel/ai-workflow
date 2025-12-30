@@ -2,11 +2,11 @@
 
 > **Attribution**: Based on the [Compound Engineering Plugin](https://github.com/EveryInc/compound-engineering-plugin) by EveryInc
 
-[Brief description of what this skill does and why it's useful in the Compound Engineering workflow]
+[Brief description of what this skill does and why it's useful in the EARS workflow]
 
 ## Overview
 
-[Detailed explanation of the skill's purpose, the problems it solves, and how it fits into the broader Compound Engineering system]
+[Detailed explanation of the skill's purpose, the problems it solves, and how it fits into the broader EARS workflow system]
 
 ## Capabilities
 
@@ -61,7 +61,7 @@ wsl
 
 ## Integration Points
 
-### Compound Engineering Workflow
+### EARS Workflow Integration
 
 **Phase Integration:**
 - **Phase I (PLAN)**: [How this skill supports planning]

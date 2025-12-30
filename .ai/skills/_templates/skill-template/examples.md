@@ -57,7 +57,7 @@ This document provides practical examples and common usage patterns for the [Ski
 # ... commands and explanations ...
 ```
 
-## Integration with Compound Engineering
+## Integration with EARS Workflow
 
 ### Phase I (PLAN) Integration
 
@@ -413,4 +413,4 @@ skill_workflow() {
 
 **Last Updated:** [DATE]  
 **Examples Count:** [Number]+ scenarios covered  
-**Integration Points:** Compound Engineering, Git Worktree, Project Reset, CI/CD
+**Integration Points:** EARS Workflow, Git Worktree, Project Reset, CI/CD

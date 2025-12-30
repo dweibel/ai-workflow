@@ -21,21 +21,31 @@ Before taking any action, determine your current **Phase** based on the user req
 
 | User Intent | Phase | Context to Load |
 |:------------|:------|:----------------|
-| "Analyze", "Scaffold", "Spec", "Plan", "Research" | **PLAN** | `.ai/workflows/planning.md` + `.ai/roles/architect.md` |
 | "Requirements", "User Story", "EARS", "Specification" | **SPEC-FORGE** | `.ai/workflows/ears-workflow.md` + `.ai/templates/requirements-template.md` |
-| "Implement", "Fix", "Refactor", "Build", "Code" | **WORK** | `.ai/workflows/execution.md` + `.ai/protocols/git-worktree.md` + `.ai/roles/builder.md` |
+| "Analyze", "Scaffold", "Plan", "Research", "Design" | **PLAN** | `.ai/workflows/planning.md` + `.ai/roles/architect.md` |
+| "Implement", "Fix", "Build", "Code", "Test", "Refactor" | **WORK** | `.ai/workflows/execution.md` + `.ai/protocols/git-worktree.md` + `.ai/roles/builder.md` |
+| "Create Tests", "Write Tests", "TDD Setup", "Test Suite" | **WORK (Sub-Phase A)** | `.ai/workflows/execution.md` (Sub-Phase III-A) + `.ai/protocols/git-worktree.md` |
+| "Make Tests Pass", "Implement Code", "Green Phase" | **WORK (Sub-Phase B)** | `.ai/workflows/execution.md` (Sub-Phase III-B) + `.ai/memory/lessons.md` |
+| "Refactor", "Improve Code", "Code Quality", "Design Patterns" | **WORK (Sub-Phase C)** | `.ai/workflows/execution.md` (Sub-Phase III-C) + `.ai/memory/decisions.md` |
 | "Review", "Audit", "Check", "Assess" | **REVIEW** | `.ai/workflows/review.md` + `.ai/roles/auditor.md` |
 
 **How to Load Context:**
 - Read the appropriate workflow and role files based on the identified phase
 - Always load `.ai/memory/lessons.md` and `.ai/memory/decisions.md` at the start of every session to inherit past learnings
-- For SPEC-FORGE phase, also load validation templates (`.ai/templates/ears-validation.md`, `.ai/templates/incose-validation.md`)
+- For SPEC-FORGE phase, also load validation templates from `ears-specification` skill
 - If uncertain about which files to load, ask the user to confirm
+- See [File Structure Reference](.ai/docs/reference/file-structure.md) for complete path information
 
 **Workflow Integration:**
 - **SPEC-FORGE** phase supports structured specification creation with EARS patterns and property-based testing
+- **PLAN** phase provides comprehensive implementation planning with architectural decisions
+- **WORK** phase implements structured TDD with three sub-phases:
+  - **Sub-Phase A**: Create Tests (Red phase) with comprehensive test suite creation
+  - **Sub-Phase B**: Implement Code (Green phase) with lessons learned capture
+  - **Sub-Phase C**: Refactor (user-guided options) with pattern documentation
+- **REVIEW** phase conducts multi-perspective audits with quality pattern codification
 - Integrates seamlessly with existing Compound Engineering memory and documentation systems
-- Maintains approval gates between requirements, design, and tasks phases
+- Maintains approval gates between phases and sub-phases
 - Automatically generates correctness properties for property-based testing
 
 ---
@@ -110,7 +120,24 @@ The Compound Engineering system includes automated skills that reduce manual ove
 - Handles edge cases (existing branches, cleanup confirmation, etc.)
 - **Cross-Platform**: Use WSL or Git Bash on Windows to run bash scripts
 
-### 3.2 Project Reset Skills
+### 3.2 Compound Engineering Skills
+**Location:** `.ai/skills/compound-engineering/` (Cross-platform implementations)
+
+**Capabilities:**
+- **context-optimization**: Smart context management with token budgeting
+- **semantic-analysis**: Intelligent skill activation with confidence scoring
+- **adaptive-loading**: Dynamic content loading based on tier limits
+- **relevance-scoring**: Multi-dimensional content relevance assessment
+- **session-management**: Workflow state and user preference tracking
+
+**Integration Points:**
+- Context optimization for efficient resource utilization
+- Semantic analysis for intelligent workflow routing
+- Session context management across skill activations
+- Memory file optimization for relevant content loading
+- **Cross-Platform**: Node.js implementations with comprehensive testing
+
+### 3.3 Project Reset Skills
 **Location:** `.ai/skills/project-reset/` (Cross-platform implementations)
 
 **Capabilities:**
@@ -125,14 +152,14 @@ The Compound Engineering system includes automated skills that reduce manual ove
 - Integrates with git workflow for safe project transitions
 - Supports automated CI/CD reset scenarios
 
-### 3.3 Skill Development Philosophy
+### 3.4 Skill Development Philosophy
 Each skill follows the Compound Engineering principle:
 1. **Automate Repetitive Tasks**: Eliminate manual setup overhead
 2. **Prevent Common Errors**: Built-in validation and safety checks
 3. **Provide Clear Feedback**: Colored output and progress indicators
 4. **Enable Composition**: Skills work together as building blocks
 
-### 3.4 Skills Directory Structure
+### 3.5 Skills Directory Structure
 
 The skills system follows a modular, template-driven approach:
 
@@ -140,6 +167,7 @@ The skills system follows a modular, template-driven approach:
 .ai/skills/
 ├── README.md                    # Master skills catalog
 ├── git-worktree/               # Git worktree management
+├── compound-engineering/       # Context optimization and semantic analysis
 ├── project-reset/              # Project reset functionality  
 ├── _templates/                 # Skill development templates
 └── [future-skills]/            # Extensible skill ecosystem
@@ -151,7 +179,7 @@ The skills system follows a modular, template-driven approach:
 - **Template-Driven**: Standardized development patterns via `_templates/`
 - **Discoverable**: Master catalog with capabilities matrix
 
-### 3.5 Future Skills Roadmap
+### 3.6 Future Skills Roadmap
 - **Test Runner Skills**: Automated test execution with intelligent filtering
 - **Documentation Skills**: Auto-generation of API docs and README updates
 - **Deployment Skills**: Standardized deployment workflows with rollback capabilities
@@ -190,19 +218,7 @@ You have access to the following tools for autonomous work:
 
 ## 5. Workflow Phases
 
-### Phase I: PLAN
-**Objective:** Understand the problem deeply before writing any code.
-
-**Key Activities:**
-- Research existing patterns in the codebase
-- Analyze git history for context ("Chesterton's Fence")
-- Create a detailed implementation plan in `.ai/docs/plans/YYYY-MM-DD-feature-name.md`
-- Document requirements in `.ai/docs/requirements/` and design in `.ai/docs/design/` as needed
-- Get user approval before proceeding to implementation
-
-**Output:** A comprehensive plan document that serves as a contract for the Work phase.
-
-### Phase I-A: SPEC-FORGE (Structured Specification)
+### Phase I: SPEC-FORGE (Structured Specification)
 **Objective:** Create formal specifications using EARS-compliant format with property-based testing integration.
 
 **Key Activities:**
@@ -223,24 +239,62 @@ You have access to the following tools for autonomous work:
 - Apply `.ai/templates/incose-validation.md` for quality validation
 - Reference `.ai/prompts/testability-analysis.md` for correctness properties
 
-**Output:** Complete specification trilogy (requirements.md, design.md, tasks.md) ready for implementation.
+**Output:** Complete specification trilogy (requirements.md, design.md, tasks.md) ready for planning.
 
 ---
 
-### Phase II: WORK
-**Objective:** Implement the feature using strict TDD in an isolated environment.
+### Phase II: PLAN
+**Objective:** Understand the problem deeply and create a detailed implementation strategy.
 
 **Key Activities:**
+- Research existing patterns in the codebase
+- Analyze git history for context ("Chesterton's Fence")
+- Create a detailed implementation plan in `.ai/docs/plans/YYYY-MM-DD-feature-name.md`
+- Document architectural decisions and design patterns
+- Get user approval before proceeding to implementation
+
+**Output:** A comprehensive plan document that serves as a contract for the Work phase.
+
+---
+
+### Phase III: WORK
+**Objective:** Implement the feature using strict TDD in an isolated environment with structured sub-phases.
+
+**Sub-Phase III-A: Create Tests**
 - Create a git worktree for isolated development using helper scripts:
   - `./.ai/skills/git-worktree/git-worktree.sh create feature/name`
   - Windows users: Use WSL or Git Bash to execute bash scripts
 - Navigate to the worktree directory before beginning implementation
-- Follow the Red-Green-Refactor loop for each task
-- Make atomic commits after each completed unit
-- Run tests continuously to catch regressions
+- Write comprehensive test suite based on specifications:
+  - Unit tests for specific examples and edge cases
+  - Property-based tests for universal properties
+  - Integration tests for component interactions
+- Ensure all tests fail initially (Red phase of TDD)
 - Use `git-worktree.sh status` to verify current working environment
 
-**Output:** A working feature on a feature branch, ready for review.
+**Sub-Phase III-B: Implement Code**
+- Follow the Green phase of TDD: make tests pass with minimal code
+- Implement functionality guided by failing tests
+- Make atomic commits after each completed unit
+- Run tests continuously to catch regressions
+- Focus on making tests pass, not on code elegance
+- **Capture Implementation Lessons**: Document any unexpected challenges, API discoveries, or implementation patterns in `.ai/memory/lessons.md`
+- **Record Technical Decisions**: Update `.ai/memory/decisions.md` with any architectural choices or design patterns applied during implementation
+
+**Sub-Phase III-C: Refactor**
+- Present user with 3-5 refactoring options:
+  1. **Performance Optimization**: Improve algorithmic efficiency or resource usage
+  2. **Code Structure**: Extract methods, improve naming, enhance readability
+  3. **Design Pattern**: Apply appropriate design patterns for maintainability
+  4. **Security Hardening**: Address potential security vulnerabilities
+  5. **Keep As-Is**: Maintain current implementation if satisfactory
+- User selects preferred option or chooses to keep current implementation
+- Apply selected refactoring while ensuring all tests continue to pass
+- Make final atomic commit with refactoring changes
+- **Document Refactoring Insights**: Record lessons about code quality, performance trade-offs, or design pattern effectiveness in `.ai/memory/lessons.md`
+- **Update Architectural Patterns**: If new design patterns were applied, document them in `.ai/memory/decisions.md` for future reference
+
+**Output:** A working, tested, and refined feature on a feature branch, ready for review.
 
 **Worktree Management:**
 - Creation: Use helper scripts with descriptive branch names (feature/, bugfix/, refactor/)
@@ -249,7 +303,7 @@ You have access to the following tools for autonomous work:
 
 ---
 
-### Phase III: REVIEW
+### Phase IV: REVIEW
 **Objective:** Multi-perspective audit to ensure quality and security.
 
 **Key Activities:**
@@ -261,6 +315,8 @@ You have access to the following tools for autonomous work:
 - Generate a comprehensive findings report
 - Triage findings into actionable TODOs (CRITICAL/HIGH/MEDIUM/LOW)
 - Address critical issues before approval
+- **Codify Review Findings**: Extract systemic lessons from review findings and add them to `.ai/memory/lessons.md` to prevent similar issues in future implementations
+- **Document Quality Patterns**: Record successful quality assurance patterns and review techniques in `.ai/memory/decisions.md`
 
 **Output:** A reviewed, high-quality pull request ready for merge.
 
@@ -374,6 +430,13 @@ Traditional software development is *cumulative*: complexity increases linearly 
 
 Compound Engineering is *exponential*: each solved problem makes future problems easier to solve, creating a "knowledge dividend."
 
+The updated 4-phase workflow (SPEC-FORGE → PLAN → WORK → REVIEW) with structured WORK sub-phases (Tests → Implementation → Refactor) ensures:
+
+1. **Specification-Driven Development**: Clear requirements and correctness properties guide all implementation
+2. **Test-First Implementation**: Tests serve as executable specifications
+3. **User-Guided Refactoring**: Multiple refactoring options allow for informed quality decisions
+4. **Systematic Quality Assurance**: Multi-perspective reviews catch issues before deployment
+
 By following this constitution, you transform the repository from a collection of code into a self-improving system that gets easier to work with over time.
 
 ---
@@ -382,8 +445,8 @@ By following this constitution, you transform the repository from a collection o
 
 **Original Work:** [Compound Engineering Plugin](https://github.com/EveryInc/compound-engineering-plugin) by EveryInc  
 **License:** MIT License (see LICENSE file)  
-**This Implementation:** Standalone AGENTS.md system with cross-platform git worktree automation  
+**This Implementation:** EARS-workflow skill package with Agent Skills Standard compliance  
 
 **Version:** 1.0.0  
-**Last Updated:** 2025-12-19  
-**Skills Integration:** Git Worktree Management (Bash)
+**Last Updated:** 2025-12-29  
+**Skills Integration:** Cross-platform compatibility with progressive disclosure

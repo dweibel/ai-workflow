@@ -22,7 +22,7 @@ User mentions any of:
 
 ### Context Loading
 ```bash
-# Always load compound engineering core
+# Always load EARS workflow core
 .ai/memory/lessons.md
 .ai/memory/decisions.md
 
@@ -195,7 +195,7 @@ If user requests changes to previous phases:
 4. **Re-validate** affected phases
 
 ### Integration with Standard Workflow
-SPEC-FORGE integrates with the standard Compound Engineering workflow:
+SPEC-FORGE integrates with the standard EARS workflow:
 - **Phase I**: PLAN (includes SPEC-FORGE if requested)
 - **Phase II**: WORK (execution with property-based testing)
 - **Phase III**: REVIEW (includes property validation)

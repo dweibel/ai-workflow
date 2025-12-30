@@ -16,6 +16,9 @@ This file contains the accumulated wisdom from past engineering sessions. Every 
 - When creating a git worktree, always verify your location with `pwd` before making changes to prevent modifying the main branch accidentally.
 - When committing changes, always use conventional commit format (`feat:`, `fix:`, `refactor:`, etc.) for clear git history.
 - When working on multiple features, always use separate worktrees to avoid context switching issues and merge conflicts.
+- When writing multi-line git commit messages in PowerShell, always use single quotes instead of double quotes to prevent PowerShell line continuation prompts (`>>`).
+  - **Context**: PowerShell treats double quotes specially and interprets line breaks as command continuation
+  - **Example**: `git commit -m 'feat: add feature\n\nBREAKING CHANGES:\n- removed old API'` instead of `git commit -m "feat: add feature..."`
 
 ---
 
@@ -98,7 +101,41 @@ This file should be periodically reviewed and consolidated to prevent it from be
 3. Summarize multiple specific lessons into higher-level principles
 4. Archive historical lessons that are no longer relevant
 
-Last reviewed: [DATE]
+---
+
+## Refactoring
+
+- When refactoring terminology across a large project, always create a comprehensive plan document first to track scope and progress.
+- When replacing terminology, preserve original attribution references to maintain proper credit to source material.
+- When doing large-scale text replacements, use systematic search to identify all instances before beginning changes to prevent missing references.
+- When refactoring project terminology, update both implementation references and documentation consistently to maintain coherence.
+
+---
+
+## Template for New Lessons
+
+Use this format when adding new lessons:
+
+```markdown
+## [Category]
+
+- When doing [action], always ensure [safeguard] to prevent [failure mode].
+  - **Context**: [Optional: specific scenario or file reference]
+  - **Example**: [Optional: code snippet or command]
+```
+
+---
+
+## Maintenance Notes
+
+This file should be periodically reviewed and consolidated to prevent it from becoming too large and consuming excessive context window space. When consolidating:
+
+1. Merge duplicate or overlapping lessons
+2. Remove lessons that are now enforced by linting rules
+3. Summarize multiple specific lessons into higher-level principles
+4. Archive historical lessons that are no longer relevant
+
+Last reviewed: 2025-12-19
 
 ---
 
@@ -107,5 +144,5 @@ Last reviewed: [DATE]
 ---
 
 **Version**: 1.0.0  
-**Last Updated**: [DATE]  
+**Last Updated**: 2025-12-19  
 **Based On**: AGENTS.md v1.0.0

@@ -1,11 +1,11 @@
 # Prompts Directory
 
-This directory contains structured AI prompts that guide agents through systematic engineering workflows. These prompts implement the Compound Engineering methodology by codifying best practices into executable instructions.
+This directory contains structured AI prompts that guide agents through systematic engineering workflows. These prompts implement the EARS workflow methodology by codifying best practices into executable instructions.
 
 ## Workflow Prompts
 
 ### Memory Management
-- **`memory-loading.md`** - Instructions for loading compound engineering memory at workflow start
+- **`memory-loading.md`** - Instructions for loading EARS workflow memory at workflow start
 - **`lessons-extraction.md`** - System for identifying and extracting lessons learned during execution
 
 ### Requirements Engineering
@@ -31,7 +31,7 @@ PHASE: Startup → Use: memory-loading.md
 
 ## Prompt Philosophy
 
-Each prompt follows the Compound Engineering principle by:
+Each prompt follows the EARS workflow principle by:
 - **Systematic Process**: Step-by-step instructions for consistent execution
 - **Quality Gates**: Built-in validation and quality checks
 - **Knowledge Capture**: Integration with memory system for continuous improvement
@@ -56,4 +56,4 @@ To customize prompts for your organization:
 
 **Version**: 1.0.0  
 **Last Updated**: 2025-12-19  
-**Part of**: Compound Engineering System
+**Part of**: EARS Workflow System

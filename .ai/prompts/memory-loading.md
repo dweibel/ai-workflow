@@ -2,10 +2,10 @@
 
 ## Memory Loading Prompt
 
-Use this prompt to load and apply compound engineering memory at workflow start:
+Use this prompt to load and apply EARS workflow memory at workflow start:
 
 ```
-COMPOUND ENGINEERING MEMORY LOADING
+EARS WORKFLOW MEMORY LOADING
 
 ALWAYS LOAD AT WORKFLOW START:
 
@@ -35,7 +35,7 @@ MEMORY APPLICATION INSTRUCTIONS:
 - Maintain coding standards
 - Respect existing technology choices
 
-**Maintain Compound Engineering Principles:**
+**Maintain EARS Workflow Principles:**
 - Every task should improve the system
 - Document new patterns discovered
 - Update memory files with learnings
@@ -46,9 +46,9 @@ MEMORY INTEGRATION CHECKLIST:
 - [ ] Decisions.md loaded and reviewed  
 - [ ] Relevant patterns identified for current task
 - [ ] Potential improvements to memory files noted
-- [ ] Ready to apply compound engineering approach
+- [ ] Ready to apply EARS workflow approach
 
-CONTEXT LOADED. Proceed with task while maintaining compound engineering principles.
+CONTEXT LOADED. Proceed with task while maintaining EARS workflow principles.
 ```
 
 ## Memory Loading Examples
@@ -69,7 +69,7 @@ Applying to Current Requirements Task:
 - Create thorough glossary for all technical terms
 - Follow proven requirement structure from past successes
 
-Ready to proceed with requirements creation using compound engineering approach.
+Ready to proceed with requirements creation using EARS workflow approach.
 ```
 
 ### Loading Decisions for Design Phase
@@ -107,7 +107,7 @@ Applying to Current Task Generation:
 - Include testing tasks following TDD approach
 - Reference specific requirements in each task
 
-Ready to generate implementation tasks using compound engineering principles.
+Ready to generate implementation tasks using EARS workflow principles.
 ```
 
 ## Memory-Driven Decision Making
@@ -194,7 +194,7 @@ Decision: Use established REST naming patterns from decisions.md
 - [ ] Relevant lessons identified for current task
 - [ ] Applicable decisions noted for current context
 - [ ] Potential memory updates identified
-- [ ] Compound engineering principles understood
+- [ ] EARS workflow principles understood
 - [ ] Ready to proceed with memory-informed approach
 
 ## Integration with Workflow

@@ -1,7 +1,7 @@
 #!/bin/bash
-# [Skill Name] for Compound Engineering
+# [Skill Name] for EARS Workflow
 #
-# [Detailed description of what this skill does and how it fits into the Compound Engineering workflow]
+# [Detailed description of what this skill does and how it fits into the EARS workflow]
 #
 # Based on the Compound Engineering Plugin by EveryInc:
 # https://github.com/EveryInc/compound-engineering-plugin
@@ -58,14 +58,14 @@ check_prerequisites() {
     
     # Example: Check for required files
     if [ ! -d ".ai" ]; then
-        print_error ".ai directory not found. Please ensure you're in a Compound Engineering project."
+        print_error ".ai directory not found. Please ensure you're in an EARS Workflow project."
         exit 1
     fi
 }
 
 # Help function
 show_help() {
-    echo -e "\033[36m[Skill Name] for Compound Engineering\033[0m"
+    echo -e "\033[36m[Skill Name] for EARS Workflow\033[0m"
     echo
     echo -e "\033[33mUsage:\033[0m"
     echo "  $0 <action> [parameter] [--confirm]"

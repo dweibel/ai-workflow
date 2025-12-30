@@ -34,7 +34,7 @@ When updating templates:
 
 ## Template Philosophy
 
-Templates embody the Compound Engineering principle by:
+Templates embody the EARS workflow principle by:
 - **Preserving Knowledge**: Generic engineering wisdom is retained across projects
 - **Enabling Fresh Starts**: Project-specific content is cleanly removed
 - **Maintaining Standards**: Consistent structure and quality patterns
@@ -53,4 +53,4 @@ To customize templates for your organization:
 
 **Version**: 1.0.0  
 **Last Updated**: 2025-12-19  
-**Part of**: Compound Engineering System
+**Part of**: EARS Workflow System

@@ -1,7 +1,6 @@
 MIT License
 
-Copyright (c) 2024 EveryInc (Original Compound Engineering Plugin)
-Copyright (c) 2025 Contributors (This Implementation)
+Copyright (c) 2025 EARS-Workflow System
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,3 +19,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+## Attribution
+
+This work is based on the Compound Engineering Plugin by EveryInc:
+https://github.com/EveryInc/compound-engineering-plugin
+
+Original work licensed under MIT License.
+Adapted and extended for Agent Skills Standard compliance.

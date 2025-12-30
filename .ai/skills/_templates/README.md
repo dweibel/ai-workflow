@@ -1,10 +1,10 @@
 # Skill Development Templates
 
-This directory contains templates for developing new skills in the Compound Engineering system.
+This directory contains templates for developing new skills in the EARS Workflow system.
 
 ## Overview
 
-The template system provides a standardized structure for creating new skills that follow the Compound Engineering principles and integrate seamlessly with the existing workflow.
+The template system provides a standardized structure for creating new skills that follow the EARS workflow principles and integrate seamlessly with the existing workflow.
 
 ## Using the Templates
 
@@ -201,7 +201,7 @@ echo "All tests completed"
 
 ## Integration Requirements
 
-### Compound Engineering Integration
+### EARS Workflow Integration
 
 **Memory System:**
 - Document lessons learned in skill usage
@@ -313,7 +313,7 @@ echo "All tests completed"
 The template system evolves based on:
 - Experience with new skill development
 - Feedback from skill usage
-- Changes in Compound Engineering patterns
+- Changes in EARS workflow patterns
 - New platform requirements
 
 ---

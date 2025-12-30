@@ -1,471 +1,246 @@
-# Architectural Decision Records (ADRs)
+# Architectural Decisions
 
-This file documents architectural patterns, technology choices, and conventions established for this project. All code should follow these decisions unless explicitly overridden.
+> **Memory system for documenting architectural patterns and decision rationale**
 
-## How to Use This File
+This file contains architectural decisions made during the development of the EARS-workflow skill package. Each decision includes context, options considered, decision made, and rationale.
 
-- **Load during planning**: Consult this before designing new features
-- **Load during review**: Verify code follows established patterns
-- **Update when patterns emerge**: Document new architectural approaches
-- **Format**: Clear decision, rationale, examples, and date
+## ADR-001: Agent Skills Standard Adoption
+
+**Date**: 2025-12-29  
+**Status**: Accepted  
+**Context**: Need to ensure compatibility across multiple IDEs (VS Code, Cursor, JetBrains)  
+
+**Decision**: Adopt Agent Skills Standard with YAML frontmatter in SKILL.md files  
+
+**Rationale**:
+- Provides standardized discovery mechanism across IDEs
+- Enables progressive disclosure for efficient context management
+- Maintains backward compatibility with existing AGENTS.md systems
+- Supports semantic activation routing with confidence scoring
+
+**Consequences**:
+- All skills must include valid YAML frontmatter
+- File structure must follow Agent Skills conventions
+- Activation logic must support semantic analysis
+
+## ADR-002: Progressive Disclosure Architecture
+
+**Date**: 2025-12-29  
+**Status**: Accepted  
+**Context**: Need to manage context window efficiently while providing comprehensive capabilities  
+
+**Decision**: Implement three-tier progressive disclosure system  
+
+**Rationale**:
+- Tier 1 (Discovery): Minimal metadata for all skills (~50 tokens each)
+- Tier 2 (Activation): Full instructions for active skills (~500-1000 tokens)
+- Tier 3 (Execution): Supporting files loaded incrementally as needed
+- Prevents context window bloat while maintaining full functionality
+
+**Consequences**:
+- Skills must be designed for incremental loading
+- Context management becomes more complex
+- Better scalability for large skill ecosystems
+
+## ADR-003: Cross-Platform Script Strategy
+
+**Date**: 2025-12-29  
+**Status**: Accepted  
+**Context**: Need to support Windows, macOS, and Linux with consistent functionality  
+
+**Decision**: Use bash scripts with documented Windows compatibility via WSL/Git Bash  
+
+**Rationale**:
+- Bash provides consistent scripting environment across platforms
+- Windows users commonly have WSL or Git Bash available
+- Avoids maintaining separate script implementations
+- Leverages existing git worktree bash ecosystem
+
+**Consequences**:
+- Windows users must install WSL or Git Bash
+- Documentation must clearly explain platform requirements
+- Scripts must handle cross-platform path differences
+
+## ADR-004: Skill Terminology Standardization
+
+**Date**: 2025-12-29  
+**Status**: Accepted  
+**Context**: Inconsistent use of "skills" vs "sub-skills" causing user confusion  
+
+**Decision**: Use "skills" for all individual capabilities, reserve "sub-skills" only for internal implementation details  
+
+**Rationale**:
+- Aligns with Agent Skills Standard terminology
+- Reduces cognitive load for users
+- Simplifies documentation maintenance
+- Matches actual file structure (individual SKILL.md files)
+
+**Consequences**:
+- All documentation must use consistent terminology
+- Legacy references to "sub-skills" must be updated
+- User-facing interfaces should use "skills" exclusively
+
+## ADR-005: Version Synchronization Strategy
+
+**Date**: 2025-12-29  
+**Status**: Accepted  
+**Context**: Multiple version references across package causing inconsistencies  
+
+**Decision**: Synchronize all skill versions with package.json version, maintain single source of truth  
+
+**Rationale**:
+- Prevents version drift between components
+- Simplifies release management
+- Enables automated version validation
+- Provides clear versioning strategy for users
+
+**Consequences**:
+- All SKILL.md files must maintain synchronized versions
+- Release process must update all version references
+- Validation scripts must check version consistency
+
+## ADR-006: Documentation Consolidation Pattern
+
+**Date**: 2025-12-29  
+**Status**: Accepted  
+**Context**: Duplicated information across multiple documentation files creating maintenance burden  
+
+**Decision**: Create authoritative reference documents with cross-references from other docs  
+
+**Rationale**:
+- Single source of truth for each topic
+- Reduces maintenance overhead
+- Prevents information drift
+- Enables comprehensive reference while maintaining focused guides
+
+**Consequences**:
+- Reference documents must be comprehensive and accurate
+- Other documents must use cross-references instead of duplication
+- Documentation structure becomes more hierarchical
+
+## ADR-007: Activation Trigger Centralization
+
+**Date**: 2025-12-29  
+**Status**: Accepted  
+**Context**: Inconsistent activation triggers across different documentation sources  
+
+**Decision**: Maintain single authoritative activation triggers reference with semantic analysis  
+
+**Rationale**:
+- Prevents conflicting activation instructions
+- Enables sophisticated semantic routing
+- Supports confidence scoring for better user experience
+- Allows for trigger evolution without breaking existing patterns
+
+**Consequences**:
+- All activation logic must reference central trigger definitions
+- Semantic analysis must be robust and well-tested
+- Trigger updates must be coordinated across all documentation
+
+## ADR-008: Memory File Structure
+
+**Date**: 2025-12-29  
+**Status**: Accepted  
+**Context**: Need systematic approach to compound learning and knowledge retention  
+
+**Decision**: Separate lessons.md (tactical) from decisions.md (strategic) with periodic consolidation  
+
+**Rationale**:
+- Lessons capture immediate learning from corrections and failures
+- Decisions capture strategic architectural choices with rationale
+- Separation prevents mixing tactical and strategic concerns
+- Periodic consolidation prevents unbounded growth
+
+**Consequences**:
+- Clear distinction between lesson types must be maintained
+- Regular maintenance required to prevent bloat
+- Retrospective analysis must categorize learnings appropriately
+
+## ADR-009: Semantic Analysis Engine Enhancement
+
+**Date**: 2025-12-29  
+**Status**: Accepted  
+**Context**: Need sophisticated skill activation with confidence scoring, context awareness, and learning capabilities  
+
+**Decision**: Implement multi-dimensional semantic analysis engine with four-tier confidence scoring and context-aware adjustments  
+
+**Rationale**:
+- **Tier 1-4 Confidence Scoring**: Provides nuanced activation decisions from exact matches (95-100%) to contextual inference (50-69%)
+- **Context-Aware Adjustments**: Sequential workflow progression, error-driven activation, and urgency detection improve user experience
+- **Learning Loop**: User correction tracking and pattern adaptation enables continuous improvement
+- **Precedence Rules**: Clear hierarchy (explicit commands > errors > workflow > intent > default) prevents activation conflicts
+- **Multi-Intent Handling**: Complex requests with multiple skills are properly sequenced and prioritized
+
+**Consequences**:
+- Enhanced user experience with more accurate skill activation
+- Reduced cognitive load through intelligent workflow progression
+- Improved system learning through correction tracking and pattern recognition
+- More sophisticated context management and session state tracking
+- Comprehensive test coverage ensures reliability and consistency
+
+**Implementation**:
+- **SemanticAnalysisEngine**: Core analysis with confidence scoring and context awareness
+- **Interactive Demo Tool**: CLI testing interface for validation and demonstration
+- **Comprehensive Test Suite**: Property-based testing with edge case coverage
+- **Integration**: Enhanced compound-engineering skill with programmatic API
+
+## ADR-010: Cross-Reference Validation Implementation
+
+**Date**: 2025-12-29  
+**Status**: Accepted  
+**Context**: Need automated validation of all documentation links and file references to ensure accuracy and prevent broken references  
+
+**Decision**: Implement comprehensive cross-reference validation system with automated detection and fix suggestions  
+
+**Rationale**:
+- **Comprehensive Coverage**: Validates markdown links, file references, directory references, script references, and relative paths
+- **Automated Detection**: Identifies broken links, missing files, and invalid npm script references
+- **Fix Suggestions**: Provides actionable guidance for resolving each type of reference error
+- **Integration**: Seamlessly integrates with existing validation workflow and CI/CD pipelines
+- **Categorization**: Distinguishes between critical errors and template/example references
+
+**Consequences**:
+- Improved documentation accuracy and reliability
+- Reduced maintenance overhead through automated detection
+- Better user experience with accurate cross-references
+- Enhanced development workflow with pre-commit validation
+- Systematic approach to documentation quality assurance
+
+**Implementation**:
+- **CrossReferenceValidator**: Core validation engine with pattern matching and path resolution
+- **Comprehensive Test Suite**: Property-based testing with edge case coverage
+- **Integration Scripts**: npm scripts and CI/CD integration for automated validation
+- **Documentation Guide**: Maintenance guide with best practices and troubleshooting
+
+## ADR-011: Documentation Consistency Implementation
+
+**Date**: 2025-12-29  
+**Status**: Accepted  
+**Context**: Need to address documentation accuracy, consistency, and duplication issues identified in comprehensive audit  
+
+**Decision**: Implement systematic documentation consistency improvements with standardized naming, consolidated platform instructions, and complete file structure  
+
+**Rationale**:
+- **Naming Standardization**: Use "EARS-Workflow" for titles/headers and "ears-workflow" for technical references to eliminate user confusion
+- **Platform Consolidation**: Create single authoritative sections for Windows-specific requirements (WSL/Git Bash) to reduce maintenance overhead
+- **Complete File Structure**: Create all referenced workflow, role, and protocol files to eliminate broken references
+- **Attribution Cleanup**: Remove inconsistent attribution while maintaining clear licensing to eliminate confusion
+- **Template Clarity**: Clearly distinguish between example/template references and actual file references
+
+**Consequences**:
+- Improved user experience through consistent terminology and clear platform requirements
+- Reduced maintenance overhead through consolidated documentation structure
+- Enhanced system completeness with all referenced files properly implemented
+- Better navigation and discoverability through complete file structure
+- Clearer licensing and attribution information
+
+**Implementation**:
+- **Naming Convention**: Standardized "EARS-Workflow" vs "ears-workflow" usage across all files
+- **Platform Requirements**: Consolidated Windows requirements with WSL/Git Bash instructions
+- **Missing Files**: Created `.ai/workflows/`, `.ai/roles/`, and `.ai/protocols/` directories with complete implementations
+- **Attribution**: Removed inconsistent author fields while maintaining MIT license and original attribution
+- **Cross-References**: Fixed broken links and clearly marked template references
 
 ---
 
-## Format Template
-
-```markdown
-## [Decision Title]
-
-**Status**: Active | Deprecated | Superseded  
-**Date**: YYYY-MM-DD  
-**Context**: [Why was this decision needed?]  
-**Decision**: [What did we decide?]  
-**Rationale**: [Why did we choose this approach?]  
-**Consequences**: [Trade-offs and implications]  
-**Examples**: [Code references or patterns]  
-**Alternatives Considered**: [What else did we evaluate?]
-```
-
----
-
-## Code Organization
-
-### Directory Structure
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: Follow domain-driven directory structure
-
-**Pattern**:
-```
-src/
-├── auth/           # Authentication domain
-│   ├── models/
-│   ├── controllers/
-│   ├── services/
-│   └── tests/
-├── users/          # Users domain
-│   └── ...
-├── shared/         # Shared utilities
-│   ├── types/
-│   └── utils/
-```
-
-**Rationale**: Group by domain/feature rather than technical layer for better cohesion and easier navigation.
-
----
-
-## Naming Conventions
-
-### File Naming
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: 
-- Use kebab-case for documentation files: `user-authentication.md`
-- Use date prefixes for chronological documents: `2025-12-16-feature-name.md`
-- Use descriptive names that indicate purpose and scope
-- Follow established directory hierarchy in `.ai/docs/`
-
-**Examples**:
-- ✅ `.ai/docs/plans/2025-12-16-user-authentication.md`
-- ✅ `.ai/docs/requirements/user-authentication.md`
-- ✅ `.ai/protocols/testing.md`
-- ❌ `plan1.md`
-- ❌ `stuff.md`
-
----
-
-### Variable and Function Naming
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**:
-- Use camelCase for JavaScript/TypeScript variables and functions
-- Use PascalCase for classes and interfaces
-- Use SCREAMING_SNAKE_CASE for constants
-- Use descriptive names that reveal intent
-
-**Examples**:
-```typescript
-// ✅ Good
-const userAuthToken = generateToken();
-class UserRepository { }
-const MAX_RETRY_ATTEMPTS = 3;
-
-// ❌ Bad
-const t = gen();
-class ur { }
-const max = 3;
-```
-
----
-
-## Error Handling
-
-### Error Response Format
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: Use consistent error response format across all APIs
-
-**Pattern**:
-```typescript
-interface ErrorResponse {
-  error: {
-    code: string;        // Machine-readable error code
-    message: string;     // Human-readable message
-    details?: any;       // Optional additional context
-  }
-}
-```
-
-**Example**:
-```typescript
-res.status(400).json({
-  error: {
-    code: 'INVALID_EMAIL',
-    message: 'Email address is not valid',
-    details: { email: 'not-an-email' }
-  }
-});
-```
-
-**Rationale**: Consistent error format makes client-side error handling predictable and improves debugging.
-
----
-
-### Exception Handling
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: Use custom error classes for domain-specific errors
-
-**Pattern**:
-```typescript
-class ValidationError extends Error {
-  constructor(message: string, public field: string) {
-    super(message);
-    this.name = 'ValidationError';
-  }
-}
-
-// Usage
-throw new ValidationError('Email is required', 'email');
-```
-
-**Rationale**: Custom errors provide more context and enable better error handling logic.
-
----
-
-## Database Patterns
-
-### Query Organization
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: All database queries should be encapsulated in repository/DAO pattern
-
-**Pattern**:
-```typescript
-// repositories/user-repository.ts
-class UserRepository {
-  async findById(id: number): Promise<User | null> {
-    return db.query('SELECT * FROM users WHERE id = $1', [id]);
-  }
-}
-
-// ❌ Don't do this in controllers
-app.get('/users/:id', async (req, res) => {
-  const user = await db.query('SELECT * FROM users WHERE id = $1', [req.params.id]);
-  // Bad: query logic mixed with controller logic
-});
-```
-
-**Rationale**: Separation of concerns, easier testing, centralized query logic.
-
----
-
-### Migration Strategy
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: All schema changes must go through migration files, never direct SQL
-
-**Pattern**: See `.ai/protocols/migrations.md` for detailed guidelines
-
-**Key Rules**:
-- All migrations must be idempotent
-- All migrations must have rollback procedures
-- Test migrations on staging before production
-- Never modify existing migration files after they've been deployed
-
----
-
-## Testing Conventions
-
-### Test Organization
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: Co-locate tests with source files using `.test.ts` suffix
-
-**Pattern**:
-```
-src/
-├── auth/
-│   ├── authenticate.ts
-│   └── authenticate.test.ts
-```
-
-**Rationale**: Tests are easier to find and maintain when co-located with the code they test.
-
----
-
-### Test Coverage Requirements
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: Maintain minimum 80% code coverage for all business logic
-
-**What to Test**:
-- ✅ All business logic functions
-- ✅ All API endpoints
-- ✅ All database queries
-- ✅ Error handling paths
-- ❌ Framework boilerplate
-- ❌ Third-party library code
-
-**Enforcement**: CI pipeline fails if coverage drops below 80%
-
----
-
-## API Design
-
-### REST Conventions
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: Follow RESTful conventions for API design
-
-**Pattern**:
-```
-GET    /api/users          # List users
-GET    /api/users/:id      # Get single user
-POST   /api/users          # Create user
-PUT    /api/users/:id      # Update user (full replace)
-PATCH  /api/users/:id      # Update user (partial)
-DELETE /api/users/:id      # Delete user
-```
-
-**Guidelines**:
-- Use plural nouns for resources
-- Use HTTP verbs correctly
-- Return appropriate status codes (200, 201, 400, 404, 500)
-- Version APIs if breaking changes are possible (`/api/v1/users`)
-
----
-
-### Response Format
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: Wrap collection responses in a data envelope
-
-**Pattern**:
-```typescript
-// Single resource
-res.json({ id: 1, name: 'John' });
-
-// Collection
-res.json({
-  data: [{ id: 1 }, { id: 2 }],
-  meta: {
-    total: 2,
-    page: 1,
-    pageSize: 20
-  }
-});
-```
-
-**Rationale**: Envelopes allow for metadata (pagination, totals) without polluting the data structure.
-
----
-
-## Security Patterns
-
-### Authentication
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: Use JWT tokens for authentication with HTTP-only cookies
-
-**Pattern**:
-```typescript
-// Set cookie
-res.cookie('authToken', jwt.sign({ userId: user.id }), {
-  httpOnly: true,
-  secure: true,      // HTTPS only
-  sameSite: 'strict',
-  maxAge: 24 * 60 * 60 * 1000  // 24 hours
-});
-```
-
-**Rationale**: HTTP-only cookies prevent XSS attacks, secure flag enforces HTTPS, sameSite prevents CSRF.
-
----
-
-### Input Validation
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: Validate all user input at the API boundary using a validation library
-
-**Pattern**:
-```typescript
-import { z } from 'zod';
-
-const CreateUserSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
-  age: z.number().min(18)
-});
-
-app.post('/users', (req, res) => {
-  const result = CreateUserSchema.safeParse(req.body);
-  if (!result.success) {
-    return res.status(400).json({ error: result.error });
-  }
-  // ... proceed with validated data
-});
-```
-
-**Rationale**: Centralized validation prevents inconsistent validation logic and improves security.
-
----
-
-## Performance Patterns
-
-### Caching Strategy
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: [Document your caching strategy]
-
-**Example**:
-- Use Redis for session storage
-- Cache expensive API responses for 5 minutes
-- Use ETags for HTTP caching
-- Invalidate cache on write operations
-
----
-
-### Database Optimization
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: Always use indexes on foreign keys and frequently queried columns
-
-**Pattern**:
-```sql
-CREATE INDEX idx_orders_user_id ON orders(user_id);
-CREATE INDEX idx_orders_created_at ON orders(created_at);
-```
-
-**Rationale**: Proper indexing prevents full table scans and dramatically improves query performance.
-
----
-
-## Code Style
-
-### Linting & Formatting
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: Use ESLint + Prettier for consistent code style
-
-**Configuration**: See `.eslintrc.js` and `.prettierrc`
-
-**Enforcement**: Pre-commit hooks run linter and formatter, CI fails on lint errors
-
----
-
-### Code Comments
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: Write comments that explain "why", not "what"
-
-**Examples**:
-```typescript
-// ❌ Bad: Comments the obvious
-// Increment counter
-counter++;
-
-// ✅ Good: Explains the reasoning
-// Increment counter to track failed login attempts for rate limiting
-counter++;
-
-// ✅ Good: Explains complex logic
-// We use exponential backoff here because linear backoff
-// was causing thundering herd problems during outages
-const delay = Math.pow(2, attempt) * 1000;
-```
-
----
-
-## Deployment
-
-### Environment Variables
-
-**Status**: Template  
-**Date**: 2025-12-19  
-**Decision**: All configuration must come from environment variables, never hard-coded
-
-**Pattern**:
-```typescript
-const config = {
-  port: process.env.PORT || 3000,
-  dbUrl: process.env.DATABASE_URL,
-  apiKey: process.env.API_KEY,
-};
-
-// ❌ Never do this
-const API_KEY = 'abc123secretkey';
-```
-
-**Enforcement**: Use `.env` files for local development, CI/CD secrets for production
-
----
-
-## How to Add New Decisions
-
-When a new architectural pattern emerges:
-
-1. Document it in this file using the template format
-2. Include examples from the actual codebase
-3. Explain the rationale (especially if it contradicts common practices)
-4. Reference it in code reviews when enforcing the pattern
-5. Update it if the decision is later superseded
-
----
-
-## Maintenance
-
-This file should be reviewed quarterly to:
-- Mark outdated decisions as Deprecated
-- Update patterns based on lessons learned
-- Add new decisions as the project evolves
-- Ensure examples are still accurate
-
-Last reviewed: 2025-12-19
-
----
-
-**Remember**: These decisions create consistency and reduce cognitive load. When in doubt, follow these patterns. If you need to deviate, document why.
-
----
-
-**Version**: 1.0.0  
-**Last Updated**: 2025-12-19  
-**Based On**: AGENTS.md v1.0.0
+*This file documents strategic architectural decisions that shape the system design. Each decision includes full context and rationale to support future evolution and maintenance.*
